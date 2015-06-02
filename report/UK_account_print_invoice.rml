@@ -431,7 +431,6 @@
         <para style="terp_header" alignment="LEFT">How to pay: </para>
         </td>
         <td>
-                <para style="Default_9">BACS/Internet: Payments can be made by BACS or Internet banking, please call for more details quoting Reference: [[ o.partner_id and o.partner_id.parent_id and o.partner_id.parent_id.ref or o.partner_id.ref ]] </para>
                 <para style="Default_9">Credit card: Major credit and debit cards are accepted (subject to surcharge), please call with your card number</para>
                 <para style="Default_9">Standing order: Regular payments can be made by standing order, a form can be provided on request</para>
         </td>
@@ -441,8 +440,6 @@
         <para style="terp_header" alignment="LEFT">Notes: </para>
         </td>
         <td>
-                <para style="Default_9">Any discrepancies must be notified in writing within [[ 'Standard Terms' ]] days of the date of invoice</para>
-                <para style="Default_9">Check that your contact details are correct. Advise accounts@opusvl.com of any errors</para>
 		<para style="Default_9">Payment terms: [[ (o.payment_term and o.payment_term.note) or 'Standard Terms' ]]</para>
                 <spacer length="2mm"/>
                 <pre style="Preformatted Text">[[ o.comment or removeParentNode('pre') ]] </pre>

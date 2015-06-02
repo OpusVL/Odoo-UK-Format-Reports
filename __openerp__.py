@@ -3,7 +3,7 @@
    'version': '0.1',
    'category': 'Reporting',
    'description': """
-   Customised reports for OpusVL:
+   Customised reports for UK:
     - Sales order / Quotation
     - Account balance / overdue
     - Invoice print 

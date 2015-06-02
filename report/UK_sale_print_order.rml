@@ -294,6 +294,13 @@
 		<pre style="Preformatted Text">[[ o.note or removeParentNode('tr') ]]</pre>
         </td>
       </tr>
+      <tr>
+          <td>
+          <para style="P2">
+            <font color="white"> </font>
+        </para>
+          </td>
+      </tr>
     </blockTable>
 
   </story>

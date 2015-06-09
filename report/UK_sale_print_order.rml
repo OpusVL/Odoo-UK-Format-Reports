@@ -107,6 +107,7 @@
   <story>
     <para style="terp_default_8">[[repeatIn(objects,'o')]]</para>
     <para style="terp_default_8">[[ setLang(o.partner_id.lang) ]]</para>
+    <spacer length="5mm"/>
     <blockTable colWidths="80mm,2mm,100mm" style="Table_TopLeft">
       <tr>
         <td>
@@ -124,14 +125,18 @@
             <spacer length="1mm"/>
         </td>
         <td>
-          <para style="terp_default_9">Date: [[ formatLang(time.strftime('%Y-%m-%d'),date=True) ]]</para>
-          <para style="terp_default_9">Customer reference: [[ o.partner_id and o.partner_id.parent_id and o.partner_id.parent_id.ref or o.partner_id.ref ]]</para>
           <para style="terp_default_9">Document: Sales [[ (o.state=='draft' or o.state=='sent') and 'quotation' or 'order' ]] </para>
+          <para style="terp_default_9">Date: [[ formatLang(time.strftime('%Y-%m-%d'),date=True) ]]</para>
+          <para style="terp_default_9">Customer Reference: [[ (o.partner_id and o.partner_id.parent_id and o.partner_id.parent_id.ref or o.partner_id.ref) or removeParentNode('para') ]]</para>
+          <para style="terp_default_9">Account Manager: [[ (o.user_id and o.user_id.name) or removeParentNode('para') ]]</para>
+          <para style="terp_default_9">Your Reference: [[ o.client_order_ref or '(Not provided)' ]]</para>
           <para style="terp_default_9">Your Tel: [[ (o.partner_id and o.partner_id.phone) or removeParentNode('para') ]]</para>
           <para style="terp_default_9">Your Fax: [[ (o.partner_id and o.partner_id.fax) or removeParentNode('para') ]]</para>
-          <para style="terp_default_9">Your order Reference: [[ o.client_order_ref or '(Not provided)' ]]</para>
-          <para style="terp_default_9">Account manager: [[ (o.user_id and o.user_id.name) or removeParentNode('para') ]]</para>
+          <para style="terp_default_9">Your VAT: [[ (o.partner_id.vat) or removeParentNode('para') ]]</para>
           <para style="terp_default_9">Payment Terms: [[ (o.payment_term and o.payment_term.name) or 'Standard terms' ]]</para>
+	  <para style="terp_default_9">Created from: [[ o.origin or removeParentNode('para') ]]</para>
+	  <para style="terp_default_9">Currency: [[ o.currency_id.name or removeParentNode('para') ]] [[ o.currency_id.symbol ]]</para>
+	  <para style="terp_default_9">Description: [[ o.name or removeParentNode('para') ]]</para>
 	</td>
       </tr>
       <tr>
@@ -179,7 +184,7 @@
           <para style="terp_tblheader_Details">Description</para>
         </td>
         <td>
-          <para style="terp_tblheader_Details_Centre">VAT</para>
+          <para style="terp_tblheader_Details_Centre">Tax</para>
         </td>
         <td>
           <para style="terp_tblheader_Details_Centre">Quantity</para>
@@ -188,7 +193,7 @@
           <para style="terp_tblheader_Details_Centre">Unit Price</para>
         </td>
         <td>
-          <para style="terp_tblheader_Details_Right">Price</para>
+          <para style="terp_tblheader_Details_Right">Line Total</para>
         </td>
       </tr>
     </blockTable>
@@ -209,10 +214,10 @@
             <para style="terp_default_Right_9">[[ formatLang(line.product_uos and line.product_uos_qty or line.product_uom_qty) ]] [[ line.product_uos and line.product_uos.name or line.product_uom.name ]] </para>
           </td>
           <td>
-            <para style="terp_default_Right_9">[[ o.pricelist_id.currency_id.symbol ]][[ formatLang(line.price_unit, digits=get_digits(dp='Sale Price')) ]] </para>
+            <para style="terp_default_Right_9">[[ formatLang(line.price_unit, digits=get_digits(dp='Sale Price'), currency_obj=o.currency_id) ]] </para>
           </td>
           <td>
-            <para style="terp_default_Right_9">[[ o.pricelist_id.currency_id.symbol ]][[ formatLang(line.price_subtotal, digits=get_digits(dp='Sale Price')) ]] </para>
+            <para style="terp_default_Right_9">[[ formatLang(line.price_subtotal, digits=get_digits(dp='Sale Price'), currency_obj=o.currency_id) ]] </para>
           </td>
         </tr>
         <tr>
@@ -234,13 +239,13 @@
         	<para style="P5">To progress this quotation to an order, sign, date and return this document.</para>
         </td>
         <td>
-          <para style="P7"><font face="LiberationSans">Subtotal:</font></para>
+          <para style="P3">Subtotal:</para>
         </td>
         <td>
 		<spacer length="1mm"/>
         </td>
         <td>
-          <para style="terp_default_Right_9">[[ o.pricelist_id.currency_id. symbol ]][[ formatLang(o.amount_untaxed , digits=get_digits(dp='Sale Price')) ]]</para>
+          <para style="terp_default_Right_9">[[ formatLang(o.amount_untaxed , digits=get_digits(dp='Sale Price'), currency_obj=o.currency_id) ]]</para>
         </td>
       </tr>
 
@@ -249,13 +254,13 @@
 		<spacer length="1mm"/>
         </td>
         <td>
-          <para style="P7">Tax:</para>
+          <para style="P3">Tax:</para>
         </td>
         <td>
 		<spacer length="1mm"/>
         </td>
         <td>
-          <para style="terp_default_Right_9">[[ o.pricelist_id.currency_id. symbol ]][[ formatLang(o.amount_tax , digits=get_digits(dp='Sale Price')) ]]</para>
+          <para style="terp_default_Right_9">[[ formatLang(o.amount_tax , digits=get_digits(dp='Sale Price'), currency_obj=o.currency_id) ]]</para>
         </td>
       </tr>
       <tr>
@@ -273,7 +278,7 @@
 		<spacer length="1mm"/>
         </td>
         <td>
-          <para style="terp_default_Right_9_Bold">[[ o.pricelist_id.currency_id. symbol ]][[ formatLang(o.amount_total , digits=get_digits(dp='Sale Price')) ]]</para>
+          <para style="terp_default_Right_9_Bold">[[ formatLang(o.amount_total , digits=get_digits(dp='Sale Price'), currency_obj=o.currency_id) ]]</para>
         </td>
       </tr>
     </blockTable>

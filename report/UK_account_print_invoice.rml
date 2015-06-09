@@ -256,22 +256,21 @@
           	<para style="Default_9">[[ o.partner_id.state_id and o.partner_id.state_id.name or removeParentNode('para') ]]</para>
           	<para style="terp_default_Bold_9">[[ o.partner_id.zip or removeParentNode('para') ]]</para>
           	<para style="Default_9">[[ o.partner_id.country_id and o.partner_id.country_id.name or removeParentNode('para') ]]</para>
-	<spacer length="5mm"/>
-		<para style="Default_9">Your Tel: [[ (o.partner_id.phone) or removeParentNode('para') ]]</para>
-		<para style="Default_9">Your Fax: [[ (o.partner_id.fax) or removeParentNode('para') ]]</para>
-          	<para style="Default_9">Your VAT: [[ (o.partner_id.vat) or removeParentNode('para') ]]</para>
         </td>
 
         <td>
-            	<para style="Default_9">Document: Invoice</para>
-		<para style="Default_9">Invoice number: [[ o.number  or 'DRAFT DOCUMENT']]</para>
-		<para style="Default_9">Invoice date: [[ formatLang(o.date_invoice,date=True) ]]</para>
-            	<para style="Default_9">Customer Ref: [[ o.partner_id and o.partner_id.parent_id and o.partner_id.parent_id.ref or o.partner_id.ref ]]</para>
-               	<para style="Default_9">Account manager: [[ (o.partner_id.user_id and o.partner_id.user_id.name) or removeParentNode('para') ]]</para>
+            	<para style="Default_9">Document: [[ o.state == 'draft' and 'Draft' or '' ]] Invoice</para>
+		<para style="Default_9">Date: [[ formatLang(o.date_invoice,date=True) or '(Not confirmed)' ]]</para>
+            	<para style="Default_9">Customer Reference: [[ (o.partner_id and o.partner_id.parent_id and o.partner_id.parent_id.ref or o.partner_id.ref) or removeParentNode('para') ]]</para>
+               	<para style="Default_9">Account Manager: [[ (o.partner_id.user_id and o.partner_id.user_id.name) or removeParentNode('para') ]]</para>
+	        <para style="Default_9">Your Reference: [[ o.reference or '(Not provided)' ]]</para>
+          	<para style="Default_9">Your Tel: [[ (o.partner_id and o.partner_id.phone) or removeParentNode('para') ]]</para>
+          	<para style="Default_9">Your Fax: [[ (o.partner_id and o.partner_id.fax) or removeParentNode('para') ]]</para>
+          	<para style="Default_9">Your VAT: [[ (o.partner_id.vat) or removeParentNode('para') ]]</para>
+          	<para style="Default_9">Payment Terms: [[ o.payment_term and o.payment_term.name or 'Standard terms' ]]</para>
 		<para style="Default_9">Created from: [[ o.origin or removeParentNode('para') ]]</para>
-		<para style="Default_9">Currency: [[ o.currency_id.name ]] [[ o.currency_id.symbol ]]</para>
+		<para style="Default_9">Currency: [[ o.currency_id.name or removeParentNode('para')]] [[ o.currency_id.symbol ]]</para>
 		<para style="Default_9">Description: [[ o.name or removeParentNode('para') ]]</para>
-
 	</td>
       </tr>
     </blockTable>
@@ -279,8 +278,8 @@
 
     <para style="terp_header">Sales Invoice [[ ((o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')) or removeParentNode('para')) and '' ]] [[ o.number ]]</para>
     <para style="terp_header">Sales PRO-FORMA [[ ((o.type == 'out_invoice' and o.state == 'proforma2') or removeParentNode('para')) and '' ]]</para>
-    <para style="terp_header">Draft Sales Invoice [[ ((o.type == 'out_invoice' and o.state == 'draft') or removeParentNode('para')) and '' ]]</para>
-    <para style="terp_header">Canceled Sales Invoice [[ ((o.type == 'out_invoice' and o.state == 'cancel') or removeParentNode('para')) and '' ]]</para>
+    <para style="terp_header">Draft Invoice [[ ((o.type == 'out_invoice' and o.state == 'draft') or removeParentNode('para')) and '' ]]</para>
+    <para style="terp_header">Cancelled Invoice [[ ((o.type == 'out_invoice' and o.state == 'cancel') or removeParentNode('para')) and '' ]]</para>
     <para style="terp_header">Sales Refund [[ (o.type=='out_refund' or removeParentNode('para')) and '' ]] [[ o.number ]]</para>
     <para style="terp_header">Supplier Refund [[ (o.type=='in_refund' or removeParentNode('para')) and '' ]] [[ o.number ]]</para>
     <para style="terp_header">Supplier Invoice [[ (o.type=='in_invoice' or removeParentNode('para')) and '' ]] [[ o.number ]]</para>
@@ -292,8 +291,8 @@
         <td><para style="terp_tblheader_Details">Description</para></td>
         <td><para style="terp_tblheader_Details">Tax</para></td>
         <td><para style="terp_tblheader_Details">Quantity</para></td>
-        <td><para style="terp_tblheader_Details_Right">Each</para></td>
-        <td><para style="terp_tblheader_Details_Right">Line total</para></td>
+        <td><para style="terp_tblheader_Details_Right">Unit Price</para></td>
+        <td><para style="terp_tblheader_Details_Right">Line Total</para></td>
       </tr>
     </blockTable>
 
@@ -305,8 +304,8 @@
           <td><para style="Default_9">[[ l.name ]]</para></td>
           <td><para style="terp_default_8">[[ ', '.join([ lt.description or '' for lt in l.invoice_line_tax_id ]) ]]</para></td>
           <td><para style="Default_9">[[ formatLang(l.quantity)]] [[ (l.uos_id and l.uos_id.name) or '' ]]</para></td>
-          <td><para style="terp_default_Right_9">[[ o.currency_id.symbol ]][[ formatLang(l.price_unit, digits=get_digits(dp='Sale Price')) ]]</para></td>
-          <td><para style="terp_default_Right_9">[[ o.currency_id.symbol ]][[ formatLang(l.price_subtotal, digits=get_digits(dp='Sale Price')) ]]</para></td>
+          <td><para style="terp_default_Right_9">[[ formatLang(l.price_unit, digits=get_digits(dp='Sale Price'), currency_obj=o.currency_id) ]]</para></td>
+          <td><para style="terp_default_Right_9">[[ formatLang(l.price_subtotal, digits=get_digits(dp='Sale Price'), currency_obj=o.currency_id) ]]</para></td>
         </tr>
 
         <tr>
@@ -354,8 +353,8 @@
            <blockTable colWidths="150.0,85.0,85.0" style="Table_Tax_Content">
             <tr>
              <td><para style="terp_default_8">[[ t.name ]] </para></td>
-             <td><para style="terp_default_Right_8">[[ o.currency_id.symbol ]][[ formatLang(t.base, digits=get_digits(dp='Sale Price')) ]]</para></td>
-             <td><para style="terp_default_Right_8">[[ (t.tax_code_id and t.tax_code_id.notprintable) and removeParentNode('blockTable') or '' ]][[ o.currency_id.symbol ]][[ formatLang(t.amount, digits=get_digits(dp='Sale Price')) ]]</para></td>
+             <td><para style="terp_default_Right_8">[[ formatLang(t.base, digits=get_digits(dp='Sale Price'), currency_obj=o.currency_id) ]]</para></td>
+             <td><para style="terp_default_Right_8">[[ (t.tax_code_id and t.tax_code_id.notprintable) and removeParentNode('blockTable') or '' ]][[ formatLang(t.amount, digits=get_digits(dp='Sale Price'), currency_obj=o.currency_id) ]]</para></td>
             </tr>
            </blockTable>
 
@@ -370,21 +369,21 @@
         <blockTable colWidths="70.0,70.0" style="Table_Subtotal_NET">
          <tr>
            <td><para style="terp_default_Bold_Right_9">Subtotal:</para></td>
-           <td><para style="terp_default_Right_9">[[ o.currency_id.symbol ]][[ formatLang(o.amount_untaxed, digits=get_digits(dp='Sale Price')) ]]</para></td>
+           <td><para style="terp_default_Right_9">[[ formatLang(o.amount_untaxed, digits=get_digits(dp='Sale Price'), currency_obj=o.currency_id) ]]</para></td>
          </tr>
        </blockTable>
 
        <blockTable colWidths="70.0,70.0" style="Table_Subtotal_TAX">
          <tr>
            <td><para style="terp_default_Bold_Right_9">Tax:</para></td>
-           <td><para style="terp_default_Right_9">[[ o.currency_id.symbol ]][[ formatLang(o.amount_tax, digits=get_digits(dp='Sale Price')) ]]</para></td>
+           <td><para style="terp_default_Right_9">[[ formatLang(o.amount_tax, digits=get_digits(dp='Sale Price'), currency_obj=o.currency_id) ]]</para></td>
          </tr>
        </blockTable>
 
        <blockTable colWidths="70.0,70.0" style="Table_Subtotal_GROSS">
          <tr>
            <td><para style="terp_default_Bold_Right_9">Total:</para></td>
-           <td><para style="terp_default_Right_9">[[ o.currency_id.symbol ]][[ formatLang(o.amount_total, digits=get_digits(dp='Sale Price')) ]]</para></td>
+           <td><para style="terp_default_Right_9">[[ formatLang(o.amount_total, digits=get_digits(dp='Sale Price'), currency_obj=o.currency_id) ]]</para></td>
          </tr>
        </blockTable>
 
@@ -423,16 +422,6 @@
         </td>
         <td>
         <para style="terp_header" alignment="LEFT">This invoice is paid.</para>
-        </td>
-      </tr>
-    <tr>
-        <td>
-	<para style="Default_9">[[ (o.state=='paid') and removeParentNode('tr') ]]</para>
-        <para style="terp_header" alignment="LEFT">How to pay: </para>
-        </td>
-        <td>
-                <para style="Default_9">Credit card: Major credit and debit cards are accepted (subject to surcharge), please call with your card number</para>
-                <para style="Default_9">Standing order: Regular payments can be made by standing order, a form can be provided on request</para>
         </td>
       </tr>
       <tr>

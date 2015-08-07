@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 ##############################################################################
 #
 # UK Report Template
@@ -20,8 +18,18 @@
 #
 ##############################################################################
 
-import report
-import account_invoice
-import sale_order
+from openerp import models, fields, api
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+class uk_report_account_invoice(models.Model):
+    _inherit = "sale.order"
+
+    @api.multi
+    def print_quotation(self):
+        '''
+        This function prints the sales order and mark it as sent, so that we can see more easily the next step of the workflow
+        '''
+        self.signal_workflow('quotation_sent')
+	self.ensure_one()
+        return self.env['report'].get_action(self, 'sale.UK_SalesOrder')
+
+

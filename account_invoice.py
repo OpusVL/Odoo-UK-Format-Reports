@@ -20,8 +20,19 @@
 #
 ##############################################################################
 
-import report
-import account_invoice
-import sale_order
+from openerp import models, fields, api
+
+class uk_report_account_invoice(models.Model):
+    _inherit = "account.invoice"
+
+    @api.multi
+    def invoice_print(self):
+        """ Print the invoice and mark it as sent, so that we can see more
+            easily the next step of the workflow
+        """
+	self.sent = True
+        self.ensure_one()
+        return self.env['report'].get_action(self, 'account.UK_Invoice')
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

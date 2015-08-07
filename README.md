@@ -1,7 +1,9 @@
 UK Reports Templates
 ====================
 
-Modified Report Templates suitable for UK format
+Modified Report Templates suitable for UK format.
+
+This module will make the new template default on print button.
 
 # Copyright and License
 

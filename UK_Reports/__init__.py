@@ -3,7 +3,7 @@
 ##############################################################################
 #
 # UK Report Template
-# Copyright (C) 2015 OpusVL (<http://opusvl.com/>)
+# Copyright (C) 2019 OpusVL (<http://opusvl.com/>)
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
@@ -20,8 +20,6 @@
 #
 ##############################################################################
 
-import report
-import account_invoice
-import sale_order
+from . import models
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

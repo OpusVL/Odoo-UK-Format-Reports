@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<report
+		    id="account.invoice_print_UK"
+		    model="account.invoice"
+		    string="Invoice (UK format)"
+		    report_type="qweb-pdf"
+		    name="account.UK_Invoice"
+		    file="account.UK_Invoice"
+		    attachment_use="True"
+		    attachment="(object.state in ('open','paid')) and
+		        ('INV'+(object.number or '').replace('/','')+'.pdf')"
+		/>
+	</data>
+</odoo>

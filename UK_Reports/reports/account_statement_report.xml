@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<report
+		    id="account.statement_print_UK"
+		    model="res.partner"
+		    string="Account statement (UK format)"
+		    report_type="qweb-pdf"
+		    name="account.UK_Statement.2"
+		    file="account.UK_Statement.2"
+		    attachment_use="True"
+		    attachment="(object.state in ('open','paid')) and
+		        ((object.name or '')+'.pdf')"
+		/>
+	</data>
+</odoo>

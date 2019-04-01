@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 ##############################################################################
 #
 # UK Report Template
-# Copyright (C) 2015 OpusVL (<http://opusvl.com/>)
+# Copyright (C) 2019 OpusVL (<http://opusvl.com/>)
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
@@ -20,19 +18,18 @@
 #
 ##############################################################################
 
-from openerp import models, fields, api
-
-class uk_report_account_invoice(models.Model):
-    _inherit = "account.invoice"
-
-    @api.multi
-    def invoice_print(self):
-        """ Print the invoice and mark it as sent, so that we can see more
-            easily the next step of the workflow
-        """
-	self.sent = True
-        self.ensure_one()
-        return self.env['report'].get_action(self, 'account.UK_Invoice')
+from odoo import models, api
 
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+class SaleOrder(models.Model):
+	_inherit = "sale.order"
+
+	@api.multi
+	def print_quotation(self):
+		'''
+		This function prints the sales order and mark it as sent, so that we can see more easily the next step of the workflow
+		'''
+		self.signal_workflow('quotation_sent')
+		self.ensure_one()
+		return self.env['report'].get_action(self, 'sale.UK_SalesOrder')
+

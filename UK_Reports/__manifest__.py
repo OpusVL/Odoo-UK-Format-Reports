@@ -3,7 +3,7 @@
 ##############################################################################
 #
 # UK Report Template
-# Copyright (C) 2015 OpusVL (<http://opusvl.com/>)
+# Copyright (C) 2019 OpusVL (<http://opusvl.com/>)
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
@@ -20,7 +20,26 @@
 #
 ##############################################################################
 
-
-import UK_Reports
+{
+	'name': 'UK customised reports',
+	'version': '10.0.0.1',
+	'category': 'Reporting',
+	'description': """
+		Customised reports for UK:
+		- Sales order / Quotation
+		- Account balance / overdue
+		- Invoice print
+	""",
+	'author': 'OpusVL',
+	'website': 'http://opusvl.com',
+	'depends': ['sale', 'report'],
+	'data': [
+		'reports/reports.xml',
+	],
+	'demo_xml': [],
+	'test': [],
+	'license': 'AGPL-3',
+	'installable': True,
+}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<report
+		    id="sale.order_print_UK"
+		    model="sale.order"
+		    string="Sales Order (UK format)"
+		    report_type="qweb-pdf"
+		    name="sale.UK_SalesOrder"
+		    file="sale.UK_SalesOrder"
+		    attachment_use="True"
+		    attachment="(object.state in ('open','paid')) and
+		        ((object.name or '')+'.pdf')"
+		/>
+	</data>
+</odoo>

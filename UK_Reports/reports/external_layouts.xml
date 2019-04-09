@@ -17,6 +17,11 @@
     </div>
 </template>
 
+<!--
+TODO: Account statement needs headers / footers. It was initially defined against the partner
+but that has now changed and will need speccing again
+-->
+
 <template id="external_layout_footer_credit_note_layout">
     <t t-call="UK_Reports.external_layout_footer_separator"/>
     <div class="row">

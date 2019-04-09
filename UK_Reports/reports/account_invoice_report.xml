@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 	<data>
+		<template id="uk_invoice_document">
+        	<t t-call="UK_Reports.external_layout_uk">
+			    <div class="page">
+			    	<span>Invoice Placeholder</span>
+			    </div>
+			</t>
+		</template>
+
 		<report
-		    id="account.invoice_print_UK"
+		    id="uk_invoice_print"
 		    model="account.invoice"
 		    string="Invoice (UK format)"
 		    report_type="qweb-pdf"
-		    name="account.UK_Invoice"
-		    file="account.UK_Invoice"
-		    attachment_use="True"
+		    name="UK_Reports.uk_invoice"
+		    file="UK_Reports.uk_invoice"
 		    attachment="(object.state in ('open','paid')) and
 		        ('INV'+(object.number or '').replace('/','')+'.pdf')"
 		/>
+
+	    <template id="uk_invoice">
+	        <t t-call="report.html_container">
+	            <t t-foreach="docs" t-as="o">
+	                <t t-call="UK_Reports.uk_invoice_document" t-lang="user.partner_id.lang"/>
+	            </t>
+	        </t>
+	    </template>
 	</data>
 </odoo>

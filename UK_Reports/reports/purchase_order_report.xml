@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="uk_purchaseorder_document">
+        	<t t-call="UK_Reports.external_layout_uk">
+			    <div class="page">
+			    	<span t-esc="doc_report_name"/>
+			    	<span>PO Placeholder</span>
+			    </div>
+			</t>
+		</template>
+
+		<report
+		    id="uk_purchaseorder_print"
+		    model="purchase.order"
+		    string="Purchase Order (UK format)"
+		    report_type="qweb-pdf"
+		    name="UK_Reports.uk_purchaseorder"
+		    file="UK_Reports.uk_purchaseorder"
+		    attachment="((object.name or '')+'.pdf')"
+		/>
+
+	    <template id="uk_purchaseorder">
+	        <t t-call="report.html_container">
+	            <t t-foreach="docs" t-as="o">
+	                <t t-call="UK_Reports.uk_purchaseorder_document" t-lang="user.partner_id.lang"/>
+	            </t>
+	        </t>
+	    </template>
+	</data>
+</odoo>

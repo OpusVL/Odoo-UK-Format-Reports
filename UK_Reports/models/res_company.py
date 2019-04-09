@@ -51,6 +51,15 @@ class ResCompany(models.Model):
 	report_head_addrline1 = fields.Char(compute="_compute_report_head_addrline1")
 	report_head_addrline2 = fields.Char(compute="_compute_report_head_addrline2")
 	report_head_addrline3 = fields.Char(compute="_compute_report_head_addrline3")
+	invoice_tandc = fields.Text(string="Invoice terms & Conditions")
+	credit_note_tandc = fields.Text(string="Credit note terms & Conditions")
+	proforma_tandc = fields.Text(string="Pro forma terms & Conditions")
+	quotation_tandc = fields.Text("Quotation terms & Conditions")
+	sale_tandc = fields.Text("Sales Order terms & Conditions")
+	delivery_tandc_1 = fields.Text("Delivery terms & Conditions 1")
+	delivery_tandc_2 = fields.Text("Delivery terms & Conditions 2")
+	purchase_tandc_1 = fields.Text("Purchase Order terms & Conditions 1")
+	purchase_tandc_2 = fields.Text("Purchase Order terms & Conditions 2")
 
 	@api.multi
 	def _compute_report_head_addrline1(self):

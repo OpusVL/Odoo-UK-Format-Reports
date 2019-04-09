@@ -9,40 +9,91 @@
  </xpath>
 </template>
 
-<template id="external_layout_footer_uk">
+<template id="external_layout_footer_credit_note_layout">
+    <!-- TODO -->
+</template>
 
+<template id="external_layout_footer_dual_tandc_layout">
+    <!-- TODO -->
+</template>
+
+<template id="external_layout_footer_normal_layout">
+    <!-- TODO -->
+</template>
+
+<template id="external_layout_footer_uk">
+    <div class="footer">
+        <!-- Values which can change depending on report -->
+        <t t-if="doc_model == 'account.invoice'">
+            <t t-if="o.type == 'out_invoice'">
+                <t t-set="tandc" t-value="company.invoice_tandc"/>
+                <t t-call="external_layout_footer_normal_layout"/>
+            </t>
+            <t t-elif="o.type == 'out_refund'">
+                <t t-set="tandc" t-value="company.credit_note_tandc"/>
+                <t t-call="external_layout_footer_credit_note_layout"/>
+            </t>
+            <t t-elif="o.state in ['proforma', 'proforma2']">
+                <t t-set="tandc" t-value="company.proforma_tandc"/>
+                <t t-call="external_layout_footer_normal_layout"/>
+            </t>
+        </t>
+
+        <t t-elif="doc_model == 'sale.order'">
+            <t t-if="o.state in ['draft', 'sent']">
+                <t t-set="tandc" t-value="company.quotation_tandc"/>
+                <t t-call="external_layout_footer_normal_layout"/>
+            </t>
+            <t t-elif="o.state in ['sale', 'done']">
+                <t t-set="tandc" t-value="company.sale_tandc"/>
+                <t t-call="external_layout_footer_normal_layout"/>
+            </t>
+        </t>
+        <t t-elif="doc_model == 'stock.picking'">
+            <t t-if="o.picking_type_id.code == 'outgoing'">
+                <t t-set="tandc1" t-value="company.delivery_tandc_1"/>
+                <t t-set="tandc2" t-value="company.delivery_tandc_2"/>
+                <t t-call="external_layout_footer_dual_tandc_layout"/>
+            </t>
+        </t>
+        <t t-elif="doc_model == 'purchase.order'">
+            <t t-set="tandc1" t-value="company.purchase_tandc_1"/>
+            <t t-set="tandc2" t-value="company.purchase_tandc_2"/>
+            <t t-call="external_layout_footer_dual_tandc_layout"/>
+        </t>
+    </div>
 </template>
 
 <template id="external_layout_header_uk">
     <div class="header">
         <!-- Values which can change depending on model -->
         <t t-if="doc_model == 'account.invoice'">
-            <t t-set="phone" t-value="o.company_id.accounts_dept_phone"/>
-            <t t-set="email" t-value="o.company_id.accounts_dept_email"/>
+            <t t-set="phone" t-value="company.accounts_dept_phone"/>
+            <t t-set="email" t-value="company.accounts_dept_email"/>
         </t>
         <t t-elif="doc_model == 'purchase.order'">
-            <t t-set="phone" t-value="o.company_id.purchase_dept_phone"/>
-            <t t-set="email" t-value="o.company_id.purchase_dept_email"/>
+            <t t-set="phone" t-value="company.purchase_dept_phone"/>
+            <t t-set="email" t-value="company.purchase_dept_email"/>
         </t>
         <t t-elif="doc_model == 'sale.order'">
-            <t t-set="phone" t-value="o.company_id.sales_dept_phone"/>
-            <t t-set="email" t-value="o.company_id.sales_dept_email"/>
+            <t t-set="phone" t-value="company.sales_dept_phone"/>
+            <t t-set="email" t-value="company.sales_dept_email"/>
         </t>
         <t t-else="doc_model == 'stock.picking'">
             <t t-if="o.picking_type_id.code == 'outgoing'">
-                <t t-set="phone" t-value="o.company_id.sales_dept_phone"/>
-                <t t-set="email" t-value="o.company_id.sales_dept_email"/>
+                <t t-set="phone" t-value="company.sales_dept_phone"/>
+                <t t-set="email" t-value="company.sales_dept_email"/>
             </t>
         </t>
 
         <div class="row">
             <div class="col-xs-4">
-                <img class="source-logo" t-att-src="'data:image/png;base64,%s' % o.company_id.logo"/>
+                <img class="source-logo" t-att-src="'data:image/png;base64,%s' % company.logo"/>
             </div>
             <div class="col-xs-4">
                 <br/>
                 <img class="source-mini-icon web" src='/UK_Reports/static/img/web.png'/>
-                <span class="source-mini-icon-text web" t-esc="o.company_id.website"/>
+                <span class="source-mini-icon-text web" t-esc="company.website"/>
                 <br/>
 
                 <img class="source-mini-icon phone" src='/UK_Reports/static/img/phone.png'/>
@@ -54,9 +105,9 @@
                 <br/>
             </div>
             <div class="col-xs-5 source-address-column">
-                <p class="source-addressline addrline1" t-esc="o.company_id.report_head_addrline1"/>
-                <p class="source-addressline addrline2" t-esc="o.company_id.report_head_addrline2"/>
-                <p class="source-addressline vatline1" t-esc="o.company_id.report_head_addrline3"/>
+                <p class="source-addressline addrline1" t-esc="company.report_head_addrline1"/>
+                <p class="source-addressline addrline2" t-esc="company.report_head_addrline2"/>
+                <p class="source-addressline vatline1" t-esc="company.report_head_addrline3"/>
             </div>
         </div>
     </div>

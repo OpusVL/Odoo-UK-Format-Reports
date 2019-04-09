@@ -22,6 +22,7 @@
 
 from . import (
 	account_invoice,
+	res_company,
 	sale_order,
 )
 

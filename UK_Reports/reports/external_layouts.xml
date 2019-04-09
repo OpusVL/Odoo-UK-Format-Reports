@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!-- Load some css file to help with styling / neatness of templates -->
+<template id="assets_common" name="UK_Reports assets" inherit_id="report.assets_common">
+ <xpath expr="." position="inside">
+     <link href="/UK_Reports/static/src/css/UK_Reports-footers.css" rel="stylesheet"/>
+     <link href="/UK_Reports/static/src/css/UK_Reports-headers.css" rel="stylesheet"/>
+ </xpath>
+</template>
+
+<template id="external_layout_footer_uk">
+
+</template>
+
+<template id="external_layout_header_uk">
+    <div class="header">
+        <!-- Values which can change depending on model -->
+        <t t-if="doc_model == 'account.invoice'">
+            <t t-set="phone" t-value="o.company_id.accounts_dept_phone"/>
+            <t t-set="email" t-value="o.company_id.accounts_dept_email"/>
+        </t>
+        <t t-elif="doc_model == 'purchase.order'">
+            <t t-set="phone" t-value="o.company_id.purchase_dept_phone"/>
+            <t t-set="email" t-value="o.company_id.purchase_dept_email"/>
+        </t>
+        <t t-elif="doc_model == 'sale.order'">
+            <t t-set="phone" t-value="o.company_id.sales_dept_phone"/>
+            <t t-set="email" t-value="o.company_id.sales_dept_email"/>
+        </t>
+        <t t-else="doc_model == 'stock.picking'">
+            <t t-if="o.picking_type_id.code == 'outgoing'">
+                <t t-set="phone" t-value="o.company_id.sales_dept_phone"/>
+                <t t-set="email" t-value="o.company_id.sales_dept_email"/>
+            </t>
+        </t>
+
+        <div class="row">
+            <div class="col-xs-4">
+                <img class="source-logo" t-att-src="'data:image/png;base64,%s' % o.company_id.logo"/>
+            </div>
+            <div class="col-xs-4">
+                <br/>
+                <img class="source-mini-icon web" src='/UK_Reports/static/img/web.png'/>
+                <span class="source-mini-icon-text web" t-esc="o.company_id.website"/>
+                <br/>
+
+                <img class="source-mini-icon phone" src='/UK_Reports/static/img/phone.png'/>
+                <span class="source-mini-icon-text phone" t-esc="phone"/>
+                <br/>
+
+                <img class="source-mini-icon mail" src='/UK_Reports/static/img/mail.png'/>
+                <span class="source-mini-icon-text mail" t-esc="email"/>
+                <br/>
+            </div>
+            <div class="col-xs-5 source-address-column">
+                <p class="source-addressline addrline1" t-esc="o.company_id.report_head_addrline1"/>
+                <p class="source-addressline addrline2" t-esc="o.company_id.report_head_addrline2"/>
+                <p class="source-addressline vatline1" t-esc="o.company_id.report_head_addrline3"/>
+            </div>
+        </div>
+    </div>
+</template>
+
+
+<!-- New external layout for UK headers/footers which is callable per report -->
+<template id="external_layout_uk">
+    <!-- Multicompany -->
+    <t t-if="not o and doc">
+        <t t-set="o" t-value="doc"/>
+    </t>
+    <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"></t>
+    </t>
+    <t t-if="not o or not 'company_id' in o">
+        <t t-set="company" t-value="res_company"></t>
+    </t>
+    <t t-call="UK_Reports.external_layout_header_uk"/>
+    <t t-raw="0" />
+    <t t-call="UK_Reports.external_layout_footer_uk"/>
+</template>
+
+
+
+</odoo>

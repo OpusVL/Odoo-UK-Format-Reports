@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 	<data>
+		<template id="uk_salesorder_document">
+        	<t t-call="UK_Reports.external_layout_uk">
+			    <div class="page">
+			    	<span>SO Placeholder</span>
+			    </div>
+			</t>
+		</template>
+
 		<report
-		    id="sale.order_print_UK"
+		    id="uk_salesorder_print"
 		    model="sale.order"
 		    string="Sales Order (UK format)"
 		    report_type="qweb-pdf"
-		    name="sale.UK_SalesOrder"
-		    file="sale.UK_SalesOrder"
-		    attachment_use="True"
-		    attachment="(object.state in ('open','paid')) and
-		        ((object.name or '')+'.pdf')"
+		    name="UK_Reports.uk_salesorder"
+		    file="UK_Reports.uk_salesorder"
+		    attachment="((object.name or '')+'.pdf')"
 		/>
+
+	    <template id="uk_salesorder">
+	        <t t-call="report.html_container">
+	            <t t-foreach="docs" t-as="o">
+	                <t t-call="UK_Reports.uk_salesorder_document" t-lang="user.partner_id.lang"/>
+	            </t>
+	        </t>
+	    </template>
 	</data>
 </odoo>

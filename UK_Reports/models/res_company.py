@@ -60,6 +60,11 @@ class ResCompany(models.Model):
 	delivery_tandc_2 = fields.Text("Delivery terms & Conditions 2")
 	purchase_tandc_1 = fields.Text("Purchase Order terms & Conditions 1")
 	purchase_tandc_2 = fields.Text("Purchase Order terms & Conditions 2")
+	account_name = fields.Char()
+	sort_code = fields.Char()
+	account_number = fields.Char()
+	iban = fields.Char(string="IBAN")
+	swift = fields.Char(string="SWIFT")
 
 	@api.multi
 	def _compute_report_head_addrline1(self):

@@ -9,16 +9,65 @@
  </xpath>
 </template>
 
+<template id="external_layout_footer_separator">
+    <div class="footer-separator">
+        <div class="col-xs-12">
+            <div class="separator-line" t-attf-style="border-top: 1px solid black"/>
+        </div>
+    </div>
+</template>
+
 <template id="external_layout_footer_credit_note_layout">
-    <!-- TODO -->
+    <t t-call="UK_Reports.external_layout_footer_separator"/>
+    <div class="row">
+        <div id="invoice-info-wrapper" class="col-xs-12 align-center">
+            <p class="terms-and-conditions-lg" t-raw="tandc"/>
+        </div>
+    </div>
 </template>
 
 <template id="external_layout_footer_dual_tandc_layout">
-    <!-- TODO -->
+    <t t-call="UK_Reports.external_layout_footer_separator"/>
+    <div class="row">
+        <div id="dual-tandc-wrapper" class="col-xs-12 align-center">
+            <p class="terms-and-conditions-lg bold" t-raw="tandc1"/>
+            <p class="terms-and-conditions-sm italic" t-raw="tandc2"/>
+        </div>
+    </div>
 </template>
 
 <template id="external_layout_footer_normal_layout">
-    <!-- TODO -->
+    <t t-call="UK_Reports.external_layout_footer_separator"/>
+    <div class="row">
+        <div id="normal-info-wrapper" class="col-xs-8">
+            <p class="terms-and-conditions-sm" t-raw="tandc"/>
+        </div>
+        <div id="payment-to-wrapper" class="col-xs-4">
+            <span class="bold">Payment To:</span>
+            <table>
+                <tr>
+                    <th>Account Name</th>
+                    <td align="right" t-esc="company.account_name"/>
+                </tr>
+                <tr>
+                    <th>Sort Code</th>
+                    <td align="right" t-esc="company.sort_code"/>
+                </tr>
+                <tr>
+                    <th>Account Number</th>
+                    <td align="right" t-esc="company.account_number"/>
+                </tr>
+                <tr>
+                    <th>IBAN</th>
+                    <td align="right" t-esc="company.iban"/>
+                </tr>
+                <tr>
+                    <th>Account Number</th>
+                    <td align="right" t-esc="company.swift"/>
+                </tr>
+            </table>
+        </div>
+    </div>
 </template>
 
 <template id="external_layout_footer_uk">
@@ -26,40 +75,40 @@
         <!-- Values which can change depending on report -->
         <t t-if="doc_model == 'account.invoice'">
             <t t-if="o.type == 'out_invoice'">
-                <t t-set="tandc" t-value="company.invoice_tandc"/>
-                <t t-call="external_layout_footer_normal_layout"/>
+                <t t-if="o.state in ['proforma', 'proforma2']">
+                    <t t-set="tandc" t-value="company.proforma_tandc"/>
+                </t>
+                <t t-else="">
+                    <t t-set="tandc" t-value="company.invoice_tandc"/>
+                </t>
+                <t t-call="UK_Reports.external_layout_footer_normal_layout"/>
             </t>
             <t t-elif="o.type == 'out_refund'">
                 <t t-set="tandc" t-value="company.credit_note_tandc"/>
-                <t t-call="external_layout_footer_credit_note_layout"/>
-            </t>
-            <t t-elif="o.state in ['proforma', 'proforma2']">
-                <t t-set="tandc" t-value="company.proforma_tandc"/>
-                <t t-call="external_layout_footer_normal_layout"/>
+                <t t-call="UK_Reports.external_layout_footer_credit_note_layout"/>
             </t>
         </t>
 
         <t t-elif="doc_model == 'sale.order'">
             <t t-if="o.state in ['draft', 'sent']">
                 <t t-set="tandc" t-value="company.quotation_tandc"/>
-                <t t-call="external_layout_footer_normal_layout"/>
             </t>
             <t t-elif="o.state in ['sale', 'done']">
                 <t t-set="tandc" t-value="company.sale_tandc"/>
-                <t t-call="external_layout_footer_normal_layout"/>
             </t>
+            <t t-call="UK_Reports.external_layout_footer_normal_layout"/>
         </t>
         <t t-elif="doc_model == 'stock.picking'">
             <t t-if="o.picking_type_id.code == 'outgoing'">
                 <t t-set="tandc1" t-value="company.delivery_tandc_1"/>
                 <t t-set="tandc2" t-value="company.delivery_tandc_2"/>
-                <t t-call="external_layout_footer_dual_tandc_layout"/>
+                <t t-call="UK_Reports.external_layout_footer_dual_tandc_layout"/>
             </t>
         </t>
         <t t-elif="doc_model == 'purchase.order'">
             <t t-set="tandc1" t-value="company.purchase_tandc_1"/>
             <t t-set="tandc2" t-value="company.purchase_tandc_2"/>
-            <t t-call="external_layout_footer_dual_tandc_layout"/>
+            <t t-call="UK_Reports.external_layout_footer_dual_tandc_layout"/>
         </t>
     </div>
 </template>

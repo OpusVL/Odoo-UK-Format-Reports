@@ -14,6 +14,11 @@
 					<field name="purchase_dept_email"/>
 					<field name="sales_dept_phone"/>
 					<field name="sales_dept_email"/>
+                    <field name="account_name"/>
+                    <field name="sort_code"/>
+                    <field name="account_number"/>
+                    <field name="iban"/>
+                    <field name="swift"/>
                 </field>
                 <xpath expr="//field[@name='website']/parent::group/parent::group/parent::page" position="after">
                     <page name="tandc" string="Terms &amp; Conditions">

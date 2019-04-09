@@ -1,92 +1,27 @@
-.bsi-logo {
-    max-width: 150px;
-}
-.bold-footertext {
-    line-height: 5px;
-    font-size: 11px;
-    font-weight: bold;
-    text-align: center;
-}
-.italic-footertext {
-    line-height: 4px;
-    font-size: 9px;
-    text-align: center;
-    font-style: italic;
-}
 .separator-line {
     padding-bottom: 5px;
 }
-/* Bottom right table formatting */
-.row-container {
-    margin-top: 5px;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    margin-left: -10px;
-}
-/* For some reason the cell is shifted from the container, so i'm just amending it here */
-.row-heading-wrapper {
-    margin-left: 14px;
-}
-.row-heading-wrapper.top-left {
-    border-top-left-radius: 10px;
-    margin-bottom: -1px;
-}
-.row-heading-wrapper.bottom-left {
-    border-bottom-left-radius: 10px;
-}
-.row-heading {
-    color: white;
-    font-size: 11px;
-    float: right;
-}
-.row-value {
-    color: black;
-    font-size: 11px;
-    float: right;
-}
-.row-heading-wrapper {
-    padding: 7px;
-}
-.row-value-wrapper {
-    padding: 7px;
-    margin-right: -14px;
-    padding-right: 60px;
-}
-.under-table-text {
-    font-size: 10px;
+.align-center {
     text-align: center;
-    line-height: 3px;
 }
-.invoice-info-container.border {
-    border-radius: 10px;
-    -moz-border-radius: 10px;
+.terms-and-conditions-lg {
+    font-size: 14px;
 }
-.invoice-info-container {
-    padding: 5px;
-    line-height: 2px;
-    font-size: 9px;
-    margin-top: 5px;
+.terms-and-conditions-sm {
+    font-size: 12px;
 }
-.invoice-info-container p.italic {
+.italic {
     font-style: italic;
 }
-.invoice-info-container .currency {
-    padding-top: 5px;
-    padding-bottom: 3px;
-    font-size: 10px;
-}
-.payment-info-container {
-    padding: 7px;
-    padding-bottom: 2px;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    line-height: 3px;
-    font-size: 9px;
-    margin-top: 5px;
-}
-.payment-info-container p.payment-to {
-    padding-top: 5px;
-    font-size: 10px;
+.bold {
     font-weight: bold;
-    padding-bottom: 5px;
+}
+#payment-to-wrapper th {
+	font-size: 10px;
+}
+#payment-to-wrapper td {
+	font-size: 10px;
+}
+#payment-to-wrapper span {
+	font-size: 12px;
 }

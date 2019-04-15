@@ -50,7 +50,6 @@ class ResCompany(models.Model):
 	)
 	report_head_addrline1 = fields.Char(compute="_compute_report_head_addrline1")
 	report_head_addrline2 = fields.Char(compute="_compute_report_head_addrline2")
-	report_head_addrline3 = fields.Char(compute="_compute_report_head_addrline3")
 	invoice_tandc = fields.Text(string="Invoice terms & Conditions")
 	credit_note_tandc = fields.Text(string="Credit note terms & Conditions")
 	proforma_tandc = fields.Text(string="Pro forma terms & Conditions")
@@ -65,6 +64,7 @@ class ResCompany(models.Model):
 	account_number = fields.Char()
 	iban = fields.Char(string="IBAN")
 	swift = fields.Char(string="SWIFT")
+	legal_information_footer = fields.Char(limit=100)  # TODO: May need changing
 
 	@api.multi
 	def _compute_report_head_addrline1(self):
@@ -77,12 +77,6 @@ class ResCompany(models.Model):
 		for company in self:
 			values = [company.city, company.state_id.name, company.zip]
 			company.report_head_addrline2 = ", ".join(self.non_false_values(values))
-
-	@api.multi
-	def _compute_report_head_addrline3(self):
-		for company in self:
-			values = [company.company_registry, company.vat]
-			company.report_head_addrline3 = ", ".join(self.non_false_values(values))
 
 	def non_false_values(self, values):
 		return [x for x in values if x is not False]

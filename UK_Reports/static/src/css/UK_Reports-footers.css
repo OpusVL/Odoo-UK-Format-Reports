@@ -4,7 +4,11 @@
 .align-center {
     text-align: center;
 }
-.terms-and-conditions-lg {
+.legal-info-vat-footer {
+	font-size: 11px;
+}
+/*NOTE: Keeping this as it may be useful at a later date*/
+/*.terms-and-conditions-lg {
     font-size: 14px;
 }
 .terms-and-conditions-sm {
@@ -25,3 +29,4 @@
 #payment-to-wrapper span {
 	font-size: 12px;
 }
+*/

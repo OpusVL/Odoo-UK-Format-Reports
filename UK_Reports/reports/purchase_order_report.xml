@@ -1,12 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 	<data>
+		<template id="rfq_body">
+			<div class="page">
+				<!-- TODO: Scoped as part of other task -->
+			</div>
+		</template>
+
+		<template id="purchase_order_body">
+		    <div class="page">
+		    	<div class="document-header align-center">
+		    		<span class="bold">Purchase Order</span>
+		    	</div>
+		    	<br/>
+		    	<div class="row">
+		    		<!-- Space the address to the right slightly -->
+			    	<div class="col-xs-1">
+			    	</div>
+			    	<div class="col-xs-5">
+			    		<strong>Supplier:</strong>
+	                    <div t-if="o.partner_id">
+	                        <div t-field="o.partner_id"
+	                            t-options='{
+	                            	"widget": "contact",
+	                            	"fields": ["address", "name"],
+	                            	"no_marker": True}'/>
+	                    </div>
+			    	</div>
+			    	<div class="col-xs-3">
+	                    <strong>Deliver To:</strong>
+	                    <div t-if="o.company_id.partner_id">
+	                        <div t-field="o.company_id.partner_id"
+	                            t-options='{
+	                            	"widget": "contact",
+	                            	"fields": ["address", "name"],
+	                            	"no_marker": True}'/>
+	                    </div>
+			    	</div>
+			    	<div class="col-xs-3">
+			    		<strong>Order Info:</strong>
+			    		<br/>
+			    		<strong>Purchase Order No</strong>
+			    		<span t-field="o.name"/>
+			    		<br/>
+			    		<strong>Ordered By</strong>
+			    		<span t-field="o.create_uid.name"/>
+			    		<br/>
+			    		<strong>Date</strong>
+			    		<span t-field="o.date_order"/>
+			    		<br/>
+			    		<strong>Currency</strong>
+			    		<span t-field="o.currency_id.name"/>
+			    	</div>
+			    </div>
+			    <br/>
+		    	<div class="row">
+		    		<div class="col-xs-12">
+			    		<table class="orderlines">
+			    			<thead class="orderline-header">
+				    			<tr>
+				    				<th>Description</th>
+				    				<th>Qty</th>
+				    				<th>Unit Price</th>
+				    				<th>VAT</th>
+				    				<th>Line Total</th>
+				    			</tr>
+				    		</thead>
+				    		<tbody>
+				    			<tr t-foreach="o.order_line" t-as="line">
+				    				<td t-esc="line.name"/>
+				    				<td t-esc="line.product_qty"/>
+				    				<td t-esc="'%.2f'% line.price_unit"/>
+				    				<td t-esc="'%.2f'% line.price_tax"/>
+				    				<td t-esc="'%.2f'% line.price_subtotal"/>
+				    			</tr>
+				    		</tbody>
+			    		</table>
+			    	</div>
+		    	</div>
+		    	<br/>
+		    	<div class="row">
+		    		<div class="col-xs-8">
+		    			<strong>Please quote our Purchase Order number with your delivery</strong>
+		    			<span t-raw="o.company_id.purchase_tandc"/>
+		    		</div>
+		    		<div class="col-xs-4">
+			    		<table class="orderlines-totals">
+			    			<tr class="row-border-top">
+			    				<td class="text-left">Net Total</td>
+			    				<td class="text-right" t-esc="'%.2f'% o.amount_untaxed"/>
+			    			</tr>
+			    			<tr>
+			    				<td class="text-left">VAT</td>
+			    				<td class="text-right" t-esc="'%.2f'% o.amount_tax"/>
+			    			</tr>
+			    			<tr class="row-border-top">
+			    				<td class="text-left">Total</td>
+			    				<td class="text-right" t-esc="'%.2f'% o.amount_total"/>
+			    			</tr>
+			    		</table>
+		    		</div>
+		    	</div>
+		    </div>
+		</template>
+
 		<template id="uk_purchaseorder_document">
         	<t t-call="UK_Reports.external_layout_uk">
-			    <div class="page">
-			    	<span t-esc="doc_report_name"/>
-			    	<span>PO Placeholder</span>
-			    </div>
+        		<t t-if="o.state in ['purchase', 'done']">
+        			<t t-call="UK_Reports.purchase_order_body"/>
+        		</t>
+        		<t t-elif="o.state in ['draft', 'sent', 'to_approve']">
+        			<t t-call="UK_Reports.rfq_body"/>
+        		</t>
 			</t>
 		</template>
 

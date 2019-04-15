@@ -1,5 +1,5 @@
 .separator-line {
-    padding-bottom: 5px;
+    border-top: 1px solid black;
 }
 .align-center {
     text-align: center;
@@ -7,8 +7,7 @@
 .legal-info-vat-footer {
 	font-size: 11px;
 }
-/*NOTE: Keeping this as it may be useful at a later date*/
-/*.terms-and-conditions-lg {
+.terms-and-conditions-lg {
     font-size: 14px;
 }
 .terms-and-conditions-sm {
@@ -20,7 +19,11 @@
 .bold {
     font-weight: bold;
 }
-#payment-to-wrapper th {
+.document-header span{
+    font-size: 20px;
+}
+/*NOTE: Keeping this as it may be useful at a later date*/
+/*#payment-to-wrapper th {
 	font-size: 10px;
 }
 #payment-to-wrapper td {
@@ -29,4 +32,5 @@
 #payment-to-wrapper span {
 	font-size: 12px;
 }
+
 */

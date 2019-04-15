@@ -19,6 +19,7 @@
                     <field name="account_number"/>
                     <field name="iban"/>
                     <field name="swift"/>
+                    <field name="legal_information_footer"/>
                 </field>
                 <xpath expr="//field[@name='website']/parent::group/parent::group/parent::page" position="after">
                     <page name="tandc" string="Terms &amp; Conditions">

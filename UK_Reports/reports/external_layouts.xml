@@ -9,7 +9,7 @@
  </xpath>
 </template>
 
-<template id="external_layout_footer_separator">
+<template id="external_layout_separator_horizontal">
     <div class="footer-separator">
         <div class="col-xs-12">
             <div class="separator-line" t-attf-style="border-top: 1px solid black"/>
@@ -22,27 +22,28 @@ TODO: Account statement needs headers / footers. It was initially defined agains
 but that has now changed and will need speccing again
 -->
 
-<template id="external_layout_footer_credit_note_layout">
-    <t t-call="UK_Reports.external_layout_footer_separator"/>
+<!-- NOTE: Keeping this as it may be useful at a later date.. -->
+<!-- <template id="external_layout_footer_credit_note_layout">
+    <t t-call="UK_Reports.external_layout_separator_horizontal"/>
     <div class="row">
         <div id="invoice-info-wrapper" class="col-xs-12 align-center">
             <p class="terms-and-conditions-lg" t-raw="tandc"/>
         </div>
     </div>
-</template>
+</template> -->
 
-<template id="external_layout_footer_dual_tandc_layout">
-    <t t-call="UK_Reports.external_layout_footer_separator"/>
+<!-- <template id="external_layout_footer_dual_tandc_layout">
+    <t t-call="UK_Reports.external_layout_separator_horizontal"/>
     <div class="row">
         <div id="dual-tandc-wrapper" class="col-xs-12 align-center">
             <p class="terms-and-conditions-lg bold" t-raw="tandc1"/>
             <p class="terms-and-conditions-sm italic" t-raw="tandc2"/>
         </div>
     </div>
-</template>
+</template> -->
 
-<template id="external_layout_footer_normal_layout">
-    <t t-call="UK_Reports.external_layout_footer_separator"/>
+<!-- <template id="external_layout_footer_normal_layout">
+    <t t-call="UK_Reports.external_layout_separator_horizontal"/>
     <div class="row">
         <div id="normal-info-wrapper" class="col-xs-8">
             <p class="terms-and-conditions-sm" t-raw="tandc"/>
@@ -73,12 +74,31 @@ but that has now changed and will need speccing again
             </table>
         </div>
     </div>
-</template>
+</template> -->
 
 <template id="external_layout_footer_uk">
     <div class="footer">
         <!-- Values which can change depending on report -->
-        <t t-if="doc_model == 'account.invoice'">
+        <t t-call="UK_Reports.external_layout_separator_horizontal"/>
+        <div class="legal-info-vat-footer align-center">
+            <span t-esc="company.legal_information_footer"/>
+            <span>Registered in England No. </span>
+            <span t-esc="company.company_registry"/>
+            <span>V.A.T Reg. No. </span>
+            <span t-esc="company.vat"/>
+        </div>
+        <div class="row">
+            <div class="col-xs-2 pull-right">
+                <br/>
+                <span>Page</span>
+                <span class="page" />
+                of
+                <span class="topage" />
+            </div>
+        </div>
+
+<!-- NOTE: Keeping this as it may be useful at a later date.. -->
+<!--         <t t-if="doc_model == 'account.invoice'">
             <t t-if="o.type == 'out_invoice'">
                 <t t-if="o.state in ['proforma', 'proforma2']">
                     <t t-set="tandc" t-value="company.proforma_tandc"/>
@@ -114,7 +134,7 @@ but that has now changed and will need speccing again
             <t t-set="tandc1" t-value="company.purchase_tandc_1"/>
             <t t-set="tandc2" t-value="company.purchase_tandc_2"/>
             <t t-call="UK_Reports.external_layout_footer_dual_tandc_layout"/>
-        </t>
+        </t> -->
     </div>
 </template>
 
@@ -161,9 +181,9 @@ but that has now changed and will need speccing again
             <div class="col-xs-5 source-address-column">
                 <p class="source-addressline addrline1" t-esc="company.report_head_addrline1"/>
                 <p class="source-addressline addrline2" t-esc="company.report_head_addrline2"/>
-                <p class="source-addressline vatline1" t-esc="company.report_head_addrline3"/>
             </div>
         </div>
+        <t t-call="UK_Reports.external_layout_separator_horizontal"/>
     </div>
 </template>
 

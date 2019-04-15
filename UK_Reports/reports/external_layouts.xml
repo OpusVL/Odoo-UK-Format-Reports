@@ -6,13 +6,14 @@
  <xpath expr="." position="inside">
      <link href="/UK_Reports/static/src/css/UK_Reports-footers.css" rel="stylesheet"/>
      <link href="/UK_Reports/static/src/css/UK_Reports-headers.css" rel="stylesheet"/>
+     <link href="/UK_Reports/static/src/css/UK_Reports-body.css" rel="stylesheet"/>
  </xpath>
 </template>
 
 <template id="external_layout_separator_horizontal">
     <div class="footer-separator">
         <div class="col-xs-12">
-            <div class="separator-line" t-attf-style="border-top: 1px solid black"/>
+            <div class="separator-line"/>
         </div>
     </div>
 </template>
@@ -81,7 +82,7 @@ but that has now changed and will need speccing again
         <!-- Values which can change depending on report -->
         <t t-call="UK_Reports.external_layout_separator_horizontal"/>
         <div class="legal-info-vat-footer align-center">
-            <span t-esc="company.legal_information_footer"/>
+            <em t-esc="company.legal_information_footer"/>
             <span>Registered in England No. </span>
             <span t-esc="company.company_registry"/>
             <span>V.A.T Reg. No. </span>

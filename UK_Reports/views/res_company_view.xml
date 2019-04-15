@@ -24,15 +24,13 @@
                 <xpath expr="//field[@name='website']/parent::group/parent::group/parent::page" position="after">
                     <page name="tandc" string="Terms &amp; Conditions">
                         <group>
-                            <field name="invoice_tandc"/>
-                            <field name="credit_note_tandc"/>
-                            <field name="proforma_tandc"/>
-                            <field name="quotation_tandc"/>
-                            <field name="sale_tandc"/>
-                            <field name="delivery_tandc_1"/>
-                            <field name="delivery_tandc_2"/>
-                            <field name="purchase_tandc_1"/>
-                            <field name="purchase_tandc_2"/>
+                            <field name="invoice_tandc" widget="html"/>
+                            <field name="credit_note_tandc" widget="html"/>
+                            <field name="proforma_tandc" widget="html"/>
+                            <field name="quotation_tandc" widget="html"/>
+                            <field name="sale_tandc" widget="html"/>
+                            <field name="delivery_tandc" widget="html"/>
+                            <field name="purchase_tandc" widget="html"/>
                         </group>
                     </page>
                 </xpath>

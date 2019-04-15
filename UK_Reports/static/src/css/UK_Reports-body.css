@@ -1,0 +1,12 @@
+table.orderlines-totals {
+	width: 75%;
+}
+table.orderlines {
+	width: 90%;
+}
+thead.orderline-header {
+	border-bottom: 1px solid;
+}
+table tr.row-border-top {
+	border-top: 1px solid;
+}

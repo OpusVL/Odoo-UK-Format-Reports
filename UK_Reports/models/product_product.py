@@ -20,12 +20,17 @@
 #
 ##############################################################################
 
-from . import (
-	account_invoice,
-	product_product,
-	purchase_order,
-	res_company,
-	sale_order,
-)
+from odoo import models
+
+
+class ProductProduct(models.Model):
+	_inherit = "product.product"
+
+	def _vendor_specific_code(self, vendor):
+		my_vendors = self.seller_ids.filtered(lambda seller: seller.name == vendor)
+		if my_vendors:
+			first_vendor = my_vendors.sorted(key=lambda r: r.sequence)[0]
+			return first_vendor.product_code
+		return False
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

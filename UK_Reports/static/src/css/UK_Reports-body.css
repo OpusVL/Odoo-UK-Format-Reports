@@ -1,8 +1,8 @@
 table.orderlines-totals {
-	width: 75%;
+	width: 100%;
 }
 table.orderlines {
-	width: 90%;
+	width: 100%;
 }
 thead.orderline-header {
 	border-bottom: 1px solid;

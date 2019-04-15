@@ -68,7 +68,7 @@
 				    		</thead>
 				    		<tbody>
 				    			<tr t-foreach="o.order_line" t-as="line">
-				    				<td t-esc="line.name"/>
+				    				<td t-esc="line.uk_report_description_format"/>
 				    				<td t-esc="line.product_qty"/>
 				    				<td t-esc="'%.2f'% line.price_unit"/>
 				    				<td t-esc="'%.2f'% line.price_tax"/>

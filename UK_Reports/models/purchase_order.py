@@ -20,12 +20,28 @@
 #
 ##############################################################################
 
-from . import (
-	account_invoice,
-	product_product,
-	purchase_order,
-	res_company,
-	sale_order,
-)
+from odoo import models, fields, api
+
+
+class PurchaseOrderLine(models.Model):
+	_inherit = "purchase.order.line"
+
+	uk_report_description_format = fields.Char(
+		compute="_compute_uk_report_description_format"
+	)
+
+	@api.depends(
+		'product_id.default_code',
+		'product_id.seller_ids.product_code',
+		'name',
+	)
+	@api.multi
+	def _compute_uk_report_description_format(self):
+		for line in self:
+			seller_code = line.product_id._vendor_specific_code(
+				line.order_id.partner_id)
+			line.uk_report_description_format = "[{}] {}".format(
+				seller_code or line.product_id.default_code, line.name)
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

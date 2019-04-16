@@ -24,6 +24,7 @@
 		    		<br/>
 		    		<strong>Sales Order No</strong>
 		    		<span t-esc="o.sale_number()"/>
+		    		<br/>
 		    		<strong>Currency</strong>
 		    		<span t-field="o.currency_id.name"/>
 		    	</div>
@@ -69,6 +70,9 @@
 		    		<strong>Your Reference</strong>
 		    		<span t-esc="o.your_reference_format()"/>
 		    		<br/>
+		    		<strong>Sales Order No</strong>
+		    		<span t-esc="o.sale_number()"/>
+		    		<br/>
 		    		<t t-if="o.state == 'paid'">
 		    			<strong>Invoice Status</strong>
 		    			<span>Paid</span>
@@ -96,7 +100,48 @@
 		</template>
 
 		<template id="credit_note_body">
-			<!-- TODO -->
+	    	<t t-set="doc_header_string" t-value="'Credit Note'"/>
+	    	<t t-call="UK_Reports.template_document_title"/>
+	    	<div class="row">
+	    		<!-- Space the address to the right slightly -->
+		    	<div class="col-xs-1"/>
+		    	<div class="col-xs-8">
+		    		<t t-call="UK_Reports.template_partner_address"/>
+		    	</div>
+		    	<div class="col-xs-3">
+		    		<strong>Credit Note Info:</strong>
+		    		<br/>
+		    		<strong>Credit Date</strong>
+		    		<span t-field="o.date_invoice" t-field-options='{"format": "dd/MM/yyyy"}'/>
+		    		<br/>
+		    		<strong>Payment terms</strong>
+		    		<span t-esc="o.payment_term_id.name"/>
+		    		<br/>
+		    		<strong>Your Reference</strong>
+		    		<span t-esc="o.your_reference_format()"/>
+		    		<br/>
+		    		<strong>Sales Order No</strong>
+		    		<span t-esc="o.sale_number()"/>
+		    		<br/>
+		    		<strong>Currency</strong>
+		    		<span t-field="o.currency_id.name"/>
+		    	</div>
+		    </div>
+		    <br/>
+	    	<div class="row">
+	    		<div class="col-xs-12">
+	    			<t t-call="UK_Reports.invoice_orderlines_table"/>
+		    	</div>
+	    	</div>
+	    	<br/>
+	    	<div class="row">
+	    		<div class="col-xs-8">
+	    			<span t-raw="o.company_id.credit_note_tandc"/>
+	    		</div>
+	    		<div class="col-xs-4">
+	    			<t t-call="UK_Reports.orderline_totals_table"/>
+	    		</div>
+	    	</div>
 		</template>
 
 		<template id="uk_invoice_document">

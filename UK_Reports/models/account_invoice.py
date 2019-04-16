@@ -38,6 +38,16 @@ class AccountInvoice(models.Model):
 	def your_reference_format(self):
 		return self.name or '(Not provided)'
 
+	def sale_payment_term(self):
+		return self.get_sale_order().payment_term_id.name or '(Not provided)'
+
+	def sale_number(self):
+		return self.get_sale_order().name or '(Not provided)'
+
+	def get_sale_order(self):
+		return self.env['sale.order'].search([]).filtered(
+			lambda x: self.id in x.invoice_ids.ids)
+
 
 class AccountInvoiceLine(models.Model):
 	_inherit = "account.invoice.line"

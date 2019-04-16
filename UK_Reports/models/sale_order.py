@@ -41,10 +41,10 @@ class SaleOrderLine(models.Model):
 		if self.product_id.default_code:
 			return "[{}] {}".format(
 				self.product_id.default_code,
-				self.name
+				self.product_id.name
 			)
 		else:
-			return self.name
+			return self.product_id.name
 
 	def qty_format(self):
 		# Most companies don't sell 1.5x anything, so strip the `.0` if possible

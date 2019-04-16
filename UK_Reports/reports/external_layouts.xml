@@ -18,31 +18,6 @@
     </div>
 </template>
 
-<!--
-TODO: Account statement needs headers / footers. It was initially defined against the partner
-but that has now changed and will need speccing again
--->
-
-<!-- NOTE: Keeping this as it may be useful at a later date.. -->
-<!-- <template id="external_layout_footer_credit_note_layout">
-    <t t-call="UK_Reports.external_layout_separator_horizontal"/>
-    <div class="row">
-        <div id="invoice-info-wrapper" class="col-xs-12 align-center">
-            <p class="terms-and-conditions-lg" t-raw="tandc"/>
-        </div>
-    </div>
-</template> -->
-
-<!-- <template id="external_layout_footer_dual_tandc_layout">
-    <t t-call="UK_Reports.external_layout_separator_horizontal"/>
-    <div class="row">
-        <div id="dual-tandc-wrapper" class="col-xs-12 align-center">
-            <p class="terms-and-conditions-lg bold" t-raw="tandc1"/>
-            <p class="terms-and-conditions-sm italic" t-raw="tandc2"/>
-        </div>
-    </div>
-</template> -->
-
 <!-- <template id="external_layout_footer_normal_layout">
     <t t-call="UK_Reports.external_layout_separator_horizontal"/>
     <div class="row">
@@ -99,32 +74,7 @@ but that has now changed and will need speccing again
         </div>
 
 <!-- NOTE: Keeping this as it may be useful at a later date.. -->
-<!--         <t t-if="doc_model == 'account.invoice'">
-            <t t-if="o.type == 'out_invoice'">
-                <t t-if="o.state in ['proforma', 'proforma2']">
-                    <t t-set="tandc" t-value="company.proforma_tandc"/>
-                </t>
-                <t t-else="">
-                    <t t-set="tandc" t-value="company.invoice_tandc"/>
-                </t>
-                <t t-call="UK_Reports.external_layout_footer_normal_layout"/>
-            </t>
-            <t t-elif="o.type == 'out_refund'">
-                <t t-set="tandc" t-value="company.credit_note_tandc"/>
-                <t t-call="UK_Reports.external_layout_footer_credit_note_layout"/>
-            </t>
-        </t>
-
-        <t t-elif="doc_model == 'sale.order'">
-            <t t-if="o.state in ['draft', 'sent']">
-                <t t-set="tandc" t-value="company.quotation_tandc"/>
-            </t>
-            <t t-elif="o.state in ['sale', 'done']">
-                <t t-set="tandc" t-value="company.sale_tandc"/>
-            </t>
-            <t t-call="UK_Reports.external_layout_footer_normal_layout"/>
-        </t>
-        <t t-elif="doc_model == 'stock.picking'">
+<!--         <t t-elif="doc_model == 'stock.picking'">
             <t t-if="o.picking_type_id.code == 'outgoing'">
                 <t t-set="tandc1" t-value="company.delivery_tandc_1"/>
                 <t t-set="tandc2" t-value="company.delivery_tandc_2"/>

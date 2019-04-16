@@ -49,6 +49,7 @@
 		'reports/generic_templates.xml',
 		'reports/purchase_order_report.xml',
 		'reports/sale_order_report.xml',
+		'reports/stock_picking_report.xml',
 
 		'views/res_company_view.xml',
 	],

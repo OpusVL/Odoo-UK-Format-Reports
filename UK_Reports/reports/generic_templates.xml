@@ -41,6 +41,16 @@
                     	"no_marker": True}'/>
             </div>
 	    </template>
+	    <template id="template_deliver_to_partner_address">
+			<strong>Deliver To:</strong>
+            <div t-if="o.partner_id">
+                <div t-field="o.partner_id"
+                    t-options='{
+                    	"widget": "contact",
+                    	"fields": ["address", "name"],
+                    	"no_marker": True}'/>
+            </div>
+	    </template>
 	    <template id="template_document_title">
 	    	<div class="document-header align-center">
 	    		<span class="bold" t-esc="doc_header_string"/>

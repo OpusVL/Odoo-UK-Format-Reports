@@ -11,10 +11,10 @@ table tr.row-border-top {
 	border-top: 1px solid;
 }
 table tr th.wide {
-	width: 550px;
+	width: 500px;
 }
 table tr th.xwide {
-	width: 750px;
+	width: 700px;
 }
 table tr {
 	line-height: 25px;

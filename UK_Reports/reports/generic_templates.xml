@@ -71,7 +71,7 @@
 	    				<th class="text-right">Quantity</th>
 	    				<th class="text-right">Unit Price</th>
 	    				<th class="text-right">VAT</th>
-	    				<th class="text-right">Line Total</th>
+	    				<th class="text-right">Line Net Total</th>
 	    			</tr>
 	    		</thead>
 	    		<tbody>
@@ -80,6 +80,28 @@
 	    				<td t-esc="line.qty_format()" class="text-right"/>
 	    				<td t-esc="'%.2f'% line.price_unit" class="text-right"/>
 	    				<td t-esc="'%.2f'% line.price_tax" class="text-right"/>
+	    				<td t-esc="'%.2f'% line.price_subtotal" class="text-right"/>
+	    			</tr>
+	    		</tbody>
+    		</table>
+	    </template>
+	    <template id="invoice_orderlines_table">
+    		<table class="orderlines">
+    			<thead class="orderline-header">
+	    			<tr>
+	    				<th class="wide">Description</th>
+	    				<th class="text-right">Quantity</th>
+	    				<th class="text-right">Unit Price</th>
+	    				<th class="text-right">VAT</th>
+	    				<th class="text-right">Line Net Total</th>
+	    			</tr>
+	    		</thead>
+	    		<tbody>
+	    			<tr t-foreach="o.invoice_line_ids" t-as="line">
+	    				<td t-esc="line.name"/>
+	    				<td t-esc="line.qty_format()" class="text-right"/>
+	    				<td t-esc="'%.2f'% line.price_unit" class="text-right"/>
+	    				<td t-esc="line.tax_codes_string()" class="text-right"/>
 	    				<td t-esc="'%.2f'% line.price_subtotal" class="text-right"/>
 	    			</tr>
 	    		</tbody>

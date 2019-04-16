@@ -1,10 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 	<data>
+		<template id="proforma_invoice_body">
+			<!-- TODO -->
+		</template>
+
+		<template id="invoice_body">
+	    	<t t-set="doc_header_string" t-value="'Sales Invoice'"/>
+	    	<t t-call="UK_Reports.template_document_title"/>
+	    	<div class="row">
+	    		<!-- Space the address to the right slightly -->
+		    	<div class="col-xs-1"/>
+		    	<div class="col-xs-8">
+		    		<t t-call="UK_Reports.template_partner_address"/>
+		    	</div>
+		    	<div class="col-xs-3">
+		    		<strong>Order Info:</strong>
+		    		<br/>
+		    		<strong>Invoice No</strong>
+		    		<span t-field="o.number"/>
+		    		<br/>
+		    		<strong>Invoice Date</strong>
+		    		<span t-field="o.date_invoice" t-field-options='{"format": "dd/MM/yyyy"}'/>
+		    		<br/>
+		    		<strong>Payment terms</strong>
+		    		<span t-field="o.payment_term_id.name"/>
+		    		<br/>
+		    		<strong>Your Reference</strong>
+		    		<span t-esc="o.your_reference_format()"/>
+		    		<br/>
+		    		<t t-if="o.state == 'paid'">
+		    			<strong>Invoice Status</strong>
+		    			<span>Paid</span>
+		    			<br/>
+		    		</t>
+		    		<strong>Currency</strong>
+		    		<span t-field="o.currency_id.name"/>
+		    	</div>
+		    </div>
+		    <br/>
+	    	<div class="row">
+	    		<div class="col-xs-12">
+	    			<t t-call="UK_Reports.invoice_orderlines_table"/>
+		    	</div>
+	    	</div>
+	    	<br/>
+	    	<div class="row">
+	    		<div class="col-xs-8">
+	    			<span t-raw="o.company_id.invoice_tandc"/>
+	    		</div>
+	    		<div class="col-xs-4">
+	    			<t t-call="UK_Reports.orderline_totals_table"/>
+	    		</div>
+	    	</div>
+		</template>
+
+		<template id="credit_note_body">
+			<!-- TODO -->
+		</template>
+
 		<template id="uk_invoice_document">
         	<t t-call="UK_Reports.external_layout_uk">
 			    <div class="page">
-			    	<span>Invoice Placeholder</span>
+					<t t-if="o.type == 'out_invoice'">
+		                <t t-if="o.state in ['proforma', 'proforma2']">
+		                	<t t-call="UK_Reports.proforma_invoice_body"/>
+		                </t>
+		                <t t-else="">
+		                	<t t-call="UK_Reports.invoice_body"/>
+		                </t>
+		            </t>
+		            <t t-elif="o.type == 'out_refund'">
+		                <t t-call="UK_Reports.credit_note_body"/>
+		            </t>
 			    </div>
 			</t>
 		</template>

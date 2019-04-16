@@ -35,5 +35,31 @@ class AccountInvoice(models.Model):
 		self.ensure_one()
 		return self.env['report'].get_action(self, 'account.UK_Invoice')
 
+	def your_reference_format(self):
+		return self.name or '(Not provided)'
+
+
+class AccountInvoiceLine(models.Model):
+	_inherit = "account.invoice.line"
+
+	def uk_report_description_format(self):
+		if self.product_id.default_code:
+			return "[{}] {}".format(
+				self.product_id.default_code,
+				self.product_id.name
+			)
+		else:
+			return self.product_id.name
+
+	def qty_format(self):
+		# Most companies don't sell 1.5x anything, so strip the `.0` if possible
+		if self.quantity.is_integer():
+			return int(self.quantity)
+		else:
+			return self.quantity
+
+	def tax_codes_string(self):
+		return ','.join(self.invoice_line_tax_ids.mapped('description')) or ''
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

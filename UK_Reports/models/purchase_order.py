@@ -30,12 +30,12 @@ class PurchaseOrderLine(models.Model):
 		return "[{}] {}".format(
 			self.product_id._vendor_specific_code(self.order_id.partner_id)
 			or self.product_id.default_code,
-			self.name
+			self.product_id.name
 		)
 
 	def qty_format(self):
 		# Most companies don't sell 1.5x anything, so strip the `.0` if possible
-		if self.product_qty.is_integer():
+		if int(self.product_qty) == float(self.product_qty):
 			return int(self.product_qty)
 		else:
 			return self.product_qty

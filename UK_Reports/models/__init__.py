@@ -26,6 +26,7 @@ from . import (
 	purchase_order,
 	res_company,
 	sale_order,
+	stock_picking,
 )
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -63,7 +63,7 @@ class AccountInvoiceLine(models.Model):
 
 	def qty_format(self):
 		# Most companies don't sell 1.5x anything, so strip the `.0` if possible
-		if self.quantity.is_integer():
+		if int(self.quantity) == float(self.quantity):
 			return int(self.quantity)
 		else:
 			return self.quantity

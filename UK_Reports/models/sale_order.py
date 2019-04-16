@@ -33,3 +33,22 @@ class SaleOrder(models.Model):
 		self.ensure_one()
 		return self.env['report'].get_action(self, 'sale.UK_SalesOrder')
 
+
+class SaleOrderLine(models.Model):
+	_inherit = "sale.order.line"
+
+	def uk_report_description_format(self):
+		if self.product_id.default_code:
+			return "[{}] {}".format(
+				self.product_id.default_code,
+				self.name
+			)
+		else:
+			return self.name
+
+	def qty_format(self):
+		# Most companies don't sell 1.5x anything, so strip the `.0` if possible
+		if self.product_uom_qty.is_integer():
+			return int(self.product_uom_qty)
+		else:
+			return self.product_uom_qty

@@ -43,5 +43,11 @@ class PurchaseOrderLine(models.Model):
 			line.uk_report_description_format = "[{}] {}".format(
 				seller_code or line.product_id.default_code, line.name)
 
+	def qty_format(self):
+		# Most companies don't sell 1.5x anything, so strip the `.0` if possible
+		if self.product_qty.is_integer():
+			return int(self.product_qty)
+		else:
+			return self.product_qty
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

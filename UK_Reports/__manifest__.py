@@ -46,6 +46,7 @@
 		'reports/account_invoice_report.xml',
 		'reports/account_statement_report.xml',
 		'reports/external_layouts.xml',
+		'reports/generic_templates.xml',
 		'reports/purchase_order_report.xml',
 		'reports/sale_order_report.xml',
 

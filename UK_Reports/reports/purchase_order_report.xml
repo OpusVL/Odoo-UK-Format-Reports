@@ -59,7 +59,7 @@
 			    		<table class="orderlines">
 			    			<thead class="orderline-header">
 				    			<tr>
-				    				<th>Description</th>
+				    				<th class="wide">Description</th>
 				    				<th>Qty</th>
 				    				<th>Unit Price</th>
 				    				<th>VAT</th>

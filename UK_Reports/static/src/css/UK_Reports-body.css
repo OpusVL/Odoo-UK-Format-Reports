@@ -10,3 +10,6 @@ thead.orderline-header {
 table tr.row-border-top {
 	border-top: 1px solid;
 }
+table tr th.wide {
+	width: 550px;
+}

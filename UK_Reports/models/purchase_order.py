@@ -20,28 +20,18 @@
 #
 ##############################################################################
 
-from odoo import models, fields, api
+from odoo import models
 
 
 class PurchaseOrderLine(models.Model):
 	_inherit = "purchase.order.line"
 
-	uk_report_description_format = fields.Char(
-		compute="_compute_uk_report_description_format"
-	)
-
-	@api.depends(
-		'product_id.default_code',
-		'product_id.seller_ids.product_code',
-		'name',
-	)
-	@api.multi
-	def _compute_uk_report_description_format(self):
-		for line in self:
-			seller_code = line.product_id._vendor_specific_code(
-				line.order_id.partner_id)
-			line.uk_report_description_format = "[{}] {}".format(
-				seller_code or line.product_id.default_code, line.name)
+	def uk_report_description_format(self):
+		return "[{}] {}".format(
+			self.product_id._vendor_specific_code(self.order_id.partner_id)
+			or self.product_id.default_code,
+			self.name
+		)
 
 	def qty_format(self):
 		# Most companies don't sell 1.5x anything, so strip the `.0` if possible

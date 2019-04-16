@@ -16,3 +16,6 @@ table tr th.wide {
 table tr th.xwide {
 	width: 750px;
 }
+table tr {
+	line-height: 25px;
+}

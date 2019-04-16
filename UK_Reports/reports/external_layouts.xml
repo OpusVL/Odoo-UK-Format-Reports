@@ -18,40 +18,6 @@
     </div>
 </template>
 
-<!-- <template id="external_layout_footer_normal_layout">
-    <t t-call="UK_Reports.external_layout_separator_horizontal"/>
-    <div class="row">
-        <div id="normal-info-wrapper" class="col-xs-8">
-            <p class="terms-and-conditions-sm" t-raw="tandc"/>
-        </div>
-        <div id="payment-to-wrapper" class="col-xs-4">
-            <span class="bold">Payment To:</span>
-            <table>
-                <tr>
-                    <th>Account Name</th>
-                    <td align="right" t-esc="company.account_name"/>
-                </tr>
-                <tr>
-                    <th>Sort Code</th>
-                    <td align="right" t-esc="company.sort_code"/>
-                </tr>
-                <tr>
-                    <th>Account Number</th>
-                    <td align="right" t-esc="company.account_number"/>
-                </tr>
-                <tr>
-                    <th>IBAN</th>
-                    <td align="right" t-esc="company.iban"/>
-                </tr>
-                <tr>
-                    <th>Account Number</th>
-                    <td align="right" t-esc="company.swift"/>
-                </tr>
-            </table>
-        </div>
-    </div>
-</template> -->
-
 <template id="external_layout_footer_uk">
     <div class="footer">
         <!-- Values which can change depending on report -->
@@ -72,20 +38,6 @@
                 <span class="topage" />
             </div>
         </div>
-
-<!-- NOTE: Keeping this as it may be useful at a later date.. -->
-<!--         <t t-elif="doc_model == 'stock.picking'">
-            <t t-if="o.picking_type_id.code == 'outgoing'">
-                <t t-set="tandc1" t-value="company.delivery_tandc_1"/>
-                <t t-set="tandc2" t-value="company.delivery_tandc_2"/>
-                <t t-call="UK_Reports.external_layout_footer_dual_tandc_layout"/>
-            </t>
-        </t>
-        <t t-elif="doc_model == 'purchase.order'">
-            <t t-set="tandc1" t-value="company.purchase_tandc_1"/>
-            <t t-set="tandc2" t-value="company.purchase_tandc_2"/>
-            <t t-call="UK_Reports.external_layout_footer_dual_tandc_layout"/>
-        </t> -->
     </div>
 </template>
 
@@ -155,7 +107,5 @@
     <t t-raw="0" />
     <t t-call="UK_Reports.external_layout_footer_uk"/>
 </template>
-
-
 
 </odoo>

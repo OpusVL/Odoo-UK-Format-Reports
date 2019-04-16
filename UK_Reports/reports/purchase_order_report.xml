@@ -3,39 +3,72 @@
 	<data>
 		<template id="rfq_body">
 			<div class="page">
-				<!-- TODO: Scoped as part of other task -->
-			</div>
-		</template>
-
-		<template id="purchase_order_body">
-		    <div class="page">
-		    	<div class="document-header align-center">
-		    		<span class="bold">Purchase Order</span>
-		    	</div>
-		    	<br/>
+		    	<t t-set="doc_header_string" t-value="'Request for Quotation'"/>
+		    	<t t-call="UK_Reports.template_document_title"/>
 		    	<div class="row">
 		    		<!-- Space the address to the right slightly -->
 			    	<div class="col-xs-1">
 			    	</div>
 			    	<div class="col-xs-5">
-			    		<strong>Supplier:</strong>
-	                    <div t-if="o.partner_id">
-	                        <div t-field="o.partner_id"
-	                            t-options='{
-	                            	"widget": "contact",
-	                            	"fields": ["address", "name"],
-	                            	"no_marker": True}'/>
-	                    </div>
+			    		<t t-call="UK_Reports.template_partner_address"/>
 			    	</div>
 			    	<div class="col-xs-3">
-	                    <strong>Deliver To:</strong>
-	                    <div t-if="o.company_id.partner_id">
-	                        <div t-field="o.company_id.partner_id"
-	                            t-options='{
-	                            	"widget": "contact",
-	                            	"fields": ["address", "name"],
-	                            	"no_marker": True}'/>
-	                    </div>
+	                    <t t-call="UK_Reports.template_deliver_to_address"/>
+			    	</div>
+			    	<div class="col-xs-3">
+			    		<strong>Quotation Info:</strong>
+			    		<br/>
+			    		<strong>Quotation No</strong>
+			    		<span t-field="o.name"/>
+			    		<br/>
+			    		<strong>Ordered By</strong>
+			    		<span t-field="o.create_uid.name"/>
+			    		<br/>
+			    		<strong>Expected Date</strong>
+			    		<span t-field="o.date_order" t-field-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
+			    	</div>
+			    </div>
+			    <br/>
+		    	<div class="row">
+		    		<div class="col-xs-12">
+			    		<table class="orderlines">
+			    			<thead class="orderline-header">
+				    			<tr>
+				    				<th class="xwide">Description</th>
+				    				<th class="text-right">Qty</th>
+				    			</tr>
+				    		</thead>
+				    		<tbody>
+				    			<tr t-foreach="o.order_line" t-as="line">
+				    				<td t-esc="line.uk_report_description_format"/>
+				    				<td t-esc="line.qty_format()" class="text-right"/>
+				    			</tr>
+				    		</tbody>
+			    		</table>
+			    	</div>
+		    	</div>
+		    	<br/>
+		    	<div class="row">
+		    		<div class="col-xs-12">
+		    			<span t-raw="o.company_id.purchase_tandc"/>
+		    		</div>
+		    	</div>
+			</div>
+		</template>
+
+		<template id="purchase_order_body">
+		    <div class="page">
+		    	<t t-set="doc_header_string" t-value="'Purchase Order'"/>
+		    	<t t-call="UK_Reports.template_document_title"/>
+		    	<div class="row">
+		    		<!-- Space the address to the right slightly -->
+			    	<div class="col-xs-1">
+			    	</div>
+			    	<div class="col-xs-5">
+			    		<t t-call="UK_Reports.template_partner_address"/>
+			    	</div>
+			    	<div class="col-xs-3">
+	                    <t t-call="UK_Reports.template_deliver_to_address"/>
 			    	</div>
 			    	<div class="col-xs-3">
 			    		<strong>Order Info:</strong>
@@ -47,7 +80,7 @@
 			    		<span t-field="o.create_uid.name"/>
 			    		<br/>
 			    		<strong>Date</strong>
-			    		<span t-field="o.date_order"/>
+			    		<span t-field="o.date_order" t-field-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
 			    		<br/>
 			    		<strong>Currency</strong>
 			    		<span t-field="o.currency_id.name"/>
@@ -60,19 +93,19 @@
 			    			<thead class="orderline-header">
 				    			<tr>
 				    				<th class="wide">Description</th>
-				    				<th>Qty</th>
-				    				<th>Unit Price</th>
-				    				<th>VAT</th>
-				    				<th>Line Total</th>
+				    				<th class="text-right">Qty</th>
+				    				<th class="text-right">Unit Price</th>
+				    				<th class="text-right">VAT</th>
+				    				<th class="text-right">Line Total</th>
 				    			</tr>
 				    		</thead>
 				    		<tbody>
 				    			<tr t-foreach="o.order_line" t-as="line">
 				    				<td t-esc="line.uk_report_description_format"/>
-				    				<td t-esc="line.product_qty"/>
-				    				<td t-esc="'%.2f'% line.price_unit"/>
-				    				<td t-esc="'%.2f'% line.price_tax"/>
-				    				<td t-esc="'%.2f'% line.price_subtotal"/>
+				    				<td t-esc="line.qty_format()" class="text-right"/>
+				    				<td t-esc="'%.2f'% line.price_unit" class="text-right"/>
+				    				<td t-esc="'%.2f'% line.price_tax" class="text-right"/>
+				    				<td t-esc="'%.2f'% line.price_subtotal" class="text-right"/>
 				    			</tr>
 				    		</tbody>
 			    		</table>

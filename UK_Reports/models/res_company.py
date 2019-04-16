@@ -57,6 +57,7 @@ class ResCompany(models.Model):
 	sale_tandc = fields.Text("Sales Order terms & Conditions")
 	delivery_tandc = fields.Text("Delivery terms & Conditions")
 	purchase_tandc = fields.Text("Purchase Order terms & Conditions")
+	rfq_tandc = fields.Text("Request for Quotation terms & Conditions")
 	account_name = fields.Char()
 	sort_code = fields.Char()
 	account_number = fields.Char()

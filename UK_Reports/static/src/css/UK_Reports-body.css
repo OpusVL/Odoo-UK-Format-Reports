@@ -13,3 +13,6 @@ table tr.row-border-top {
 table tr th.wide {
 	width: 550px;
 }
+table tr th.xwide {
+	width: 750px;
+}

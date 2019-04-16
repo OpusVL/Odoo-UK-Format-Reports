@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="template_partner_address">
+			<strong>Supplier:</strong>
+	        <div t-if="o.partner_id">
+	            <div t-field="o.partner_id"
+	                t-options='{
+	                	"widget": "contact",
+	                	"fields": ["address", "name"],
+	                	"no_marker": True}'/>
+	        </div>
+	    </template>
+	    <template id="template_deliver_to_address">
+			<strong>Deliver To:</strong>
+            <div t-if="o.company_id.partner_id">
+                <div t-field="o.company_id.partner_id"
+                    t-options='{
+                    	"widget": "contact",
+                    	"fields": ["address", "name"],
+                    	"no_marker": True}'/>
+            </div>
+	    </template>
+	    <template id="template_document_title">
+	    	<div class="document-header align-center">
+	    		<span class="bold" t-esc="doc_header_string"/>
+	    	</div>
+	    	<br/>
+	    </template>
+	</data>
+</odoo>

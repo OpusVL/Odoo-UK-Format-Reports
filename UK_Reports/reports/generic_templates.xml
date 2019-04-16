@@ -50,15 +50,15 @@
 	    <template id="orderline_totals_table">
 			<table class="orderlines-totals">
 				<tr class="row-border-top">
-					<td class="text-left">Net Total</td>
+					<td class="text-left bold">Net Total</td>
 					<td class="text-right" t-esc="'%.2f'% o.amount_untaxed"/>
 				</tr>
 				<tr>
-					<td class="text-left">VAT</td>
+					<td class="text-left bold">VAT</td>
 					<td class="text-right" t-esc="'%.2f'% o.amount_tax"/>
 				</tr>
 				<tr class="row-border-top">
-					<td class="text-left">Total</td>
+					<td class="text-left bold">Total</td>
 					<td class="text-right" t-esc="'%.2f'% o.amount_total"/>
 				</tr>
 			</table>

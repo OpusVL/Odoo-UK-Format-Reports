@@ -27,6 +27,9 @@ class ProductProduct(models.Model):
 	_inherit = "product.product"
 
 	def _vendor_specific_code(self, vendor):
+		"""
+		@param vendor: `res.partner` recordset
+		"""
 		my_vendors = self.seller_ids.filtered(lambda seller: seller.name == vendor)
 		if my_vendors:
 			first_vendor = my_vendors.sorted(key=lambda r: r.sequence)[0]

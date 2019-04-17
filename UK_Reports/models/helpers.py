@@ -21,7 +21,7 @@
 ##############################################################################
 
 
-def integer_or_float(self, value):
+def integer_or_float(value):
 	"""
 	Helper for stripping `.0`s from true ints, as many companies sell
 	products in qtys in a factor of 1, and not (for instance) 1.5, 7.24

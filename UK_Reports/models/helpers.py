@@ -28,6 +28,6 @@ def integer_or_float(value):
 	@param value: <int> or <float> (or even <str>)
 	"""
 	if int(value) == float(value):
-			return int(value)
+		return int(value)
 	else:
 		return value

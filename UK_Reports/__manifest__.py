@@ -26,10 +26,10 @@
 	'category': 'Reporting',
 	'description': """
 		Customised reports for UK:
-		- Sales order / Quotation
-		- Account balance / overdue
-		- Invoice print / credit note / pro forma
-		- Purchase order / Quotation
+		- Sales Order / Quotation
+		- Invoice / Credit Note / Pro-Forma
+		- Purchase Order / Quotation
+		- Sales Delivery Note
 	""",
 	'author': 'OpusVL',
 	'website': 'http://opusvl.com',
@@ -44,7 +44,6 @@
 		'data/report_paperformat.xml',
 
 		'reports/account_invoice_report.xml',
-		'reports/account_statement_report.xml',
 		'reports/external_layouts.xml',
 		'reports/generic_templates.xml',
 		'reports/purchase_order_report.xml',

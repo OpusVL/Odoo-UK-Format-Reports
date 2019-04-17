@@ -33,8 +33,7 @@ class AccountInvoice(models.Model):
 		Print the invoice and mark it as sent, so that we can see more
 		easily the next step of the workflow
 		"""
-		self.sent = True
-		self.ensure_one()
+		super(AccountInvoice, self).invoice_print()
 		return self.env['report'].get_action(self, 'UK_Reports.uk_invoice')
 
 	def your_reference_format(self):

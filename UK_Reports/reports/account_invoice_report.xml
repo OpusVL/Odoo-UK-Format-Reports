@@ -7,10 +7,10 @@
 	    	<div class="row">
 	    		<!-- Space the address to the right slightly -->
 		    	<div class="col-xs-1"/>
-		    	<div class="col-xs-8">
+		    	<div class="col-xs-5">
 		    		<t t-call="UK_Reports.template_partner_address"/>
 		    	</div>
-		    	<div class="col-xs-3">
+		    	<div class="col-xs-6">
 		    		<strong>Proforma Info:</strong>
 		    		<br/>
 		    		<strong>Proforma Date</strong>
@@ -52,10 +52,10 @@
 	    	<div class="row">
 	    		<!-- Space the address to the right slightly -->
 		    	<div class="col-xs-1"/>
-		    	<div class="col-xs-8">
+		    	<div class="col-xs-5">
 		    		<t t-call="UK_Reports.template_partner_address"/>
 		    	</div>
-		    	<div class="col-xs-3">
+		    	<div class="col-xs-6">
 		    		<strong>Order Info:</strong>
 		    		<br/>
 		    		<strong>Invoice No</strong>
@@ -105,10 +105,10 @@
 	    	<div class="row">
 	    		<!-- Space the address to the right slightly -->
 		    	<div class="col-xs-1"/>
-		    	<div class="col-xs-8">
+		    	<div class="col-xs-5">
 		    		<t t-call="UK_Reports.template_partner_address"/>
 		    	</div>
-		    	<div class="col-xs-3">
+		    	<div class="col-xs-6">
 		    		<strong>Credit Note Info:</strong>
 		    		<br/>
 		    		<strong>Credit Date</strong>

@@ -17,7 +17,7 @@
 		    		<span t-field="o.name"/>
 		    		<br/>
 		    		<strong>Delivery Date</strong>
-		    		<span t-field="o.min_date" t-field-options='{"format": "dd/MM/yyyy"}'/>
+		    		<span t-field="o.date_done" t-field-options='{"format": "dd/MM/yyyy"}'/>
 		    		<br/>
 		    		<strong>Sales Order No</strong>
 		    		<span t-esc="o.sale_id.name"/>

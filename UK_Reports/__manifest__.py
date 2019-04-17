@@ -22,7 +22,7 @@
 
 {
 	'name': 'UK customised reports',
-	'version': '10.0.0.1',
+	'version': '10.0.1.0.0',
 	'category': 'Reporting',
 	'description': """
 		Customised reports for UK:

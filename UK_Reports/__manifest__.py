@@ -41,8 +41,6 @@
 		'sale',
 	],
 	'data': [
-		'data/report_paperformat.xml',
-
 		'reports/account_invoice_report.xml',
 		'reports/external_layouts.xml',
 		'reports/generic_templates.xml',
@@ -51,6 +49,8 @@
 		'reports/stock_picking_report.xml',
 
 		'views/res_company_view.xml',
+
+		'data/report_paperformat.xml',
 	],
 	'demo_xml': [],
 	'test': [],

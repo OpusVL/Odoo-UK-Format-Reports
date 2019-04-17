@@ -10,7 +10,7 @@
 		    	<div class="col-xs-5">
 		    		<t t-call="UK_Reports.template_partner_address_invoice_to_to_header"/>
 		    	</div>
-		    	<div class="col-xs-6">
+		    	<div class="col-xs-3">
 		    		<strong>Proforma Info:</strong>
 		    		<br/>
 		    		<strong>Proforma Date</strong>
@@ -28,6 +28,9 @@
 		    		<strong>Currency</strong>
 		    		<span t-field="o.currency_id.name"/>
 		    	</div>
+		    	<div class="col-xs-3">
+		    		<t t-call="UK_Reports.payment_to_information"/>
+		    	</div>
 		    </div>
 		    <br/>
 	    	<div class="row">
@@ -37,12 +40,14 @@
 	    	</div>
 	    	<br/>
 	    	<div class="row">
-	    		<div class="col-xs-8">
-	    			<span t-raw="o.company_id.proforma_tandc"/>
-	    		</div>
+	    		<div class="col-xs-8"/>
 	    		<div class="col-xs-4">
 	    			<t t-call="UK_Reports.orderline_totals_table"/>
 	    		</div>
+	    	</div>
+	    	<br/>
+	    	<div class="row">
+	    		<span t-raw="o.company_id.proforma_tandc"/>
 	    	</div>
 		</template>
 
@@ -55,7 +60,7 @@
 		    	<div class="col-xs-5">
 		    		<t t-call="UK_Reports.template_partner_address_invoice_to_to_header"/>
 		    	</div>
-		    	<div class="col-xs-6">
+		    	<div class="col-xs-3">
 		    		<strong>Order Info:</strong>
 		    		<br/>
 		    		<strong>Invoice No</strong>
@@ -80,6 +85,9 @@
 		    		</t>
 		    		<strong>Currency</strong>
 		    		<span t-field="o.currency_id.name"/>
+		    	</div>
+		    	<div class="col-xs-3">
+		    		<t t-call="UK_Reports.payment_to_information"/>
 		    	</div>
 		    </div>
 		    <br/>

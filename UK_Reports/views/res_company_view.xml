@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-    <data>
-        <record model="ir.ui.view" id="view_company_form_uk_reports">
-            <field name="name">res.company.form.uk_reports</field>
-            <field name="model">res.company</field>
-            <field name="type">form</field>
-            <field name="inherit_id" ref="base.view_company_form"/>
-            <field name="arch" type="xml">
-                <field name="website" position="after">
+	<data>
+		<record model="ir.ui.view" id="view_company_form_uk_reports">
+			<field name="name">res.company.form.uk_reports</field>
+			<field name="model">res.company</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base.view_company_form"/>
+			<field name="arch" type="xml">
+				<field name="website" position="after">
 					<field name="accounts_dept_phone"/>
 					<field name="accounts_dept_email"/>
 					<field name="purchase_dept_phone"/>
 					<field name="purchase_dept_email"/>
 					<field name="sales_dept_phone"/>
 					<field name="sales_dept_email"/>
-                    <field name="account_name"/>
-                    <field name="sort_code"/>
-                    <field name="account_number"/>
-                    <field name="iban"/>
-                    <field name="swift"/>
-                    <field name="legal_information_footer"/>
-                </field>
-                <xpath expr="//field[@name='website']/parent::group/parent::group/parent::page" position="after">
-                    <page name="tandc" string="Terms &amp; Conditions">
-                        <group>
-                            <field name="invoice_tandc" widget="html"/>
-                            <field name="credit_note_tandc" widget="html"/>
-                            <field name="proforma_tandc" widget="html"/>
-                            <field name="quotation_tandc" widget="html"/>
-                            <field name="sale_tandc" widget="html"/>
-                            <field name="delivery_tandc" widget="html"/>
-                            <field name="purchase_tandc" widget="html"/>
-                            <field name="rfq_tandc" widget="html"/>
-                        </group>
-                    </page>
-                </xpath>
-            </field>
-        </record>    
+					<field name="account_name"/>
+					<field name="sort_code"/>
+					<field name="account_number"/>
+					<field name="iban"/>
+					<field name="swift"/>
+					<field name="legal_information_footer"/>
+				</field>
+				<xpath expr="//field[@name='website']/parent::group/parent::group/parent::page" position="after">
+					<page name="tandc" string="Terms &amp; Conditions">
+						<group>
+							<field name="invoice_tandc" widget="html"/>
+							<field name="credit_note_tandc" widget="html"/>
+							<field name="proforma_tandc" widget="html"/>
+							<field name="quotation_tandc" widget="html"/>
+							<field name="sale_tandc" widget="html"/>
+							<field name="delivery_tandc" widget="html"/>
+							<field name="purchase_tandc" widget="html"/>
+							<field name="rfq_tandc" widget="html"/>
+						</group>
+					</page>
+				</xpath>
+			</field>
+		</record>    
 
-    </data>
+	</data>
 </openerp>

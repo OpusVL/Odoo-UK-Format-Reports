@@ -2,55 +2,55 @@
 <odoo>
 	<data>
 		<template id="delivery_note_body">
-	    	<t t-set="doc_header_string" t-value="'Delivery Note'"/>
-	    	<t t-call="UK_Reports.template_document_title"/>
-	    	<div class="row">
-	    		<!-- Space the address to the right slightly -->
-		    	<div class="col-xs-1"/>
-		    	<div class="col-xs-5">
-		    		<t t-call="UK_Reports.template_partner_address_deliver_to_header"/>
-		    	</div>
-		    	<div class="col-xs-6">
-		    		<strong>Delivery Note Info:</strong>
-		    		<br/>
-		    		<strong>Delivery Note No</strong>
-		    		<span t-field="o.name"/>
-		    		<br/>
-		    		<strong>Delivery Date</strong>
-		    		<span t-field="o.date_done" t-field-options='{"format": "dd/MM/yyyy"}'/>
-		    		<br/>
-		    		<strong>Sales Order No</strong>
-		    		<span t-esc="o.sale_id.name"/>
-		    		<br/>
-		    	</div>
-		    </div>
-		    <br/>
-	    	<div class="row">
-	    		<div class="col-xs-12">
-		    		<table class="orderlines">
-		    			<thead class="orderline-header">
-			    			<tr>
-			    				<th class="wide">Description</th>
-			    				<th class="text-right">Qty Ordered</th>
-			    				<th class="text-right">Qty Sent</th>
-			    				<th class="text-right">Qty To Follow</th>
-			    			</tr>
-			    		</thead>
-			    		<tbody>
-			    			<tr t-foreach="o.pack_operation_product_ids" t-as="line">
-			    				<td t-esc="line.uk_report_description_format()"/>
-			    				<td t-esc="line.qty_ordered_format()" class="text-right"/>
-			    				<td t-esc="line.qty_sent_format()" class="text-right"/>
-			    				<td t-esc="line.qty_to_follow_format()" class="text-right"/>
-			    			</tr>
-			    		</tbody>
-		    		</table>
-		    	</div>
-	    	</div>
-	    	<br/>
-	    	<div class="row">
-	    		<div class="col-xs-8"/>
-	    		<div class="col-xs-4">
+			<t t-set="doc_header_string" t-value="'Delivery Note'"/>
+			<t t-call="UK_Reports.template_document_title"/>
+			<div class="row">
+				<!-- Space the address to the right slightly -->
+				<div class="col-xs-1"/>
+				<div class="col-xs-5">
+					<t t-call="UK_Reports.template_partner_address_deliver_to_header"/>
+				</div>
+				<div class="col-xs-6">
+					<strong>Delivery Note Info:</strong>
+					<br/>
+					<strong>Delivery Note No</strong>
+					<span t-field="o.name"/>
+					<br/>
+					<strong>Delivery Date</strong>
+					<span t-field="o.date_done" t-field-options='{"format": "dd/MM/yyyy"}'/>
+					<br/>
+					<strong>Sales Order No</strong>
+					<span t-esc="o.sale_id.name"/>
+					<br/>
+				</div>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-xs-12">
+					<table class="orderlines">
+						<thead class="orderline-header">
+							<tr>
+								<th class="wide">Description</th>
+								<th class="text-right">Qty Ordered</th>
+								<th class="text-right">Qty Sent</th>
+								<th class="text-right">Qty To Follow</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr t-foreach="o.pack_operation_product_ids" t-as="line">
+								<td t-esc="line.uk_report_description_format()"/>
+								<td t-esc="line.qty_ordered_format()" class="text-right"/>
+								<td t-esc="line.qty_sent_format()" class="text-right"/>
+								<td t-esc="line.qty_to_follow_format()" class="text-right"/>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-xs-8"/>
+				<div class="col-xs-4">
 					<table class="orderlines-totals">
 						<tr class="row-border-top">
 							<td class="text-left bold">Total Qty Sent</td>
@@ -61,40 +61,40 @@
 							<td class="text-right" t-esc="o.total_qty_to_follow_format()"/>
 						</tr>
 					</table>
-	    		</div>
-	    	</div>
-	    	<br/>
-	    	<div class="row">
-	    		<span t-raw="o.company_id.delivery_tandc"/>
-	    	</div>
+				</div>
+			</div>
+			<br/>
+			<div class="row">
+				<span t-raw="o.company_id.delivery_tandc"/>
+			</div>
 		</template>
 
 		<template id="uk_delivery_note_document">
-        	<t t-call="UK_Reports.external_layout_uk">
-			    <div class="page">
-			    	<t t-call="UK_Reports.delivery_note_body"/>
-			    </div>
+			<t t-call="UK_Reports.external_layout_uk">
+				<div class="page">
+					<t t-call="UK_Reports.delivery_note_body"/>
+				</div>
 			</t>
 		</template>
 
 		<report
-		    id="uk_delivery_note_print"
-		    model="stock.picking"
-		    string="Sales Delivery Note (UK format)"
-		    report_type="qweb-pdf"
-		    name="UK_Reports.uk_delivery_note"
-		    file="UK_Reports.uk_delivery_note"
-		    attachment="('Sales Delivery Note'+(object.name or '').replace('/','')+'.pdf')"
+			id="uk_delivery_note_print"
+			model="stock.picking"
+			string="Sales Delivery Note (UK format)"
+			report_type="qweb-pdf"
+			name="UK_Reports.uk_delivery_note"
+			file="UK_Reports.uk_delivery_note"
+			attachment="('Sales Delivery Note'+(object.name or '').replace('/','')+'.pdf')"
 		/>
 
-	    <template id="uk_delivery_note">
-	        <t t-call="report.html_container">
-	            <t t-foreach="docs" t-as="o">
-            		<t t-if="o.picking_type_id.code == 'outgoing'">
-	                	<t t-call="UK_Reports.uk_delivery_note_document" t-lang="user.partner_id.lang"/>
-	                </t>
-	            </t>
-	        </t>
-	    </template>
+		<template id="uk_delivery_note">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-if="o.picking_type_id.code == 'outgoing'">
+						<t t-call="UK_Reports.uk_delivery_note_document" t-lang="user.partner_id.lang"/>
+					</t>
+				</t>
+			</t>
+		</template>
 	</data>
 </odoo>

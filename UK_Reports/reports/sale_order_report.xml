@@ -2,51 +2,51 @@
 <odoo>
 	<data>
 		<template id="sales_order_body">
-	    	<t t-set="doc_header_string" t-value="'Sales Order'"/>
-	    	<t t-call="UK_Reports.template_document_title"/>
-	    	<div class="row">
-	    		<!-- Space the address to the right slightly -->
-		    	<div class="col-xs-1"/>
-		    	<div class="col-xs-5">
-		    		<t t-call="UK_Reports.template_invoice_address"/>
-		    	</div>
-		    	<div class="col-xs-3">
-                    <t t-call="UK_Reports.template_delivery_address"/>
-		    	</div>
-		    	<div class="col-xs-3">
-		    		<strong>Order Info:</strong>
-		    		<br/>
-		    		<strong>Order No</strong>
-		    		<span t-field="o.name"/>
-		    		<br/>
-		    		<strong>Salesperson</strong>
-		    		<span t-field="o.user_id.name"/>
-		    		<br/>
-		    		<strong>Order Date</strong>
-		    		<span t-field="o.create_date" t-field-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
-		    		<br/>
-		    		<strong>Payment terms</strong>
-		    		<span t-field="o.payment_term_id.name"/>
-		    		<br/>
-		    		<strong>Currency</strong>
-		    		<span t-field="o.currency_id.name"/>
-		    	</div>
-		    </div>
-		    <br/>
-	    	<div class="row">
-	    		<div class="col-xs-12">
-	    			<t t-call="UK_Reports.sale_orderlines_table"/>
-		    	</div>
-	    	</div>
-	    	<br/>
-	    	<div class="row">
-	    		<div class="col-xs-8"/>
-	    		<div class="col-xs-4">
-	    			<t t-call="UK_Reports.orderline_totals_table"/>
-	    		</div>
-	    	</div>
-	    	<br/>
-	    	<div class="row">
+			<t t-set="doc_header_string" t-value="'Sales Order'"/>
+			<t t-call="UK_Reports.template_document_title"/>
+			<div class="row">
+				<!-- Space the address to the right slightly -->
+				<div class="col-xs-1"/>
+				<div class="col-xs-5">
+					<t t-call="UK_Reports.template_invoice_address"/>
+				</div>
+				<div class="col-xs-3">
+					<t t-call="UK_Reports.template_delivery_address"/>
+				</div>
+				<div class="col-xs-3">
+					<strong>Order Info:</strong>
+					<br/>
+					<strong>Order No</strong>
+					<span t-field="o.name"/>
+					<br/>
+					<strong>Salesperson</strong>
+					<span t-field="o.user_id.name"/>
+					<br/>
+					<strong>Order Date</strong>
+					<span t-field="o.create_date" t-field-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
+					<br/>
+					<strong>Payment terms</strong>
+					<span t-field="o.payment_term_id.name"/>
+					<br/>
+					<strong>Currency</strong>
+					<span t-field="o.currency_id.name"/>
+				</div>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-xs-12">
+					<t t-call="UK_Reports.sale_orderlines_table"/>
+				</div>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-xs-8"/>
+				<div class="col-xs-4">
+					<t t-call="UK_Reports.orderline_totals_table"/>
+				</div>
+			</div>
+			<br/>
+			<div class="row">
 				<t t-if="o.note">
 					<span t-esc="o.note"/>
 					<br/>
@@ -56,83 +56,83 @@
 		</template>
 
 		<template id="sales_quotation_body">
-	    	<t t-set="doc_header_string" t-value="'Sales Quotation'"/>
-	    	<t t-call="UK_Reports.template_document_title"/>
-	    	<div class="row">
-	    		<!-- Space the address to the right slightly -->
-		    	<div class="col-xs-1">
-		    	</div>
-		    	<div class="col-xs-5">
-		    		<t t-call="UK_Reports.template_invoice_address"/>
-		    	</div>
-		    	<div class="col-xs-3">
-                    <t t-call="UK_Reports.template_delivery_address"/>
-		    	</div>
-		    	<div class="col-xs-3">
-		    		<strong>Quotation Info:</strong>
-		    		<br/>
-		    		<strong>Quotation No</strong>
-		    		<span t-field="o.name"/>
-		    		<br/>
-		    		<strong>Salesperson</strong>
-		    		<span t-field="o.user_id.name"/>
-		    		<br/>
-		    		<strong>Quotation Date</strong>
-		    		<span t-field="o.create_date" t-field-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
-		    		<br/>
-		    		<strong>Currency</strong>
-		    		<span t-field="o.currency_id.name"/>
-		    	</div>
-		    </div>
-		    <br/>
-	    	<div class="row">
-	    		<div class="col-xs-12">
-	    			<t t-call="UK_Reports.sale_orderlines_table"/>
-		    	</div>
-	    	</div>
-	    	<br/>
-	    	<div class="row">
-	    		<div class="col-xs-8"/>
-	    		<div class="col-xs-4">
-	    			<t t-call="UK_Reports.orderline_totals_table"/>
-	    		</div>
-	    	</div>
-	    	<br/>
-	    	<div class="row">
+			<t t-set="doc_header_string" t-value="'Sales Quotation'"/>
+			<t t-call="UK_Reports.template_document_title"/>
+			<div class="row">
+				<!-- Space the address to the right slightly -->
+				<div class="col-xs-1">
+				</div>
+				<div class="col-xs-5">
+					<t t-call="UK_Reports.template_invoice_address"/>
+				</div>
+				<div class="col-xs-3">
+					<t t-call="UK_Reports.template_delivery_address"/>
+				</div>
+				<div class="col-xs-3">
+					<strong>Quotation Info:</strong>
+					<br/>
+					<strong>Quotation No</strong>
+					<span t-field="o.name"/>
+					<br/>
+					<strong>Salesperson</strong>
+					<span t-field="o.user_id.name"/>
+					<br/>
+					<strong>Quotation Date</strong>
+					<span t-field="o.create_date" t-field-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
+					<br/>
+					<strong>Currency</strong>
+					<span t-field="o.currency_id.name"/>
+				</div>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-xs-12">
+					<t t-call="UK_Reports.sale_orderlines_table"/>
+				</div>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-xs-8"/>
+				<div class="col-xs-4">
+					<t t-call="UK_Reports.orderline_totals_table"/>
+				</div>
+			</div>
+			<br/>
+			<div class="row">
 				<strong>To progress this quotation to an order, sign, date and return this document.</strong>
 				<span t-raw="o.company_id.quotation_tandc"/>
 			</div>
 		</template>
 
 		<template id="uk_salesorder_document">
-        	<t t-call="UK_Reports.external_layout_uk">
-			    <div class="page">
-	        		<t t-if="o.state in ['sale', 'done']">
-	        			<t t-call="UK_Reports.sales_order_body"/>
-	        		</t>
-	        		<t t-elif="o.state in ['draft', 'sent']">
-	        			<t t-call="UK_Reports.sales_quotation_body"/>
-	        		</t>
-			    </div>
+			<t t-call="UK_Reports.external_layout_uk">
+				<div class="page">
+					<t t-if="o.state in ['sale', 'done']">
+						<t t-call="UK_Reports.sales_order_body"/>
+					</t>
+					<t t-elif="o.state in ['draft', 'sent']">
+						<t t-call="UK_Reports.sales_quotation_body"/>
+					</t>
+				</div>
 			</t>
 		</template>
 
 		<report
-		    id="uk_salesorder_print"
-		    model="sale.order"
-		    string="Sales Order (UK format)"
-		    report_type="qweb-pdf"
-		    name="UK_Reports.uk_salesorder"
-		    file="UK_Reports.uk_salesorder"
-		    attachment="((object.name or '')+'.pdf')"
+			id="uk_salesorder_print"
+			model="sale.order"
+			string="Sales Order (UK format)"
+			report_type="qweb-pdf"
+			name="UK_Reports.uk_salesorder"
+			file="UK_Reports.uk_salesorder"
+			attachment="((object.name or '')+'.pdf')"
 		/>
 
-	    <template id="uk_salesorder">
-	        <t t-call="report.html_container">
-	            <t t-foreach="docs" t-as="o">
-	                <t t-call="UK_Reports.uk_salesorder_document" t-lang="user.partner_id.lang"/>
-	            </t>
-	        </t>
-	    </template>
+		<template id="uk_salesorder">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="UK_Reports.uk_salesorder_document" t-lang="user.partner_id.lang"/>
+				</t>
+			</t>
+		</template>
 	</data>
 </odoo>

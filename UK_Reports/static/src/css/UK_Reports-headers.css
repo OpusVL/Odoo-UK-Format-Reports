@@ -1,25 +1,25 @@
 .source-logo {
-    max-width:225px;
-    max-height: 125px;
+	max-width:225px;
+	max-height: 125px;
 }
 .source-mini-icon {
-    max-height:16px;
-    padding-right: 5px;
+	max-height:16px;
+	padding-right: 5px;
 }
 .source-mini-icon-text {
-    font-size:12px;
+	font-size:12px;
 }
 .source-address-column {
-    margin-top: 32px;
-    margin-left: -80px;
+	margin-top: 32px;
+	margin-left: -80px;
 }
 .source-addressline {
-    text-align: right;
-    font-size:12px;
-    line-height:8px;
+	text-align: right;
+	font-size:12px;
+	line-height:8px;
 }
 .source-addressline.vatline1 {
-    text-align: right;
-    font-size: 8px;
-    line-height: 10px;
+	text-align: right;
+	font-size: 8px;
+	line-height: 10px;
 }

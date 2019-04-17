@@ -28,8 +28,9 @@ class AccountInvoice(models.Model):
 
 	@api.multi
 	def invoice_print(self):
-		""" Print the invoice and mark it as sent, so that we can see more
-			easily the next step of the workflow
+		"""
+		Print the invoice and mark it as sent, so that we can see more
+		easily the next step of the workflow
 		"""
 		self.sent = True
 		self.ensure_one()

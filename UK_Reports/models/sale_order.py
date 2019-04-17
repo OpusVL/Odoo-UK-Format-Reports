@@ -28,12 +28,10 @@ class SaleOrder(models.Model):
 	@api.multi
 	def print_quotation(self):
 		"""
-		This function prints the sales order and mark it as sent,
-		so that we can see more easily the next step of the workflow
+		Redirect to use the UK report formatted sales order
 		"""
-		self.signal_workflow('quotation_sent')
-		self.ensure_one()
-		return self.env['report'].get_action(self, 'sale.UK_SalesOrder')
+		super(SaleOrder, self).print_quotation()
+		return self.env['report'].get_action(self, 'UK_Reports.uk_salesorder')
 
 
 class SaleOrderLine(models.Model):

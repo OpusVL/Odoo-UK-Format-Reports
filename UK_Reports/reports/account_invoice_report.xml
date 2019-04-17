@@ -90,12 +90,14 @@
 	    	</div>
 	    	<br/>
 	    	<div class="row">
-	    		<div class="col-xs-8">
-	    			<span t-raw="o.company_id.invoice_tandc"/>
-	    		</div>
+	    		<div class="col-xs-8"/>
 	    		<div class="col-xs-4">
 	    			<t t-call="UK_Reports.orderline_totals_table"/>
 	    		</div>
+	    	</div>
+	    	<br/>
+	    	<div class="row">
+	    		<span t-raw="o.company_id.invoice_tandc"/>
 	    	</div>
 		</template>
 
@@ -135,12 +137,14 @@
 	    	</div>
 	    	<br/>
 	    	<div class="row">
-	    		<div class="col-xs-8">
-	    			<span t-raw="o.company_id.credit_note_tandc"/>
-	    		</div>
+	    		<div class="col-xs-8"/>
 	    		<div class="col-xs-4">
 	    			<t t-call="UK_Reports.orderline_totals_table"/>
 	    		</div>
+	    	</div>
+	    	<br/>
+	    	<div class="row">
+	    		<span t-raw="o.company_id.credit_note_tandc"/>
 	    	</div>
 		</template>
 

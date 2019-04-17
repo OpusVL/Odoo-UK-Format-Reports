@@ -109,13 +109,15 @@
 	    	</div>
 	    	<br/>
 	    	<div class="row">
-	    		<div class="col-xs-8">
-	    			<strong>Please quote our Purchase Order number with your delivery</strong>
-	    			<span t-raw="o.company_id.purchase_tandc"/>
-	    		</div>
+	    		<div class="col-xs-8"/>
 	    		<div class="col-xs-4">
 	    			<t t-call="UK_Reports.orderline_totals_table"/>
 	    		</div>
+	    	</div>
+	    	<br/>
+	    	<div class="row">
+	    		<strong>Please quote our Purchase Order number with your delivery</strong>
+	    		<span t-raw="o.company_id.purchase_tandc"/>
 	    	</div>
 		</template>
 

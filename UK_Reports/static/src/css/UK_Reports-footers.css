@@ -1,24 +1,24 @@
 .separator-line {
-    border-top: 1px solid black;
+	border-top: 1px solid black;
 }
 .align-center {
-    text-align: center;
+	text-align: center;
 }
 .legal-info-vat-footer {
 	font-size: 11px;
 }
 .terms-and-conditions-lg {
-    font-size: 14px;
+	font-size: 14px;
 }
 .terms-and-conditions-sm {
-    font-size: 12px;
+	font-size: 12px;
 }
 .italic {
-    font-style: italic;
+	font-style: italic;
 }
 .bold {
-    font-weight: bold;
+	font-weight: bold;
 }
 .document-header span{
-    font-size: 20px;
+	font-size: 20px;
 }

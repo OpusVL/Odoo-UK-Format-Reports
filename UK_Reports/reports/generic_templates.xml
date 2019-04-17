@@ -2,68 +2,68 @@
 <odoo>
 	<data>
 		<template id="template_partner_address">
-	        <div t-if="o.partner_id">
-	            <div t-field="o.partner_id"
-	                t-options='{
-	                	"widget": "contact",
-	                	"fields": ["address", "name"],
-	                	"no_marker": True}'/>
-	        </div>
+			<div t-if="o.partner_id">
+				<div t-field="o.partner_id"
+					t-options='{
+						"widget": "contact",
+						"fields": ["address", "name"],
+						"no_marker": True}'/>
+			</div>
 		</template>
 		<template id="template_partner_address_supplier_header">
 			<strong>Supplier:</strong>
 			<t t-call="UK_Reports.template_partner_address"/>
-	    </template>
-	    <template id="template_partner_address_deliver_to_header">
+		</template>
+		<template id="template_partner_address_deliver_to_header">
 			<strong>Deliver To:</strong>
-            <t t-call="UK_Reports.template_partner_address"/>
-	    </template>
-	    <template id="template_partner_address_invoice_to_to_header">
+			<t t-call="UK_Reports.template_partner_address"/>
+		</template>
+		<template id="template_partner_address_invoice_to_to_header">
 			<strong>Invoice To:</strong>
-            <t t-call="UK_Reports.template_partner_address"/>
-	    </template>
-	    <template id="template_partner_address_credit_to_header">
+			<t t-call="UK_Reports.template_partner_address"/>
+		</template>
+		<template id="template_partner_address_credit_to_header">
 			<strong>Credit To:</strong>
-            <t t-call="UK_Reports.template_partner_address"/>
-	    </template>
+			<t t-call="UK_Reports.template_partner_address"/>
+		</template>
 
-	    <template id="template_deliver_to_address">
+		<template id="template_deliver_to_address">
 			<strong>Deliver To:</strong>
-            <div t-if="o.company_id.partner_id">
-                <div t-field="o.company_id.partner_id"
-                    t-options='{
-                    	"widget": "contact",
-                    	"fields": ["address", "name"],
-                    	"no_marker": True}'/>
-            </div>
-	    </template>
-	    <template id="template_invoice_address">
+			<div t-if="o.company_id.partner_id">
+				<div t-field="o.company_id.partner_id"
+					t-options='{
+						"widget": "contact",
+						"fields": ["address", "name"],
+						"no_marker": True}'/>
+			</div>
+		</template>
+		<template id="template_invoice_address">
 			<strong>Invoicing address:</strong>
-            <div t-if="o.partner_invoice_id">
-                <div t-field="o.partner_invoice_id"
-                    t-options='{
-                    	"widget": "contact",
-                    	"fields": ["address", "name"],
-                    	"no_marker": True}'/>
-            </div>
-	    </template>
-	    <template id="template_delivery_address">
+			<div t-if="o.partner_invoice_id">
+				<div t-field="o.partner_invoice_id"
+					t-options='{
+						"widget": "contact",
+						"fields": ["address", "name"],
+						"no_marker": True}'/>
+			</div>
+		</template>
+		<template id="template_delivery_address">
 			<strong>Delivery address:</strong>
-            <div t-if="o.partner_shipping_id">
-                <div t-field="o.partner_shipping_id"
-                    t-options='{
-                    	"widget": "contact",
-                    	"fields": ["address", "name"],
-                    	"no_marker": True}'/>
-            </div>
-	    </template>
-	    <template id="template_document_title">
-	    	<div class="document-header align-center">
-	    		<span class="bold" t-esc="doc_header_string"/>
-	    	</div>
-	    	<br/>
-	    </template>
-	    <template id="orderline_totals_table">
+			<div t-if="o.partner_shipping_id">
+				<div t-field="o.partner_shipping_id"
+					t-options='{
+						"widget": "contact",
+						"fields": ["address", "name"],
+						"no_marker": True}'/>
+			</div>
+		</template>
+		<template id="template_document_title">
+			<div class="document-header align-center">
+				<span class="bold" t-esc="doc_header_string"/>
+			</div>
+			<br/>
+		</template>
+		<template id="orderline_totals_table">
 			<table class="orderlines-totals">
 				<tr class="row-border-top">
 					<td class="text-left bold">Net Total</td>
@@ -78,68 +78,68 @@
 					<td class="text-right" t-esc="'%.2f'% o.amount_total"/>
 				</tr>
 			</table>
-	    </template>
-	    <template id="sale_orderlines_table">
-    		<table class="orderlines">
-    			<thead class="orderline-header">
-	    			<tr>
-	    				<th class="wide">Description</th>
-	    				<th class="text-right">Quantity</th>
-	    				<th class="text-right">Unit Price</th>
-	    				<th class="text-right">VAT</th>
-	    				<th class="text-right">Line Net Total</th>
-	    			</tr>
-	    		</thead>
-	    		<tbody>
-	    			<tr t-foreach="o.order_line" t-as="line">
-	    				<td t-esc="line.uk_report_description_format()"/>
-	    				<td t-esc="line.qty_format()" class="text-right"/>
-	    				<td t-esc="'%.2f'% line.price_unit" class="text-right"/>
-	    				<td t-esc="'%.2f'% line.price_tax" class="text-right"/>
-	    				<td t-esc="'%.2f'% line.price_subtotal" class="text-right"/>
-	    			</tr>
-	    		</tbody>
-    		</table>
-	    </template>
-	    <template id="invoice_orderlines_table">
-    		<table class="orderlines">
-    			<thead class="orderline-header">
-	    			<tr>
-	    				<th class="wide">Description</th>
-	    				<th class="text-right">Quantity</th>
-	    				<th class="text-right">Unit Price</th>
-	    				<th class="text-right">VAT</th>
-	    				<th class="text-right">Line Net Total</th>
-	    			</tr>
-	    		</thead>
-	    		<tbody>
-	    			<tr t-foreach="o.invoice_line_ids" t-as="line">
-	    				<td t-esc="line.name"/>
-	    				<td t-esc="line.qty_format()" class="text-right"/>
-	    				<td t-esc="'%.2f'% line.price_unit" class="text-right"/>
-	    				<td t-esc="line.tax_codes_string()" class="text-right"/>
-	    				<td t-esc="'%.2f'% line.price_subtotal" class="text-right"/>
-	    			</tr>
-	    		</tbody>
-    		</table>
-	    </template>
-	    <template id="payment_to_information">
-    		<strong>Payment To:</strong>
-    		<br/>
-    		<strong>Account Name</strong>
-    		<span t-field="o.company_id.account_name"/>
-    		<br/>
-    		<strong>Sort Code</strong>
-    		<span t-field="o.company_id.sort_code"/>
-    		<br/>
-    		<strong>Account Number</strong>
-    		<span t-field="o.company_id.account_number"/>
-    		<br/>
-    		<strong>IBAN</strong>
-    		<span t-field="o.company_id.iban"/>
-    		<br/>
-    		<strong>SWIFT</strong>
-    		<span t-field="o.company_id.swift"/>
-	    </template>
+		</template>
+		<template id="sale_orderlines_table">
+			<table class="orderlines">
+				<thead class="orderline-header">
+					<tr>
+						<th class="wide">Description</th>
+						<th class="text-right">Quantity</th>
+						<th class="text-right">Unit Price</th>
+						<th class="text-right">VAT</th>
+						<th class="text-right">Line Net Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr t-foreach="o.order_line" t-as="line">
+						<td t-esc="line.uk_report_description_format()"/>
+						<td t-esc="line.qty_format()" class="text-right"/>
+						<td t-esc="'%.2f'% line.price_unit" class="text-right"/>
+						<td t-esc="'%.2f'% line.price_tax" class="text-right"/>
+						<td t-esc="'%.2f'% line.price_subtotal" class="text-right"/>
+					</tr>
+				</tbody>
+			</table>
+		</template>
+		<template id="invoice_orderlines_table">
+			<table class="orderlines">
+				<thead class="orderline-header">
+					<tr>
+						<th class="wide">Description</th>
+						<th class="text-right">Quantity</th>
+						<th class="text-right">Unit Price</th>
+						<th class="text-right">VAT</th>
+						<th class="text-right">Line Net Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr t-foreach="o.invoice_line_ids" t-as="line">
+						<td t-esc="line.name"/>
+						<td t-esc="line.qty_format()" class="text-right"/>
+						<td t-esc="'%.2f'% line.price_unit" class="text-right"/>
+						<td t-esc="line.tax_codes_string()" class="text-right"/>
+						<td t-esc="'%.2f'% line.price_subtotal" class="text-right"/>
+					</tr>
+				</tbody>
+			</table>
+		</template>
+		<template id="payment_to_information">
+			<strong>Payment To:</strong>
+			<br/>
+			<strong>Account Name</strong>
+			<span t-field="o.company_id.account_name"/>
+			<br/>
+			<strong>Sort Code</strong>
+			<span t-field="o.company_id.sort_code"/>
+			<br/>
+			<strong>Account Number</strong>
+			<span t-field="o.company_id.account_number"/>
+			<br/>
+			<strong>IBAN</strong>
+			<span t-field="o.company_id.iban"/>
+			<br/>
+			<strong>SWIFT</strong>
+			<span t-field="o.company_id.swift"/>
+		</template>
 	</data>
 </odoo>

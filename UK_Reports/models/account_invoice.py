@@ -21,6 +21,7 @@
 ##############################################################################
 
 from odoo import models, api
+from helpers import integer_or_float
 
 
 class AccountInvoice(models.Model):
@@ -63,11 +64,7 @@ class AccountInvoiceLine(models.Model):
 			return self.product_id.name
 
 	def qty_format(self):
-		# Most companies don't sell 1.5x anything, so strip the `.0` if possible
-		if int(self.quantity) == float(self.quantity):
-			return int(self.quantity)
-		else:
-			return self.quantity
+		return integer_or_float(self.quantity)
 
 	def tax_codes_string(self):
 		return ','.join(self.invoice_line_tax_ids.mapped('description')) or ''

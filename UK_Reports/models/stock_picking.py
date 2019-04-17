@@ -21,6 +21,7 @@
 ##############################################################################
 
 from odoo import models
+from helpers import integer_or_float
 
 
 class StockPicking(models.Model):
@@ -29,18 +30,12 @@ class StockPicking(models.Model):
 	def total_qty_sent_format(self):
 		total_qty_sent = sum(
 			[x.qty_done for x in self.pack_operation_product_ids])
-		if int(total_qty_sent) == float(total_qty_sent):
-			return int(total_qty_sent)
-		else:
-			return total_qty_sent
+		return integer_or_float(total_qty_sent)
 
 	def total_qty_to_follow_format(self):
 		total_qty_to_follow = sum(
 			[x.product_qty - x.qty_done for x in self.pack_operation_product_ids])
-		if int(total_qty_to_follow) == float(total_qty_to_follow):
-			return int(total_qty_to_follow)
-		else:
-			return total_qty_to_follow
+		return integer_or_float(total_qty_to_follow)
 
 
 class StockPackOperation(models.Model):
@@ -54,24 +49,13 @@ class StockPackOperation(models.Model):
 		)
 
 	def qty_ordered_format(self):
-		# Most companies don't sell 1.5x anything, so strip the `.0` if possible
-		if int(self.product_qty) == float(self.product_qty):
-			return int(self.product_qty)
-		else:
-			return self.product_qty
+		return integer_or_float(self.product_qty)
 
 	def qty_sent_format(self):
-		# Most companies don't sell 1.5x anything, so strip the `.0` if possible
-		if int(self.qty_done) == float(self.qty_done):
-			return int(self.qty_done)
-		else:
-			return self.qty_done
+		return integer_or_float(self.qty_done)
 
 	def qty_to_follow_format(self):
 		qty_to_follow = self.product_qty - self.qty_done
-		if int(qty_to_follow) == float(qty_to_follow):
-			return int(qty_to_follow)
-		else:
-			return qty_to_follow
+		return integer_or_float(qty_to_follow)
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -8,7 +8,7 @@
 	    		<!-- Space the address to the right slightly -->
 		    	<div class="col-xs-1"/>
 		    	<div class="col-xs-5">
-		    		<t t-call="UK_Reports.template_partner_address"/>
+		    		<t t-call="UK_Reports.template_partner_address_supplier_header"/>
 		    	</div>
 		    	<div class="col-xs-3">
                     <t t-call="UK_Reports.template_deliver_to_address"/>
@@ -61,7 +61,7 @@
 		    	<div class="col-xs-1">
 		    	</div>
 		    	<div class="col-xs-5">
-		    		<t t-call="UK_Reports.template_partner_address"/>
+		    		<t t-call="UK_Reports.template_partner_address_supplier_header"/>
 		    	</div>
 		    	<div class="col-xs-3">
                     <t t-call="UK_Reports.template_deliver_to_address"/>

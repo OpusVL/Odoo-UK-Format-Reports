@@ -2,7 +2,6 @@
 <odoo>
 	<data>
 		<template id="template_partner_address">
-			<strong>Supplier:</strong>
 	        <div t-if="o.partner_id">
 	            <div t-field="o.partner_id"
 	                t-options='{
@@ -10,7 +9,24 @@
 	                	"fields": ["address", "name"],
 	                	"no_marker": True}'/>
 	        </div>
+		</template>
+		<template id="template_partner_address_supplier_header">
+			<strong>Supplier:</strong>
+			<t t-call="UK_Reports.template_partner_address"/>
 	    </template>
+	    <template id="template_partner_address_deliver_to_header">
+			<strong>Deliver To:</strong>
+            <t t-call="UK_Reports.template_partner_address"/>
+	    </template>
+	    <template id="template_partner_address_invoice_to_to_header">
+			<strong>Invoice To:</strong>
+            <t t-call="UK_Reports.template_partner_address"/>
+	    </template>
+	    <template id="template_partner_address_credit_to_header">
+			<strong>Credit To:</strong>
+            <t t-call="UK_Reports.template_partner_address"/>
+	    </template>
+
 	    <template id="template_deliver_to_address">
 			<strong>Deliver To:</strong>
             <div t-if="o.company_id.partner_id">
@@ -35,16 +51,6 @@
 			<strong>Delivery address:</strong>
             <div t-if="o.partner_shipping_id">
                 <div t-field="o.partner_shipping_id"
-                    t-options='{
-                    	"widget": "contact",
-                    	"fields": ["address", "name"],
-                    	"no_marker": True}'/>
-            </div>
-	    </template>
-	    <template id="template_deliver_to_partner_address">
-			<strong>Deliver To:</strong>
-            <div t-if="o.partner_id">
-                <div t-field="o.partner_id"
                     t-options='{
                     	"widget": "contact",
                     	"fields": ["address", "name"],

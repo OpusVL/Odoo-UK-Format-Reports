@@ -19,6 +19,7 @@
 ##############################################################################
 
 from odoo import models, api
+from helpers import integer_or_float
 
 
 class SaleOrder(models.Model):
@@ -48,8 +49,4 @@ class SaleOrderLine(models.Model):
 			return self.product_id.name
 
 	def qty_format(self):
-		# Most companies don't sell 1.5x anything, so strip the `.0` if possible
-		if self.product_uom_qty.is_integer():
-			return int(self.product_uom_qty)
-		else:
-			return self.product_uom_qty
+		return integer_or_float(self.product_uom_qty)

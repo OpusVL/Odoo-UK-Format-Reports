@@ -20,21 +20,14 @@
 #
 ##############################################################################
 
-from odoo import models
-from helpers import integer_or_float
 
-
-class PurchaseOrderLine(models.Model):
-	_inherit = "purchase.order.line"
-
-	def uk_report_description_format(self):
-		return "[{}] {}".format(
-			self.product_id._vendor_specific_code(self.order_id.partner_id)
-			or self.product_id.default_code,
-			self.product_id.name
-		)
-
-	def qty_format(self):
-		return integer_or_float(self.product_qty)
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+def integer_or_float(self, value):
+	"""
+	Helper for stripping `.0`s from true ints, as many companies sell
+	products in qtys in a factor of 1, and not (for instance) 1.5, 7.24
+	@param value: <int> or <float> (or even <str>)
+	"""
+	if int(value) == float(value):
+			return int(value)
+	else:
+		return value

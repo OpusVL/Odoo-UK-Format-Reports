@@ -5,9 +5,7 @@
 			<t t-set="doc_header_string" t-value="'Sales PRO-FORMA'"/>
 			<t t-call="UK_Reports.template_document_title"/>
 			<div class="row">
-				<!-- Space the address to the right slightly -->
-				<div class="col-xs-1"/>
-				<div class="col-xs-5">
+				<div class="col-xs-5 col-xs-offset-1">
 					<t t-call="UK_Reports.template_partner_address_invoice_to_to_header"/>
 				</div>
 				<div class="col-xs-3">
@@ -40,8 +38,7 @@
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-8"/>
-				<div class="col-xs-4">
+				<div class="col-xs-4 col-xs-offset-8">
 					<t t-call="UK_Reports.orderline_totals_table"/>
 				</div>
 			</div>
@@ -55,9 +52,7 @@
 			<t t-set="doc_header_string" t-value="'Sales Invoice'"/>
 			<t t-call="UK_Reports.template_document_title"/>
 			<div class="row">
-				<!-- Space the address to the right slightly -->
-				<div class="col-xs-1"/>
-				<div class="col-xs-5">
+				<div class="col-xs-5 col-xs-offset-1">
 					<t t-call="UK_Reports.template_partner_address_invoice_to_to_header"/>
 				</div>
 				<div class="col-xs-3">
@@ -98,8 +93,7 @@
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-8"/>
-				<div class="col-xs-4">
+				<div class="col-xs-4 col-xs-offset-8">
 					<t t-call="UK_Reports.orderline_totals_table"/>
 				</div>
 			</div>
@@ -113,9 +107,7 @@
 			<t t-set="doc_header_string" t-value="'Credit Note'"/>
 			<t t-call="UK_Reports.template_document_title"/>
 			<div class="row">
-				<!-- Space the address to the right slightly -->
-				<div class="col-xs-1"/>
-				<div class="col-xs-5">
+				<div class="col-xs-5 col-xs-offset-1">
 					<t t-call="UK_Reports.template_partner_address_credit_to_header"/>
 				</div>
 				<div class="col-xs-6">
@@ -145,8 +137,7 @@
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-8"/>
-				<div class="col-xs-4">
+				<div class="col-xs-4 col-xs-offset-8">
 					<t t-call="UK_Reports.orderline_totals_table"/>
 				</div>
 			</div>

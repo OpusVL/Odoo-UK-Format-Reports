@@ -24,10 +24,10 @@
         <t t-call="UK_Reports.external_layout_separator_horizontal"/>
         <div class="legal-info-vat-footer align-center">
             <em t-esc="company.legal_information_footer"/>
-            <span>Registered in England No. </span>
-            <span t-esc="company.company_registry"/>
-            <span>V.A.T Reg. No. </span>
-            <span t-esc="company.vat"/>
+            <em>Registered in England No. </em>
+            <em t-esc="company.company_registry"/>
+            <em>V.A.T Reg. No. </em>
+            <em t-esc="company.vat"/>
         </div>
         <div class="row">
             <div class="col-xs-2 pull-right">

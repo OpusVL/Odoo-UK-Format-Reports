@@ -35,7 +35,7 @@ class AccountInvoice(models.Model):
 		"""
 		self.sent = True
 		self.ensure_one()
-		return self.env['report'].get_action(self, 'account.UK_Invoice')
+		return self.env['report'].get_action(self, 'UK_Reports.uk_invoice')
 
 	def your_reference_format(self):
 		return self.name or '(Not provided)'

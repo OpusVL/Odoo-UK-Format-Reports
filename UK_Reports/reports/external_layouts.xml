@@ -81,7 +81,7 @@
 				<span class="source-mini-icon-text mail" t-esc="email"/>
 				<br/>
 			</div>
-			<div class="col-xs-5 source-address-column">
+			<div class="col-xs-4 source-address-column">
 				<p class="source-addressline addrline1" t-esc="company.report_head_addrline1"/>
 				<p class="source-addressline addrline2" t-esc="company.report_head_addrline2"/>
 			</div>

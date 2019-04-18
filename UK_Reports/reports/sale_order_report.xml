@@ -21,7 +21,7 @@
 					<span t-field="o.user_id.name"/>
 					<br/>
 					<strong>Order Date</strong>
-					<span t-field="o.create_date" t-field-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
+					<span t-field="o.create_date" t-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
 					<br/>
 					<strong>Payment terms</strong>
 					<span t-field="o.payment_term_id.name"/>
@@ -72,7 +72,7 @@
 					<span t-field="o.user_id.name"/>
 					<br/>
 					<strong>Quotation Date</strong>
-					<span t-field="o.create_date" t-field-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
+					<span t-field="o.create_date" t-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
 					<br/>
 					<strong>Currency</strong>
 					<span t-field="o.currency_id.name"/>

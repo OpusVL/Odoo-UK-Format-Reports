@@ -12,7 +12,7 @@
 					<strong>Proforma Info:</strong>
 					<br/>
 					<strong>Proforma Date</strong>
-					<span t-field="o.date_invoice" t-field-options='{"format": "dd/MM/yyyy"}'/>
+					<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
 					<br/>
 					<strong>Payment terms</strong>
 					<span t-esc="o.sale_payment_term()"/>
@@ -62,7 +62,7 @@
 					<span t-field="o.number"/>
 					<br/>
 					<strong>Invoice Date</strong>
-					<span t-field="o.date_invoice" t-field-options='{"format": "dd/MM/yyyy"}'/>
+					<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
 					<br/>
 					<strong>Payment terms</strong>
 					<span t-field="o.payment_term_id.name"/>
@@ -114,7 +114,7 @@
 					<strong>Credit Note Info:</strong>
 					<br/>
 					<strong>Credit Date</strong>
-					<span t-field="o.date_invoice" t-field-options='{"format": "dd/MM/yyyy"}'/>
+					<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
 					<br/>
 					<strong>Payment terms</strong>
 					<span t-esc="o.payment_term_id.name"/>

@@ -15,7 +15,7 @@
 					<span t-field="o.name"/>
 					<br/>
 					<strong>Delivery Date</strong>
-					<span t-field="o.date_done" t-field-options='{"format": "dd/MM/yyyy"}'/>
+					<span t-field="o.date_done" t-options='{"format": "dd/MM/yyyy"}'/>
 					<br/>
 					<strong>Sales Order No</strong>
 					<span t-esc="o.sale_id.name"/>
@@ -26,7 +26,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<table class="orderlines">
-						<thead class="orderline-header">
+						<thead id="orderline-header" class="orderline-header">
 							<tr>
 								<th class="wide">Description</th>
 								<th class="text-right">Qty Ordered</th>
@@ -49,7 +49,7 @@
 			<div class="row">
 				<div class="col-xs-4 col-xs-offset-8">
 					<table class="orderlines-totals">
-						<tr class="row-border-top">
+						<tr id="row-border-top" class="row-border-top">
 							<td class="text-left bold">Total Qty Sent</td>
 							<td class="text-right" t-esc="o.total_qty_sent_format()"/>
 						</tr>

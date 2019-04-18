@@ -13,7 +13,7 @@
 <template id="external_layout_separator_horizontal">
 	<div class="footer-separator">
 		<div class="col-xs-12">
-			<div class="separator-line"/>
+			<div id="separator-line" class="separator-line"/>
 		</div>
 	</div>
 </template>

@@ -21,7 +21,7 @@
 					<span t-field="o.create_uid.name"/>
 					<br/>
 					<strong>Expected Date</strong>
-					<span t-field="o.date_order" t-field-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
+					<span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
 				</div>
 			</div>
 			<br/>
@@ -71,7 +71,7 @@
 					<span t-field="o.create_uid.name"/>
 					<br/>
 					<strong>Date</strong>
-					<span t-field="o.date_order" t-field-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
+					<span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
 					<br/>
 					<strong>Currency</strong>
 					<span t-field="o.currency_id.name"/>

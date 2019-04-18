@@ -1,7 +1,4 @@
-table.orderlines-totals {
-	width: 100%;
-}
-table.orderlines {
+table.orderlines-totals, table.orderlines {
 	width: 100%;
 }
 thead.orderline-header {

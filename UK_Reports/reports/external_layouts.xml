@@ -65,20 +65,20 @@
 
 		<div class="row">
 			<div class="col-xs-4">
-				<img class="source-logo" t-att-src="'data:image/png;base64,%s' % company.logo"/>
+				<img id="source-logo" class="source-logo" t-att-src="'data:image/png;base64,%s' % company.logo"/>
 			</div>
 			<div class="col-xs-4">
 				<br/>
-				<img class="source-mini-icon web" src='/UK_Reports/static/img/web.png'/>
-				<span class="source-mini-icon-text web" t-esc="company.website"/>
+				<img id="web-icon" class="source-mini-icon web" src='/UK_Reports/static/img/web.png'/>
+				<span id="web-text" class="source-mini-icon-text web" t-esc="company.website"/>
 				<br/>
 
-				<img class="source-mini-icon phone" src='/UK_Reports/static/img/phone.png'/>
-				<span class="source-mini-icon-text phone" t-esc="phone"/>
+				<img id="phone-icon" class="source-mini-icon phone" src='/UK_Reports/static/img/phone.png'/>
+				<span id="phone-text" class="source-mini-icon-text phone" t-esc="phone"/>
 				<br/>
 
-				<img class="source-mini-icon mail" src='/UK_Reports/static/img/mail.png'/>
-				<span class="source-mini-icon-text mail" t-esc="email"/>
+				<img id="mail-icon" class="source-mini-icon mail" src='/UK_Reports/static/img/mail.png'/>
+				<span id="mail-text" class="source-mini-icon-text mail" t-esc="email"/>
 				<br/>
 			</div>
 			<div class="col-xs-4 source-address-column">

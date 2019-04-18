@@ -3,7 +3,7 @@
 ##############################################################################
 #
 # UK Report Template
-# Copyright (C) 2015 OpusVL (<http://opusvl.com/>)
+# Copyright (C) 2019 OpusVL (<http://opusvl.com/>)
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
@@ -20,7 +20,20 @@
 #
 ##############################################################################
 
+from odoo import models
 
-import UK_Reports
+
+class ProductProduct(models.Model):
+	_inherit = "product.product"
+
+	def _vendor_specific_code(self, vendor):
+		"""
+		@param vendor: `res.partner` recordset
+		"""
+		my_vendors = self.seller_ids.filtered(lambda seller: seller.name == vendor)
+		if my_vendors:
+			first_vendor = my_vendors.sorted(key=lambda r: r.sequence)[0]
+			return first_vendor.product_code
+		return False
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

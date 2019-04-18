@@ -5,9 +5,15 @@ Modified Report Templates suitable for UK format.
 
 This module will make the new template default on print button.
 
+Reports which have been added in UK Format:
+	- Sales Order / Quotation
+	- Invoice / Credit Note / Pro-Forma
+	- Purchase Order / Quotation
+	- Sales Delivery Note
+
 # Copyright and License
 
-Copyright (C) 2015 OpusVL
+Copyright (C) 2019 OpusVL
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as

@@ -1,0 +1,18 @@
+table.orderlines-totals, table.orderlines {
+	width: 100%;
+}
+thead.orderline-header {
+	border-bottom: 1px solid;
+}
+table tr.row-border-top {
+	border-top: 1px solid;
+}
+table tr th.wide {
+	width: 500px;
+}
+table tr th.xwide {
+	width: 700px;
+}
+table tr {
+	line-height: 25px;
+}

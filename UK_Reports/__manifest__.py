@@ -3,7 +3,7 @@
 ##############################################################################
 #
 # UK Report Template
-# Copyright (C) 2015 OpusVL (<http://opusvl.com/>)
+# Copyright (C) 2019 OpusVL (<http://opusvl.com/>)
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
@@ -20,33 +20,42 @@
 #
 ##############################################################################
 
-
-
 {
-   'name': 'UK customised reports',
-   'version': '0.1',
-   'category': 'Reporting',
-   'description': """
-   Customised reports for UK:
-    - Sales order / Quotation
-    - Account balance / overdue
-    - Invoice print 
+	'name': 'UK customised reports',
+	'version': '10.0.1.0.0',
+	'category': 'Reporting',
+	'description': """
+		Customised reports for UK:
+		- Sales Order / Quotation
+		- Invoice / Credit Note / Pro-Forma
+		- Purchase Order / Quotation
+		- Sales Delivery Note
+	""",
+	'author': 'OpusVL',
+	'website': 'http://opusvl.com',
+	'depends': [
+		'account',
+		'base',
+		'purchase',
+		'report',
+		'sale',
+	],
+	'data': [
+		'reports/account_invoice_report.xml',
+		'reports/external_layouts.xml',
+		'reports/generic_templates.xml',
+		'reports/purchase_order_report.xml',
+		'reports/sale_order_report.xml',
+		'reports/stock_picking_report.xml',
 
-    These have been migrated from V3.3, V4, V5, V6, V6.1 to V8
+		'views/res_company_view.xml',
 
-   """,
-   'author': 'OpusVL',
-   'website': 'http://opusvl.com',
-   'depends': ['account_accountant', 'sale', 'report'],
-   'init_xml': [],
-   'update_xml': [
-       'reports.xml',
-   ],
-   'demo_xml': [],
-   'test': [],
-   'license': 'AGPL-3',
-   'installable': True,
-   'active': False,
+		'data/report_paperformat.xml',
+	],
+	'demo_xml': [],
+	'test': [],
+	'license': 'AGPL-3',
+	'installable': True,
 }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

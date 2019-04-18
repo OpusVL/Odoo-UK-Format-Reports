@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+		<record id="uk_a4_paperformat" model="report.paperformat">
+			<field name="name">UK A4</field>
+			<field name="format">A4</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">30</field>
+			<field name="margin_left">7</field>
+			<field name="margin_bottom">23</field>
+			<field name="margin_right">7</field>
+			<field name="header_line">False</field>
+			<field name="header_spacing">25</field>
+			<field name="dpi">90</field>
+			<field name="report_ids" eval="[(6,0,[
+				ref('UK_Reports.uk_purchaseorder_print'),
+				ref('UK_Reports.uk_invoice_print'),
+				ref('UK_Reports.uk_salesorder_print'),
+				ref('UK_Reports.uk_delivery_note_print'),
+			])]"/>
+		</record>
+	</data>
+</openerp>

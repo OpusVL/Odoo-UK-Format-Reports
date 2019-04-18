@@ -20,6 +20,14 @@
 #
 ##############################################################################
 
-from . import models
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+def integer_or_float(value):
+	"""
+	Helper for stripping `.0`s from true ints, as many companies sell
+	products in qtys in a factor of 1, and not (for instance) 1.5, 7.24
+	@param value: <int> or <float> (or even <str>)
+	"""
+	if int(value) == float(value):
+		return int(value)
+	else:
+		return value

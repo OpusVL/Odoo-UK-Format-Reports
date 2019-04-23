@@ -80,7 +80,7 @@
 			<br/>
 			<div class="row">
 				<div class="col-xs-12">
-					<table class="orderlines">
+					<table id="purchase_order_orderlines" class="orderlines">
 						<thead id="orderline-header" class="orderline-header">
 							<tr>
 								<th class="wide">Description</th>

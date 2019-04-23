@@ -46,7 +46,7 @@
 				</div>
 			</div>
 			<br/>
-			<div class="row">
+			<div id="orderlines-totals-row" class="row">
 				<div class="col-xs-4 col-xs-offset-8">
 					<table class="orderlines-totals">
 						<tr id="row-border-top" class="row-border-top">

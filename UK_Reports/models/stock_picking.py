@@ -21,7 +21,7 @@
 ##############################################################################
 
 from odoo import models
-from helpers import integer_or_float
+from ..helpers import integer_or_float
 
 
 class StockPicking(models.Model):

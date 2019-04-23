@@ -34,7 +34,7 @@
 								<th class="text-right">Qty To Follow</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="orderlines-rows-body">
 							<tr t-foreach="o.pack_operation_product_ids" t-as="line">
 								<td t-esc="line.uk_report_description_format()"/>
 								<td t-esc="line.qty_ordered_format()" class="text-right"/>
@@ -46,7 +46,7 @@
 				</div>
 			</div>
 			<br/>
-			<div id="orderlines-totals-row" class="row">
+			<div class="row">
 				<div class="col-xs-4 col-xs-offset-8">
 					<table class="orderlines-totals">
 						<tr id="row-border-top" class="row-border-top">

@@ -21,7 +21,7 @@
 ##############################################################################
 
 from odoo import models, api
-from helpers import integer_or_float
+from ..helpers import integer_or_float
 
 
 class AccountInvoice(models.Model):

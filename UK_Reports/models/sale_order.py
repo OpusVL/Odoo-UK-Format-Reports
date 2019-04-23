@@ -19,7 +19,7 @@
 ##############################################################################
 
 from odoo import models, api
-from helpers import integer_or_float
+from ..helpers import integer_or_float
 
 
 class SaleOrder(models.Model):

@@ -62,7 +62,7 @@
 				<div class="col-xs-3">
 					<t t-call="UK_Reports.template_delivery_address"/>
 				</div>
-				<div id="information-block" class="col-xs-3">
+				<div id="quote-information-block" class="col-xs-3">
 					<strong>Quotation Info:</strong>
 					<br/>
 					<strong>Quotation No</strong>
@@ -91,7 +91,7 @@
 				</div>
 			</div>
 			<br/>
-			<div id="tandc-block" class="row">
+			<div id="quote-tandc-block" class="row">
 				<strong>To progress this quotation to an order, sign, date and return this document.</strong>
 				<span t-raw="o.company_id.quotation_tandc"/>
 			</div>

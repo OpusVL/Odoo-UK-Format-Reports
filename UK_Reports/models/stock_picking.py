@@ -60,8 +60,7 @@ class StockPackOperation(models.Model):
 			self.qty_ordered_format() - sum(
 				self.picking_id.sale_id.picking_ids
 				.mapped('move_lines')
-				.filtered(lambda line: line.product_id == self.product_id)
-				.filtered(lambda line: line.state == 'done')
+				.filtered(lambda line: line.product_id == self.product_id and line.state == 'done')
 				.mapped('product_uom_qty')))
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -28,7 +28,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<table class="orderlines">
-						<thead id="orderline-header" class="orderline-header">
+						<thead id="rfq-orderline-header" class="orderline-header">
 							<tr>
 								<th class="xwide">Description</th>
 								<th class="text-right">Quantity</th>
@@ -80,8 +80,8 @@
 			<br/>
 			<div class="row">
 				<div class="col-xs-12">
-					<table id="purchase_order_orderlines" class="orderlines">
-						<thead id="orderline-header" class="orderline-header">
+					<table id="po-purchase_order_orderlines" class="orderlines">
+						<thead id="po-orderline-header" class="orderline-header">
 							<tr>
 								<th class="wide">Description</th>
 								<th class="text-right">Quantity</th>

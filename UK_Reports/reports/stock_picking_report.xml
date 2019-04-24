@@ -26,7 +26,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<table class="orderlines">
-						<thead id="orderline-header" class="orderline-header">
+						<thead id="delnote-orderline-header" class="orderline-header">
 							<tr>
 								<th class="wide">Description</th>
 								<th class="text-right">Qty Ordered</th>
@@ -34,7 +34,7 @@
 								<th class="text-right">Qty To Follow</th>
 							</tr>
 						</thead>
-						<tbody id="orderlines-rows-body">
+						<tbody id="delnote-orderlines-rows-body">
 							<tr t-foreach="o.pack_operation_product_ids" t-as="line">
 								<td t-esc="line.uk_report_description_format()"/>
 								<td t-esc="line.qty_ordered_format()" class="text-right"/>
@@ -46,10 +46,10 @@
 				</div>
 			</div>
 			<br/>
-			<div id="orderline-totals-row" class="row">
+			<div id="delnote-orderline-totals-row" class="row">
 				<div class="col-xs-4 col-xs-offset-8">
 					<table class="orderlines-totals">
-						<tr id="row-border-top" class="row-border-top">
+						<tr id="delnote-row-border-top" class="row-border-top">
 							<td class="text-left bold">Total Qty Sent</td>
 							<td class="text-right" t-esc="o.total_qty_sent_format()"/>
 						</tr>

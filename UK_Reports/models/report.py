@@ -20,14 +20,20 @@
 #
 ##############################################################################
 
-from . import (
-	account_invoice,
-	product_product,
-	purchase_order,
-	report,
-	res_company,
-	sale_order,
-	stock_picking,
-)
+from openerp import models, api, exceptions
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+class Report(models.Model):
+	_inherit = 'report'
+
+	@api.multi
+	def render(self, template, values=None):
+		if template == 'UK_Reports.uk_delivery_note':
+			if values.get('docs'):
+				self.validate_delivery_note(values)
+		return super(Report, self).render(template, values)
+
+	def validate_delivery_note(self, values):
+		if any(state != 'done' for state in values.get('docs').mapped('state')):
+			raise exceptions.Warning(
+				"You cannot print a delivery note on an unfinished picking")

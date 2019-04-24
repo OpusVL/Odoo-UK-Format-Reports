@@ -34,7 +34,7 @@ class StockPicking(models.Model):
 
 	def total_qty_to_follow_format(self):
 		total_qty_to_follow = sum(
-			[x.product_qty - x.qty_done for x in self.pack_operation_product_ids])
+			[x.qty_to_follow_format() for x in self.pack_operation_product_ids])
 		return integer_or_float(total_qty_to_follow)
 
 
@@ -48,13 +48,20 @@ class StockPackOperation(models.Model):
 		)
 
 	def qty_ordered_format(self):
-		return integer_or_float(self.product_qty)
+		sale_line = self.picking_id.sale_id.order_line.filtered(
+			lambda line: line.product_id == self.product_id)
+		return integer_or_float(sale_line.product_uom_qty)
 
 	def qty_sent_format(self):
 		return integer_or_float(self.qty_done)
 
 	def qty_to_follow_format(self):
-		qty_to_follow = self.product_qty - self.qty_done
-		return integer_or_float(qty_to_follow)
+		return integer_or_float(
+			self.qty_ordered_format() - sum(
+				self.picking_id.sale_id.picking_ids
+				.mapped('move_lines')
+				.filtered(lambda line: line.product_id == self.product_id)
+				.filtered(lambda line: line.state == 'done')
+				.mapped('product_uom_qty')))
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

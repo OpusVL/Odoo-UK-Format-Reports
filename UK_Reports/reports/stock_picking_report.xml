@@ -54,7 +54,7 @@
 							<td class="text-right" t-esc="o.total_qty_sent_format()"/>
 						</tr>
 						<tr>
-							<td class="text-left bold">Qty To Follow</td>
+							<td class="text-left bold">Total Qty To Follow</td>
 							<td class="text-right" t-esc="o.total_qty_to_follow_format()"/>
 						</tr>
 					</table>

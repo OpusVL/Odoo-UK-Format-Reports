@@ -49,6 +49,7 @@
 		'reports/stock_picking_report.xml',
 
 		'views/res_company_view.xml',
+		'views/stock_picking_view.xml',
 
 		'data/report_paperformat.xml',
 		'data/ir_actions_report_xml.xml',

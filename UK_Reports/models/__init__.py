@@ -22,6 +22,7 @@
 
 from . import (
 	account_invoice,
+	ir_actions_report_xml,
 	product_product,
 	purchase_order,
 	report,

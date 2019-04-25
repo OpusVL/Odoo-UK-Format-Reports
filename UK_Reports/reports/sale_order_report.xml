@@ -21,7 +21,7 @@
 					<span t-field="o.user_id.name"/>
 					<br/>
 					<strong>Order Date</strong>
-					<span t-field="o.create_date" t-field-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
+					<span t-field="o.create_date" t-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
 					<br/>
 					<strong>Payment terms</strong>
 					<span t-field="o.payment_term_id.name"/>
@@ -62,7 +62,7 @@
 				<div class="col-xs-3">
 					<t t-call="UK_Reports.template_delivery_address"/>
 				</div>
-				<div class="col-xs-3">
+				<div id="quote-information-block" class="col-xs-3">
 					<strong>Quotation Info:</strong>
 					<br/>
 					<strong>Quotation No</strong>
@@ -72,7 +72,7 @@
 					<span t-field="o.user_id.name"/>
 					<br/>
 					<strong>Quotation Date</strong>
-					<span t-field="o.create_date" t-field-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
+					<span t-field="o.create_date" t-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
 					<br/>
 					<strong>Currency</strong>
 					<span t-field="o.currency_id.name"/>
@@ -91,7 +91,7 @@
 				</div>
 			</div>
 			<br/>
-			<div class="row">
+			<div id="quote-tandc-block" class="row">
 				<strong>To progress this quotation to an order, sign, date and return this document.</strong>
 				<span t-raw="o.company_id.quotation_tandc"/>
 			</div>

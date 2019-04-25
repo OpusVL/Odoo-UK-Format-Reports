@@ -21,14 +21,14 @@
 					<span t-field="o.create_uid.name"/>
 					<br/>
 					<strong>Expected Date</strong>
-					<span t-field="o.date_order" t-field-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
+					<span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
 				</div>
 			</div>
 			<br/>
 			<div class="row">
 				<div class="col-xs-12">
 					<table class="orderlines">
-						<thead class="orderline-header">
+						<thead id="rfq-orderline-header" class="orderline-header">
 							<tr>
 								<th class="xwide">Description</th>
 								<th class="text-right">Quantity</th>
@@ -71,7 +71,7 @@
 					<span t-field="o.create_uid.name"/>
 					<br/>
 					<strong>Date</strong>
-					<span t-field="o.date_order" t-field-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
+					<span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
 					<br/>
 					<strong>Currency</strong>
 					<span t-field="o.currency_id.name"/>
@@ -80,8 +80,8 @@
 			<br/>
 			<div class="row">
 				<div class="col-xs-12">
-					<table class="orderlines">
-						<thead class="orderline-header">
+					<table id="po-purchase_order_orderlines" class="orderlines">
+						<thead id="po-orderline-header" class="orderline-header">
 							<tr>
 								<th class="wide">Description</th>
 								<th class="text-right">Quantity</th>

@@ -65,7 +65,7 @@
 		</template>
 		<template id="orderline_totals_table">
 			<table class="orderlines-totals">
-				<tr class="row-border-top">
+				<tr id="row-border-top-1" class="row-border-top">
 					<td class="text-left bold">Net Total</td>
 					<td class="text-right" t-esc="'%.2f'% o.amount_untaxed"/>
 				</tr>
@@ -73,7 +73,7 @@
 					<td class="text-left bold">VAT</td>
 					<td class="text-right" t-esc="'%.2f'% o.amount_tax"/>
 				</tr>
-				<tr class="row-border-top">
+				<tr id="row-border-top-2" class="row-border-top">
 					<td class="text-left bold">Total</td>
 					<td class="text-right" t-esc="'%.2f'% o.amount_total"/>
 				</tr>
@@ -81,7 +81,7 @@
 		</template>
 		<template id="sale_orderlines_table">
 			<table class="orderlines">
-				<thead class="orderline-header">
+				<thead id="orderline-header" class="orderline-header">
 					<tr>
 						<th class="wide">Description</th>
 						<th class="text-right">Quantity</th>
@@ -103,7 +103,7 @@
 		</template>
 		<template id="invoice_orderlines_table">
 			<table class="orderlines">
-				<thead class="orderline-header">
+				<thead id="orderline-header" class="orderline-header">
 					<tr>
 						<th class="wide">Description</th>
 						<th class="text-right">Quantity</th>

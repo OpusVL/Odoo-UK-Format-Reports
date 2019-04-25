@@ -20,43 +20,22 @@
 #
 ##############################################################################
 
-{
-	'name': 'UK customised reports',
-	'version': '10.0.1.0.1',
-	'category': 'Reporting',
-	'description': """
-		Customised reports for UK:
-		- Sales Order / Quotation
-		- Invoice / Credit Note / Pro-Forma
-		- Purchase Order / Quotation
-		- Sales Delivery Note
-	""",
-	'author': 'OpusVL',
-	'website': 'http://opusvl.com',
-	'depends': [
-		'account',
-		'base',
-		'purchase',
-		'report',
-		'sale',
-	],
-	'data': [
-		'reports/account_invoice_report.xml',
-		'reports/external_layouts.xml',
-		'reports/generic_templates.xml',
-		'reports/purchase_order_report.xml',
-		'reports/sale_order_report.xml',
-		'reports/stock_picking_report.xml',
+from odoo import models, api
 
-		'views/res_company_view.xml',
 
-		'data/report_paperformat.xml',
-		'data/ir_actions_report_xml.xml',
-	],
-	'demo_xml': [],
-	'test': [],
-	'license': 'AGPL-3',
-	'installable': True,
-}
+class IrActionsReportXml(models.Model):
+	_inherit = "ir.actions.report.xml"
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+	@api.model
+	def unlink_report_actions(self):
+		report_ext_ids = [
+			'purchase.action_report_purchase_order',
+			'purchase.report_purchase_quotation',
+			'sale.report_sale_order',
+			'account.account_invoice_action_report_duplicate',
+			'account.account_invoices',
+			'stock.action_report_delivery',
+			'stock.action_report_picking',
+		]
+		for report_ext_id in report_ext_ids:
+			self.env.ref(report_ext_id).unlink_action()

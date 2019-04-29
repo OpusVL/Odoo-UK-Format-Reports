@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
             <!-- Unfortunately have to use following-sibling to target the node
-            <button name="%(action_report_delivery)d" string="Print"....
+            (action_report_delivery)d
             as it has no ID and targeting based on name breaks upgrades -->
             <xpath expr="//button[@name='do_print_picking']/following-sibling::button" position="replace">
                 <button

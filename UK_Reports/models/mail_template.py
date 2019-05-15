@@ -20,16 +20,13 @@
 #
 ##############################################################################
 
-from . import (
-	account_invoice,
-	ir_actions_report_xml,
-	mail_template,
-	product_product,
-	purchase_order,
-	report,
-	res_company,
-	sale_order,
-	stock_picking,
-)
+from odoo import models, api
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+class MailTemplate(models.Model):
+	_inherit = "mail.template"
+
+	@api.model
+	def update_mail_templates(self):
+		self.env.ref('account.email_template_edi_invoice').write(dict(
+			report_template=self.env.ref('UK_Reports.uk_invoice_print').id))

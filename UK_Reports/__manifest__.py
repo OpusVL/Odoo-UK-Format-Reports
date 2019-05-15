@@ -53,6 +53,7 @@
 
 		'data/report_paperformat.xml',
 		'data/ir_actions_report_xml.xml',
+		'data/mail_template.xml',
 	],
 	'demo_xml': [],
 	'test': [],

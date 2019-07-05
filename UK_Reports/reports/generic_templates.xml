@@ -84,19 +84,21 @@
 				<thead id="orderline-header" class="orderline-header">
 					<tr>
 						<th class="wide">Description</th>
-						<th class="text-right">Quantity</th>
-						<th class="text-right">Unit Price</th>
+						<th class="text-right">Qty</th>
+						<th class="text-right">UnitPrice</th>
+						<th class="text-right">Net</th>
 						<th class="text-right">VAT</th>
-						<th class="text-right">Line Net Total</th>
+						<th class="text-right">Gross</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr t-foreach="o.order_line" t-as="line">
-						<td t-esc="line.uk_report_description_format()"/>
+						<td t-esc="line.uk_report_description_format() or ' '"/>
 						<td t-esc="line.qty_format()" class="text-right"/>
 						<td t-esc="'%.2f'% line.price_unit" class="text-right"/>
-						<td t-esc="'%.2f'% line.price_tax" class="text-right"/>
 						<td t-esc="'%.2f'% line.price_subtotal" class="text-right"/>
+						<td t-esc="'%.2f'% line.price_tax" class="text-right"/>
+						<td t-esc="'%.2f'% line.price_total" class="text-right"/>
 					</tr>
 				</tbody>
 			</table>
@@ -106,40 +108,47 @@
 				<thead id="orderline-header" class="orderline-header">
 					<tr>
 						<th class="wide">Description</th>
-						<th class="text-right">Quantity</th>
-						<th class="text-right">Unit Price</th>
+						<th class="text-right">Qty</th>
+						<th class="text-right">UnitPrice</th>
+						<th class="text-right">Net</th>
 						<th class="text-right">VAT</th>
-						<th class="text-right">Line Net Total</th>
+						<th class="text-right">Gross</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="orderline-body">
 					<tr t-foreach="o.invoice_line_ids" t-as="line">
-						<td t-esc="line.name"/>
+						<td t-esc="line.uk_report_description_format() or ' '"/>
 						<td t-esc="line.qty_format()" class="text-right"/>
 						<td t-esc="'%.2f'% line.price_unit" class="text-right"/>
-						<td t-esc="line.tax_codes_string()" class="text-right"/>
 						<td t-esc="'%.2f'% line.price_subtotal" class="text-right"/>
+						<td t-esc="'%.2f'% line.total_tax_format()" class="text-right"/>
+						<td t-esc="'%.2f'% line.total_gross_format()" class="text-right"/>
 					</tr>
 				</tbody>
 			</table>
 		</template>
 		<template id="payment_to_information">
-			<strong>Payment To:</strong>
-			<br/>
-			<strong>Account Name</strong>
-			<span t-field="o.company_id.account_name"/>
-			<br/>
-			<strong>Sort Code</strong>
-			<span t-field="o.company_id.sort_code"/>
-			<br/>
-			<strong>Account Number</strong>
-			<span t-field="o.company_id.account_number"/>
-			<br/>
-			<strong>IBAN</strong>
-			<span t-field="o.company_id.iban"/>
-			<br/>
-			<strong>SWIFT</strong>
-			<span t-field="o.company_id.swift"/>
+			<div class="col-xs-12">
+				<strong>Payment To:</strong>
+				<br/>
+			</div>
+			<div class="col-xs-5">
+				<strong>Account Name</strong>
+				<span t-field="o.company_id.account_name"/>
+				<br/>
+				<strong>Sort Code</strong>
+				<span t-field="o.company_id.sort_code"/>
+				<br/>
+				<strong>Account Number</strong>
+				<span t-field="o.company_id.account_number"/>
+			</div>
+			<div class="col-xs-5 col-xs-offset-2">
+				<strong>IBAN</strong>
+				<span t-field="o.company_id.iban"/>
+				<br/>
+				<strong>SWIFT</strong>
+				<span t-field="o.company_id.swift"/>
+			</div>
 		</template>
 	</data>
 </odoo>

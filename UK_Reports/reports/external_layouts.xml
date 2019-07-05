@@ -23,6 +23,7 @@
 		<!-- Values which can change depending on report -->
 		<t t-call="UK_Reports.external_layout_separator_horizontal"/>
 		<div class="legal-info-vat-footer align-center">
+			<br/>
 			<em t-esc="company.legal_information_footer"/>
 			<em>Registered in England No. </em>
 			<em t-esc="company.company_registry"/>
@@ -31,11 +32,11 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-2 pull-right">
-				<br/>
-				<span>Page</span>
-				<span class="page" />
+<!--			Adding classes to get elements closer with eachother in css by removing padding and margin-->
+				<span class="source_page_number">Page</span>
+				<span class="page source_page_number"/>
 				of
-				<span class="topage" />
+				<span class="topage"/>
 			</div>
 		</div>
 	</div>
@@ -64,10 +65,10 @@
 		</t>
 
 		<div class="row">
-			<div class="col-xs-4">
+			<div class="col-xs-3 source-logo-column">
 				<img id="extlayout-source-logo" class="source-logo" t-att-src="'data:image/png;base64,%s' % company.logo"/>
 			</div>
-			<div class="col-xs-4">
+			<div class="col-xs-4 source-details-column">
 				<br/>
 				<img id="extlayout-web-icon" class="source-mini-icon web" src='/UK_Reports/static/img/web.png'/>
 				<span id="extlayout-web-text" class="source-mini-icon-text web" t-esc="company.website"/>
@@ -81,7 +82,7 @@
 				<span id="extlayout-mail-text" class="source-mini-icon-text mail" t-esc="email"/>
 				<br/>
 			</div>
-			<div class="col-xs-4 source-address-column">
+			<div class="col-xs-5 source-address-column">
 				<p class="source-addressline addrline1" t-esc="company.report_head_addrline1"/>
 				<p class="source-addressline addrline2" t-esc="company.report_head_addrline2"/>
 			</div>

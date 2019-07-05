@@ -1,16 +1,26 @@
 .source-logo {
-	max-width:225px;
-	max-height: 100px;
+	max-width:200px;
+	max-height: 90px;
 }
 .source-mini-icon {
 	max-height:16px;
 	padding-right: 5px;
+	padding:0px; margin-bottom: 0px;
 }
 .source-mini-icon-text {
 	font-size:12px;
 }
+.source-logo-column {
+	margin-top: 22px;
+	text-align: left;
+}
+.source-details-column {
+	margin-bottom: 12px;
+	text-align: left;
+}
 .source-address-column {
-	margin-top: 32px;
+	margin-top: 27px;
+	padding-right: 30px;
 }
 .source-addressline {
 	text-align: right;
@@ -21,4 +31,8 @@
 	text-align: right;
 	font-size: 8px;
 	line-height: 10px;
+}
+.source_page_number {
+	padding: 0px;
+	margin: 0px;
 }

@@ -23,7 +23,6 @@
 from odoo import models, api
 from ..helpers import integer_or_float
 
-
 class AccountInvoice(models.Model):
 	_inherit = "account.invoice"
 
@@ -67,6 +66,26 @@ class AccountInvoiceLine(models.Model):
 
 	def tax_codes_string(self):
 		return ','.join(self.invoice_line_tax_ids.mapped('description')) or ''
+
+	# Used a function to in odoo12 to calculate price total of an invoice line
+	def get_price_total(self):
+		currency = self.invoice_id and self.invoice_id.currency_id or None
+		price = self.price_unit * (1 - (self.discount or 0.0) / 100.0)
+		taxes = False
+		if self.invoice_line_tax_ids:
+			taxes = self.invoice_line_tax_ids.compute_all(price, currency, self.quantity, product=self.product_id,
+				partner=self.invoice_id.partner_id)
+		price_subtotal = taxes['total_excluded'] if taxes else self.quantity * price
+		price_total = taxes['total_included'] if taxes else price_subtotal
+		return price_total
+
+	def total_gross_format(self):
+		price_total = self.get_price_total()
+		return integer_or_float(price_total)
+
+	def total_tax_format(self):
+		price_total = self.get_price_total()
+		return integer_or_float(price_total - self.price_subtotal)
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

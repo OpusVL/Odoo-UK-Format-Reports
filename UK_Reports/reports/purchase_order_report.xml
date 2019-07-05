@@ -5,23 +5,30 @@
 			<t t-set="doc_header_string" t-value="'Request for Quotation'"/>
 			<t t-call="UK_Reports.template_document_title"/>
 			<div class="row">
-				<div class="col-xs-5 col-xs-offset-1">
+				<div class="col-xs-5">
 					<t t-call="UK_Reports.template_partner_address_supplier_header"/>
 				</div>
-				<div class="col-xs-3">
+				<div class="col-xs-5 col-xs-offset-2">
 					<t t-call="UK_Reports.template_deliver_to_address"/>
 				</div>
-				<div class="col-xs-3">
+			</div>
+			<br/>
+			<br/>
+			<div class="row" id="quote-information-block">
+				<div class="col-xs-12">
 					<strong>Quotation Info:</strong>
 					<br/>
+				</div>
+				<div class="col-xs-5">
 					<strong>Quotation No</strong>
 					<span t-field="o.name"/>
 					<br/>
 					<strong>Ordered By</strong>
 					<span t-field="o.create_uid.name"/>
-					<br/>
+				</div>
+				<div class="col-xs-5 col-xs-offset-2">
 					<strong>Expected Date</strong>
-					<span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
+					<span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy"}'/>
 				</div>
 			</div>
 			<br/>
@@ -45,7 +52,7 @@
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-12">
+				<div id="quote-tandc-block" class="col-xs-12">
 					<span t-raw="o.company_id.purchase_tandc"/>
 				</div>
 			</div>
@@ -55,23 +62,30 @@
 			<t t-set="doc_header_string" t-value="'Purchase Order'"/>
 			<t t-call="UK_Reports.template_document_title"/>
 			<div class="row">
-				<div class="col-xs-5 col-xs-offset-1">
+				<div class="col-xs-5">
 					<t t-call="UK_Reports.template_partner_address_supplier_header"/>
 				</div>
-				<div class="col-xs-3">
+				<div class="col-xs-5 col-xs-offset-2">
 					<t t-call="UK_Reports.template_deliver_to_address"/>
 				</div>
-				<div class="col-xs-3">
+			</div>
+			<br/>
+			<br/>
+			<div class="row" id="quote-information-block">
+				<div class="col-xs-12">
 					<strong>Order Info:</strong>
 					<br/>
+				</div>
+				<div class="col-xs-5">
 					<strong>Purchase Order No</strong>
 					<span t-field="o.name"/>
 					<br/>
 					<strong>Ordered By</strong>
 					<span t-field="o.create_uid.name"/>
-					<br/>
+				</div>
+				<div class="col-xs-5 col-xs-offset-2">
 					<strong>Date</strong>
-					<span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy HH:mm:ss"}'/>
+					<span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy"}'/>
 					<br/>
 					<strong>Currency</strong>
 					<span t-field="o.currency_id.name"/>
@@ -110,8 +124,10 @@
 			</div>
 			<br/>
 			<div class="row">
-				<strong>Please quote our Purchase Order number with your delivery</strong>
-				<span t-raw="o.company_id.purchase_tandc"/>
+				<div id="quote-tandc-block" class="col-xs-12">
+					<strong>Please quote our Purchase Order number with your delivery</strong>
+					<span t-raw="o.company_id.purchase_tandc"/>
+				</div>
 			</div>
 		</template>
 

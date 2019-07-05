@@ -32,7 +32,6 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-2 pull-right">
-<!--			Adding classes to get elements closer with eachother in css by removing padding and margin-->
 				<span class="source_page_number">Page</span>
 				<span class="page source_page_number"/>
 				of

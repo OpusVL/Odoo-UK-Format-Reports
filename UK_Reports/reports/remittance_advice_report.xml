@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<template id="remittance_advice_body">
+			<t t-set="doc_header_string" t-value="'Remittance Advice'"/>
+			<t t-call="UK_Reports.template_document_title"/>
+			<br/>
+			<br/>
+			<div class="row" id="quote-information-block">
+				<div class="col-xs-12">
+					<strong>Payment To:</strong>
+					<span t-field="o.partner_id.name"/>
+					<br/>
+				</div>
+				<div class="col-xs-12">
+					<strong>Payment Date:</strong>
+					<span t-field="o.payment_date" t-options='{"format": "dd/MM/yy"}'/>
+					<br/>
+				</div>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-xs-6 col-xs-offset-1">
+					<table class="payment-invoice-lines">
+						<thead id="payment-invoice-header" class="payment-invoice-header">
+							<tr>
+								<th class="text-left"><strong>Invoice/Credit Date</strong></th>
+								<th class="text-left"><strong>Invoice/Credit #</strong></th>
+								<th class="text-right"><strong>Amount (£)</strong></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr t-foreach="o.invoice_ids" t-as="invoice">
+								<td class="text-left"><span t-field="invoice.date_invoice" t-options='{"format": "dd/MM/yy"}'/></td>
+								<td t-esc="invoice.number" class="text-left"/>
+								<td class="text-right"><span t-esc="invoice.amount_total - invoice.residual" t-esc-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<br/>
+			<div class="row">
+				<div class="col-xs-4 col-xs-offset-3">
+					<t t-call="UK_Reports.payment_invoice_totals_table"/>
+				</div>
+			</div>
+			<br/>
+			<br/>
+			<div class="row" id="payment-information-block">
+				<div class="col-xs-12">
+					<strong>Payment From:</strong>
+				</div>
+				<div class="col-xs-12">
+					<span t-field="o.company_id.name"/>
+				</div>
+				<div class="col-xs-12">
+					<span t-field="o.company_id.street"/>
+				</div>
+				<div class="col-xs-12">
+					<span t-field="o.company_id.street2"/>
+				</div>
+				<div class="col-xs-12">
+					<span t-field="o.company_id.city"/>
+				</div>
+				<div class="col-xs-12">
+					<span t-field="o.company_id.state_id.name"/>
+				</div>
+				<div class="col-xs-12">
+					<span t-field="o.company_id.zip"/>
+				</div>
+				<div class="col-xs-12">
+					<strong>Tel:</strong>
+					<span t-field="o.company_id.accounts_dept_phone"/>
+				</div>
+				<div class="col-xs-12">
+					<strong>Email:</strong>
+					<span t-field="o.company_id.accounts_dept_email"/>
+				</div>
+			</div>
+			<br/>
+			<br/>
+			<br/>
+			<div class="row">
+				<div id="quote-tandc-block" class="col-xs-12 tandc-line-height">
+					<span t-raw="o.company_id.remittance_advice_tandc"/>
+				</div>
+			</div>
+		</template>
+
+		<template id="uk_remittanceadvice_document">
+			<t t-call="UK_Reports.external_layout_uk">
+				<div class="page">
+					<t t-call="UK_Reports.remittance_advice_body"/>
+				</div>
+			</t>
+		</template>
+
+		<report
+			id="uk_remitance_advice_print"
+			model="account.payment"
+			string="Remittance Advice (UK format)"
+			report_type="qweb-pdf"
+			name="UK_Reports.uk_remittanceadvice"
+			file="UK_Reports.uk_remittanceadvice"
+			attachment="((object.name or '')+'.pdf')"
+		/>
+
+		<template id="uk_remittanceadvice">
+			<t t-call="report.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="UK_Reports.uk_remittanceadvice_document" t-lang="user.partner_id.lang"/>
+				</t>
+			</t>
+		</template>
+	</data>
+</odoo>

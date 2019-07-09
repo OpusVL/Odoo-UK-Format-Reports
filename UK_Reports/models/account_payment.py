@@ -20,23 +20,16 @@
 #
 ##############################################################################
 
-
 from odoo import models, api
 
-class MailTemplate(models.Model):
-	_inherit = "mail.template"
+class AccountPayment(models.Model):
+	_inherit = "account.payment"
 
-	@api.model
-	def update_mail_templates(self):
-		self.env.ref('account.email_template_edi_invoice').write(dict(
-			report_template=self.env.ref('UK_Reports.uk_invoice_print').id))
+	def get_amount_total(self):
+		total = 0
+		for invoice in self.invoice_ids:
+			total += invoice.amount_total - invoice.residual
+		return total
 
-	#Adding Remittance advice mail template in the action
-	@api.model
-	def create(self, vals):
-		if 'name' in vals and vals['name'] == 'Remittance Advice':
-			mail = super(MailTemplate, self).create(vals)
-			mail.create_action()
-			return mail
-		else:
-			return super(MailTemplate, self).create(vals)
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

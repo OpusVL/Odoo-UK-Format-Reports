@@ -32,6 +32,7 @@
 							<field name="delivery_tandc" widget="html"/>
 							<field name="purchase_tandc" widget="html"/>
 							<field name="rfq_tandc" widget="html"/>
+							<field name="remittance_advice_tandc" widget="html"/>
 						</group>
 					</page>
 				</xpath>

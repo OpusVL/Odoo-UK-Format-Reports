@@ -47,6 +47,7 @@
 		'reports/purchase_order_report.xml',
 		'reports/sale_order_report.xml',
 		'reports/stock_picking_report.xml',
+		'reports/remittance_advice_report.xml',
 
 		'views/res_company_view.xml',
 		'views/stock_picking_view.xml',
@@ -54,6 +55,8 @@
 		'data/report_paperformat.xml',
 		'data/ir_actions_report_xml.xml',
 		'data/mail_template.xml',
+
+		'email/remittance_advice_send_by_email.xml',
 	],
 	'demo_xml': [],
 	'test': [],

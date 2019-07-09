@@ -56,6 +56,10 @@
 			<t t-set="phone" t-value="company.sales_dept_phone"/>
 			<t t-set="email" t-value="company.sales_dept_email"/>
 		</t>
+		<t t-elif="doc_model == 'account.payment'">
+			<t t-set="phone" t-value="company.sales_dept_phone"/>
+			<t t-set="email" t-value="company.sales_dept_email"/>
+		</t>
 		<t t-else="doc_model == 'stock.picking'">
 			<t t-if="o.picking_type_id.code == 'outgoing'">
 				<t t-set="phone" t-value="company.sales_dept_phone"/>

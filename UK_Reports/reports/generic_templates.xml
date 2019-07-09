@@ -79,6 +79,14 @@
 				</tr>
 			</table>
 		</template>
+		<template id="payment_invoice_totals_table">
+			<table class="payment-invoice-lines">
+				<tr id="row-border-top-1" class="row-border-top row-border-bottom">
+					<td class="text-left bold">Total Paid</td>
+					<td class="text-right"><span t-esc="o.get_amount_total()" t-esc-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td>
+				</tr>
+			</table>
+		</template>
 		<template id="sale_orderlines_table">
 			<table class="orderlines">
 				<thead id="orderline-header" class="orderline-header">

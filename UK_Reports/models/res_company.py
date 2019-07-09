@@ -64,6 +64,7 @@ class ResCompany(models.Model):
 	iban = fields.Char(string="IBAN")
 	swift = fields.Char(string="SWIFT")
 	legal_information_footer = fields.Char(limit=100)  # TODO: May need changing
+	remittance_advice_tandc = fields.Text(string="Remittance terms & Conditions")
 
 	@api.multi
 	def _compute_report_head_addrline1(self):

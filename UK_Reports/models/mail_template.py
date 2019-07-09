@@ -20,8 +20,8 @@
 #
 ##############################################################################
 
-from odoo import models, api
 
+from odoo import models, api
 
 class MailTemplate(models.Model):
 	_inherit = "mail.template"
@@ -30,3 +30,13 @@ class MailTemplate(models.Model):
 	def update_mail_templates(self):
 		self.env.ref('account.email_template_edi_invoice').write(dict(
 			report_template=self.env.ref('UK_Reports.uk_invoice_print').id))
+
+	#Adding Remittance advice mail template in the action
+	@api.model
+	def create(self, vals):
+		if 'name' in vals and vals['name'] == 'Remittance Advice':
+			mail = super(MailTemplate, self).create(vals)
+			mail.create_action()
+			return mail
+		else:
+			return super(MailTemplate, self).create(vals)

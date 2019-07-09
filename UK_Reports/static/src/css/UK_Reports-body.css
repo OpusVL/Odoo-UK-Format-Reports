@@ -7,6 +7,9 @@ thead.orderline-header {
 table tr.row-border-top {
 	border-top: 1px solid;
 }
+table tr.row-border-bottom {
+	border-bottom: 1px solid;
+}
 table tr th.wide {
 	width: 500px;
 }
@@ -15,4 +18,10 @@ table tr th.xwide {
 }
 table tr {
 	line-height: 25px;
+}
+table.payment-invoice-totals, table.payment-invoice-lines {
+	width: 100%;
+}
+.tandc-line-height {
+	line-height: 70%;
 }

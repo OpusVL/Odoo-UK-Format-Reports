@@ -22,6 +22,7 @@
 
 from . import (
 	account_invoice,
+	account_payment,
 	ir_actions_report_xml,
 	mail_template,
 	product_product,

@@ -15,9 +15,11 @@
 					<strong>Proforma Date</strong>
 					<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
 					<br/>
-					<strong>Payment terms</strong>
-					<span t-esc="o.sale_payment_term()"/>
-					<br/>
+					<div class="payment-term-information">
+						<strong>Payment terms</strong>
+						<span t-esc="o.sale_payment_term()"/>
+						<br/>
+					</div>
 					<strong>Your Reference</strong>
 					<span t-esc="o.your_reference_format()"/>
 					<br/>
@@ -70,9 +72,11 @@
 					<strong>Invoice Date</strong>
 					<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
 					<br/>
-					<strong>Payment terms</strong>
-					<span t-field="o.payment_term_id.name"/>
-					<br/>
+					<div class="payment-term-information">
+						<strong>Payment terms</strong>
+						<span t-field="o.payment_term_id.name"/>
+						<br/>
+					</div>
 					<strong>Your Reference</strong>
 					<span t-esc="o.your_reference_format()"/>
 					<br/>
@@ -127,9 +131,11 @@
 					<strong>Credit Date</strong>
 					<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
 					<br/>
-					<strong>Payment terms</strong>
-					<span t-esc="o.payment_term_id.name"/>
-					<br/>
+					<div class="payment-term-information">
+						<strong>Payment terms</strong>
+						<span t-esc="o.payment_term_id.name"/>
+						<br/>
+					</div>
 					<strong>Your Reference</strong>
 					<span t-esc="o.your_reference_format()"/>
 					<br/>

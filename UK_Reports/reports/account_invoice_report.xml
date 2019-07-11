@@ -12,30 +12,22 @@
 				<div class="col-xs-5 col-xs-offset-2">
 					<strong>Proforma Info:</strong>
 					<br/>
-					<div class="proforma-date-information">
-						<strong>Proforma Date</strong>
-						<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
-						<br/>
-					</div>
+					<strong>Proforma Date</strong>
+					<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
+					<br/>
 					<div class="payment-term-information">
 						<strong>Payment terms</strong>
 						<span t-esc="o.sale_payment_term()"/>
 						<br/>
 					</div>
-					<div class="your-ref-information">
-						<strong>Your Reference</strong>
-						<span t-esc="o.your_reference_format()"/>
-						<br/>
-					</div>
-					<div class="sales-order-no-information">
-						<strong>Sales Order No</strong>
-						<span t-esc="o.sale_number()"/>
-						<br/>
-					</div>
-					<div class="currency-information">
-						<strong>Currency</strong>
-						<span t-field="o.currency_id.name"/>
-					</div>
+					<strong>Your Reference</strong>
+					<span t-esc="o.your_reference_format()"/>
+					<br/>
+					<strong>Sales Order No</strong>
+					<span t-esc="o.sale_number()"/>
+					<br/>
+					<strong>Currency</strong>
+					<span t-field="o.currency_id.name"/>
 				</div>
 			</div>
 			<br/>

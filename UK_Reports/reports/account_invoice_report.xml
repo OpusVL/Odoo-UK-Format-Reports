@@ -10,24 +10,34 @@
 					<t t-call="UK_Reports.template_partner_address_invoice_to_to_header"/>
 				</div>
 				<div class="col-xs-5 col-xs-offset-2">
-					<strong>Proforma Info:</strong>
-					<br/>
-					<strong>Proforma Date</strong>
-					<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
-					<br/>
+					<div class="proforma-information">
+						<strong>Proforma Info:</strong>
+						<br/>
+						<strong>Proforma Date</strong>
+					</div>
+					<div class="date-invoice-information">
+						<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
+						<br/>
+					</div>
 					<div class="payment-term-information">
 						<strong>Payment terms</strong>
 						<span t-esc="o.sale_payment_term()"/>
 						<br/>
 					</div>
-					<strong>Your Reference</strong>
-					<span t-esc="o.your_reference_format()"/>
-					<br/>
-					<strong>Sales Order No</strong>
-					<span t-esc="o.sale_number()"/>
-					<br/>
-					<strong>Currency</strong>
-					<span t-field="o.currency_id.name"/>
+					<div class="your-ref-information">
+						<strong>Your Reference</strong>
+						<span t-esc="o.your_reference_format()"/>
+						<br/>
+					</div>
+					<div class="order-no-information">
+						<strong>Sales Order No</strong>
+						<span t-esc="o.sale_number()"/>
+						<br/>
+					</div>
+					<div class="currency-information">
+						<strong>Currency</strong>
+						<span t-field="o.currency_id.name"/>
+					</div>
 				</div>
 			</div>
 			<br/>
@@ -64,32 +74,46 @@
 					<t t-call="UK_Reports.template_partner_address_invoice_to_to_header"/>
 				</div>
 				<div class="col-xs-5 col-xs-offset-2">
-					<strong>Order Info:</strong>
-					<br/>
-					<strong>Invoice No</strong>
-					<span t-field="o.number"/>
-					<br/>
-					<strong>Invoice Date</strong>
-					<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
-					<br/>
+					<div class="order-info-information">
+						<strong>Order Info:</strong>
+						<br/>
+					</div>
+					<div class="invoice-no-information">
+						<strong>Invoice No</strong>
+						<span t-field="o.number"/>
+						<br/>
+					</div>
+					<div class="invoice-date-information">
+						<strong>Invoice Date</strong>
+						<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
+						<br/>
+					</div>
 					<div class="payment-term-information">
 						<strong>Payment terms</strong>
 						<span t-field="o.payment_term_id.name"/>
 						<br/>
 					</div>
-					<strong>Your Reference</strong>
-					<span t-esc="o.your_reference_format()"/>
-					<br/>
-					<strong>Sales Order No</strong>
-					<span t-esc="o.sale_number()"/>
-					<br/>
-					<t t-if="o.state == 'paid'">
-						<strong>Invoice Status</strong>
-						<span>Paid</span>
+					<div class="your-ref-information">
+						<strong>Your Reference</strong>
+						<span t-esc="o.your_reference_format()"/>
 						<br/>
-					</t>
-					<strong>Currency</strong>
-					<span t-field="o.currency_id.name"/>
+					</div>
+					<div class="order-no-information">
+						<strong>Sales Order No</strong>
+						<span t-esc="o.sale_number()"/>
+						<br/>
+					</div>
+					<div class="state-information">
+						<t t-if="o.state == 'paid'">
+							<strong>Invoice Status</strong>
+							<span>Paid</span>
+							<br/>
+						</t>
+					</div>
+					<div class="currency-information">
+						<strong>Currency</strong>
+						<span t-field="o.currency_id.name"/>
+					</div>
 				</div>
 			</div>
 			<br/>
@@ -126,24 +150,34 @@
 					<t t-call="UK_Reports.template_partner_address_credit_to_header"/>
 				</div>
 				<div class="col-xs-5 col-xs-offset-2">
-					<strong>Credit Note Info:</strong>
-					<br/>
-					<strong>Credit Date</strong>
-					<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
-					<br/>
+					<div class="credit-note-information">
+						<strong>Credit Note Info:</strong>
+						<br/>
+					</div>
+					<div class="credit-date-information">
+						<strong>Credit Date</strong>
+						<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
+						<br/>
+					</div>
 					<div class="payment-term-information">
 						<strong>Payment terms</strong>
 						<span t-esc="o.payment_term_id.name"/>
 						<br/>
 					</div>
-					<strong>Your Reference</strong>
-					<span t-esc="o.your_reference_format()"/>
-					<br/>
-					<strong>Sales Order No</strong>
-					<span t-esc="o.sale_number()"/>
-					<br/>
-					<strong>Currency</strong>
-					<span t-field="o.currency_id.name"/>
+					<div class="your-ref-information">
+						<strong>Your Reference</strong>
+						<span t-esc="o.your_reference_format()"/>
+						<br/>
+					</div>
+					<div class="order-no-information">
+						<strong>Sales Order No</strong>
+						<span t-esc="o.sale_number()"/>
+						<br/>
+					</div>
+					<div class="currency-information">
+						<strong>Currency</strong>
+						<span t-field="o.currency_id.name"/>
+					</div>
 				</div>
 			</div>
 			<br/>

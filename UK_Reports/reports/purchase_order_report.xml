@@ -97,7 +97,7 @@
 					<table id="po-purchase_order_orderlines" class="orderlines">
 						<thead id="po-orderline-header" class="orderline-header">
 							<tr>
-								<th class="wide">Description</th>
+								<th class="wide">Product Code - Description</th>
 								<th class="text-right">Quantity</th>
 								<th class="text-right">UnitPrice</th>
 								<th class="text-right">VAT</th>

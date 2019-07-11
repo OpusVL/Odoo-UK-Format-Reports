@@ -17,6 +17,8 @@
 					<strong>Delivery Note Date</strong>
 					<span t-field="o.date_done" t-options='{"format": "dd/MM/yyyy"}'/>
 					<br/>
+					<!-- Placeholder if you want to put custom ref field here -->
+					<div class="ref_placeholder"/>
 					<strong>Sales Order No</strong>
 					<span t-esc="o.sale_id.name"/>
 					<br/>

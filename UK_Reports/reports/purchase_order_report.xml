@@ -99,7 +99,7 @@
 							<tr>
 								<th class="wide">Product Code - Description</th>
 								<th class="text-right">Quantity</th>
-								<th class="text-right">UnitPrice</th>
+								<th class="text-right">Unit Price</th>
 								<th class="text-right">VAT</th>
 								<th class="text-right">Line Total</th>
 							</tr>

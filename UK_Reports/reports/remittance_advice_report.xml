@@ -34,7 +34,7 @@
 							<tr t-foreach="o.invoice_ids" t-as="invoice">
 								<td class="text-left"><span t-field="invoice.date_invoice" t-options='{"format": "dd/MM/yy"}'/></td>
 								<td t-esc="invoice.number" class="text-left"/>
-								<td class="text-right"><span t-esc="invoice.amount_total - invoice.residual"/></td>
+								<td class="text-right"><span t-esc="invoice.amount_total_signed"/></td>
 							</tr>
 						</tbody>
 					</table>

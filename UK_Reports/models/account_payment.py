@@ -28,7 +28,7 @@ class AccountPayment(models.Model):
 	def get_amount_total(self):
 		total = 0
 		for invoice in self.invoice_ids:
-			total += invoice.amount_total - invoice.residual
+			total += invoice.amount_total_signed
 		return total
 
 

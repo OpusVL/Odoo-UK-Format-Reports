@@ -20,7 +20,8 @@
 #
 ##############################################################################
 
-from odoo import models, api
+from odoo import models, fields, api
+
 
 class AccountPayment(models.Model):
 	_inherit = "account.payment"
@@ -30,6 +31,20 @@ class AccountPayment(models.Model):
 		for invoice in self.invoice_ids:
 			total += invoice.amount_total_signed
 		return total
+
+	partner_invoice_address = fields.Many2one(
+		'res.partner', compute="_compute_partner_invoice_address")
+
+	@api.multi
+	@api.depends('partner_id.child_ids.type')
+	def _compute_partner_invoice_address(self):
+		for record in self:
+			invoice_addresses = record.partner_id.child_ids.filtered(
+				lambda contact: contact.type == 'invoice')
+			if not invoice_addresses:
+				record.partner_invoice_address = record.partner_id
+			else:
+				record.partner_invoice_address = invoice_addresses[0]
 
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

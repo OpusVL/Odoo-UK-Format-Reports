@@ -154,6 +154,10 @@
 						<strong>Credit Note Info:</strong>
 						<br/>
 					</div>
+					<div class="credit-number-information">
+						<strong>Credit Number</strong>
+						<span t-field="o.number"/>
+					</div>
 					<div class="credit-date-information">
 						<strong>Credit Date</strong>
 						<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>

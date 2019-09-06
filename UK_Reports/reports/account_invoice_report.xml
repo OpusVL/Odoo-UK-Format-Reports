@@ -157,6 +157,7 @@
 					<div class="credit-number-information">
 						<strong>Credit Number</strong>
 						<span t-field="o.number"/>
+						<br/>
 					</div>
 					<div class="credit-date-information">
 						<strong>Credit Date</strong>

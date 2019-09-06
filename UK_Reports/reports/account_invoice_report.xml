@@ -88,11 +88,6 @@
 						<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
 						<br/>
 					</div>
-					<div class="payment-term-information">
-						<strong>Payment terms</strong>
-						<span t-field="o.payment_term_id.name"/>
-						<br/>
-					</div>
 					<div class="your-ref-information">
 						<strong>Your Reference</strong>
 						<span t-esc="o.your_reference_format()"/>
@@ -113,6 +108,11 @@
 					<div class="currency-information">
 						<strong>Currency</strong>
 						<span t-field="o.currency_id.name"/>
+					</div>
+					<div class="payment-term-information">
+						<strong>Payment terms</strong>
+						<span t-field="o.payment_term_id.name"/>
+						<br/>
 					</div>
 				</div>
 			</div>

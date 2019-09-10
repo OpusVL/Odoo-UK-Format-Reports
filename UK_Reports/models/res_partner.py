@@ -44,7 +44,6 @@ class ResPartner(models.Model):
 			overdue_sum = 0
 			for line in record.statement_of_account_filtered_move_lines:
 				value_sum += line.statement_account_value
-				import pdb;pdb.set_trace()
 				overdue_sum += line.statement_account_overdue
 			record.total_statement_account_value = value_sum
 			record.total_statement_account_overdue = overdue_sum

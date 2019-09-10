@@ -36,6 +36,7 @@ class IrActionsReportXml(models.Model):
 			'account.account_invoices',
 			'stock.action_report_delivery',
 			'stock.action_report_picking',
+			'account.action_report_print_overdue',
 		]
 		for report_ext_id in report_ext_ids:
 			self.env.ref(report_ext_id).unlink_action()

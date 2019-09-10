@@ -58,6 +58,11 @@ class ResCompany(models.Model):
 	delivery_tandc = fields.Text("Delivery terms & Conditions")
 	purchase_tandc = fields.Text("Purchase Order terms & Conditions")
 	rfq_tandc = fields.Text("Request for Quotation terms & Conditions")
+	statement_of_accounts_tandc = fields.Text("Statement of Account Message")
+	statement_of_accounts_account_filter = fields.Many2many(
+		'account.account',
+		string="Statement of Account from",
+		help="The account which will be used on the Statement of Account report")
 	account_name = fields.Char()
 	sort_code = fields.Char()
 	account_number = fields.Char()
@@ -65,6 +70,10 @@ class ResCompany(models.Model):
 	swift = fields.Char(string="SWIFT")
 	legal_information_footer = fields.Char(limit=100)  # TODO: May need changing
 	remittance_advice_tandc = fields.Text(string="Remittance terms & Conditions")
+	partner_ref_required = fields.Boolean("Customer Internal Ref Mandatory")
+	partner_ref_sequential_gen = fields.Boolean("Sequentially Create Customer Internal Ref")
+	product_code_required = fields.Boolean("Product Internal Ref Mandatory")
+	product_code_sequential_gen = fields.Boolean("Sequentially Create Product Internal Ref")
 
 	@api.multi
 	def _compute_report_head_addrline1(self):

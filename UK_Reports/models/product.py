@@ -59,7 +59,9 @@ class ProductProduct(models.Model):
 
 	def _custom_generate_variant_code_onwrite(self, template, attribute_values):
 		variant_base_code = template.default_code
-		value_names = [variant_base_code]
+		value_names = []
+		if variant_base_code:
+			value_names.append(variant_base_code)
 		for attribute_value in attribute_values:
 			value_names.append(attribute_value.name)
 		return '/'.join(value_names)
@@ -74,8 +76,11 @@ class ProductProduct(models.Model):
 		"""
 		# Split after the /, because for some reason the template takes on the
 		# default code of a variant during this transaction, but reverts itself afterwards???
-		variant_base_code = self.env['product.template'].browse(template_id).default_code.split('/')[0]
-		value_names = [variant_base_code]
+		# variant_base_code = self.env['product.template'].browse(template_id).default_code.split('/')[0]
+		variant_base_code = self.env['product.template'].browse(template_id).default_code
+		value_names = []
+		if variant_base_code:
+			value_names.append(variant_base_code)
 		if attribute_values:
 			attr_value_obj = self.env['product.attribute.value']
 			for attribute_value_id in attribute_values[0][2]:
@@ -87,10 +92,18 @@ class ProductTemplate(models.Model):
 	_inherit = "product.template"
 
 	company_product_code_required = fields.Boolean(
-		related="company_id.product_code_required")
+		compute="_compute_default_code_system_fields")
 	company_product_code_sequential_gen = fields.Boolean(
-		related="company_id.product_code_sequential_gen")
-	default_code = fields.Char()
+		compute="_compute_default_code_system_fields")
+	# Prevent odoo from recomputing the templates default_code
+	default_code = fields.Char(compute=False)
+
+	@api.multi
+	@api.depends('company_id.product_code_required', 'company_id.product_code_sequential_gen')
+	def _compute_default_code_system_fields(self):
+		for record in self:
+			record.company_product_code_required = record.company_id.product_code_required
+			record.company_product_code_sequential_gen = record.company_id.product_code_sequential_gen
 
 	@api.model
 	def create(self, vals):
@@ -98,20 +111,5 @@ class ProductTemplate(models.Model):
 		if sequential_gen and not vals.get('default_code'):
 			vals['default_code'] = self.env['ir.sequence'].next_by_code('product.default_code')
 		return super(ProductTemplate, self.with_context(from_create=True)).create(vals)
-
-	@api.multi
-	def write(self, vals):
-		for record in self:
-			# Never write back a new default_code
-			# to the template unless called from create()
-			if self.env.user.company_id.product_code_sequential_gen:
-				if not self.env.context.get('from_create'):
-					try:
-						vals.pop('default_code')
-					except KeyError:
-						pass
-		return super(ProductTemplate, self).write(vals)
-
-	# TOOD: I think Odoo is recomputing the value on the template. Somehow redefine this field
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

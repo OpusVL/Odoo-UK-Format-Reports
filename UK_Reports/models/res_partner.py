@@ -25,14 +25,21 @@ class ResPartner(models.Model):
 	_inherit = "res.partner"
 
 	company_partner_ref_required = fields.Boolean(
-		related="company_id.partner_ref_required")
+		compute="_compute_ref_system_fields")
 	company_partner_ref_sequential_gen = fields.Boolean(
-		related="company_id.partner_ref_sequential_gen")
+		compute="_compute_ref_system_fields")
 	statement_of_account_filtered_move_lines = fields.One2many(
 		'account.move.line',
 		compute="_compute_statement_of_account_filtered_move_lines")
 	total_statement_account_value = fields.Float(compute="_compute_total_statement_values")
 	total_statement_account_overdue = fields.Float(compute="_compute_total_statement_values")
+
+	@api.multi
+	@api.depends('company_id.partner_ref_required', 'company_id.partner_ref_sequential_gen')
+	def _compute_ref_system_fields(self):
+		for record in self:
+			record.company_partner_ref_required = record.company_id.partner_ref_required
+			record.company_partner_ref_sequential_gen = record.company_id.partner_ref_sequential_gen
 
 	@api.multi
 	@api.depends(

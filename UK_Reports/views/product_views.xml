@@ -8,8 +8,8 @@
 			<field name="type">form</field>
 			<field name="arch" type="xml">
 				<field name="default_code" position="before">
-					<field name="company_product_code_required" invisible="0"/>
-					<field name="company_product_code_sequential_gen" invisible="0"/>
+					<field name="company_product_code_required" invisible="1"/>
+					<field name="company_product_code_sequential_gen" invisible="1"/>
 					<field name="company_id" invisible="0"/>
 				</field>
 
@@ -38,8 +38,8 @@
 			<field name="type">form</field>
 			<field name="arch" type="xml">
 				<field name="default_code" position="before">
-					<field name="company_product_code_required" invisible="0"/>
-					<field name="company_product_code_sequential_gen" invisible="0"/>
+					<field name="company_product_code_required" invisible="1"/>
+					<field name="company_product_code_sequential_gen" invisible="1"/>
 				</field>
 
 				<field name="default_code" position="attributes">
@@ -67,8 +67,8 @@
 			<field name="type">form</field>
 			<field name="arch" type="xml">
 				<field name="default_code" position="before">
-					<field name="company_product_code_required" invisible="0"/>
-					<field name="company_product_code_sequential_gen" invisible="0"/>
+					<field name="company_product_code_required" invisible="1"/>
+					<field name="company_product_code_sequential_gen" invisible="1"/>
 				</field>
 
 				<field name="default_code" position="attributes">

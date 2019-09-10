@@ -62,8 +62,10 @@ class ProductProduct(models.Model):
 		value_names = []
 		if variant_base_code:
 			value_names.append(variant_base_code)
-		for attribute_value in attribute_values:
+		# Sort by attribute name as attribute sequence is null by default
+		for attribute_value in attribute_values.sorted(lambda x: x.attribute_id.name):
 			value_names.append(attribute_value.name)
+
 		return '/'.join(value_names)
 
 	def _custom_generate_variant_code(self, template_id, attribute_values):
@@ -74,17 +76,16 @@ class ProductProduct(models.Model):
 			First item is template code which is based off an ir.sequence record
 			Any item thereafter is an attribute value name i.e 'Small', or 'Black'
 		"""
-		# Split after the /, because for some reason the template takes on the
-		# default code of a variant during this transaction, but reverts itself afterwards???
-		# variant_base_code = self.env['product.template'].browse(template_id).default_code.split('/')[0]
 		variant_base_code = self.env['product.template'].browse(template_id).default_code
 		value_names = []
 		if variant_base_code:
 			value_names.append(variant_base_code)
 		if attribute_values:
-			attr_value_obj = self.env['product.attribute.value']
-			for attribute_value_id in attribute_values[0][2]:
-				value_names.append(attr_value_obj.browse(attribute_value_id).name)
+			attribute_values = self.env['product.attribute.value'].browse(
+				attribute_values[0][2])
+			# Sort by attribute name as attribute sequence is null by default
+			for attribute_value in attribute_values.sorted(lambda x: x.attribute_id.name):
+				value_names.append(attribute_value.name)
 		return '/'.join(value_names)
 
 

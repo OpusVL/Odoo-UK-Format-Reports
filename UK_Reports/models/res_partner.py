@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 ##############################################################################
 #
 # UK Report Template
@@ -20,20 +18,22 @@
 #
 ##############################################################################
 
-from odoo import models
+from odoo import models, fields, api
 
 
-class ProductProduct(models.Model):
-	_inherit = "product.product"
+class ResPartner(models.Model):
+	_inherit = "res.partner"
 
-	def _vendor_specific_code(self, vendor):
-		"""
-		@param vendor: `res.partner` recordset
-		"""
-		my_vendors = self.seller_ids.filtered(lambda seller: seller.name == vendor)
-		if my_vendors:
-			first_vendor = my_vendors.sorted(key=lambda r: r.sequence)[0]
-			return first_vendor.product_code
-		return False
+	company_partner_ref_required = fields.Boolean(
+		related="company_id.partner_ref_required")
+	company_partner_ref_sequential_gen = fields.Boolean(
+		related="company_id.partner_ref_sequential_gen")
+	statement_of_account_filtered_move_lines = fields.One2many(
+		compute="_compute_statement_of_account_filtered_move_lines")
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+	@api.model
+	def create(self, vals):
+		sequential_gen = self.env.user.company_id.partner_ref_sequential_gen
+		if sequential_gen and not vals.get('ref'):
+			vals['ref'] = self.env['ir.sequence'].next_by_code('res.partner.ref')
+		return super(ResPartner, self).create(vals)

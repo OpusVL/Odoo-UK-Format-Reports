@@ -17,6 +17,7 @@
 				ref('UK_Reports.uk_invoice_print'),
 				ref('UK_Reports.uk_salesorder_print'),
 				ref('UK_Reports.uk_delivery_note_print'),
+				ref('UK_Reports.uk_statement_of_account_print'),
 			])]"/>
 		</record>
 	</data>

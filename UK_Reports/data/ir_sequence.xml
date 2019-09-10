@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data noupdate="1">
+		<record id="sequence_partner_ref" model="ir.sequence">
+			<field name="name">Partner ref sequence</field>
+			<field name="code">res.partner.ref</field>
+			<field name="implementation">standard</field>
+			<field name="padding">6</field>
+			<field name="number_increment">1</field>
+		</record>
+		<record id="sequence_product_code" model="ir.sequence">
+			<field name="name">Product code sequence</field>
+			<field name="code">product.default_code</field>
+			<field name="implementation">standard</field>
+			<field name="padding">6</field>
+			<field name="number_increment">1</field>
+		</record>
+	</data>
+</openerp>

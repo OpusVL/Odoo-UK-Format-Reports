@@ -20,6 +20,11 @@
 					<field name="iban"/>
 					<field name="swift"/>
 					<field name="legal_information_footer"/>
+					<field name="statement_of_accounts_account_filter" widget="many2many_tags"/>
+					<field name="partner_ref_required"/>
+					<field name="partner_ref_sequential_gen"/>
+					<field name="product_code_required"/>
+					<field name="product_code_sequential_gen"/>
 				</field>
 				<xpath expr="//field[@name='website']/parent::group/parent::group/parent::page" position="after">
 					<page name="tandc" string="Terms &amp; Conditions">
@@ -32,6 +37,7 @@
 							<field name="delivery_tandc" widget="html"/>
 							<field name="purchase_tandc" widget="html"/>
 							<field name="rfq_tandc" widget="html"/>
+							<field name="statement_of_accounts_tandc" widget="html"/>
 							<field name="remittance_advice_tandc" widget="html"/>
 						</group>
 					</page>

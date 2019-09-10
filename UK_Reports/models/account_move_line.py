@@ -20,19 +20,24 @@
 #
 ##############################################################################
 
-from . import (
-	account_invoice,
-	account_move_line,
-	account_payment,
-	ir_actions_report_xml,
-	mail_template,
-	product,
-	purchase_order,
-	report,
-	res_company,
-	res_partner,
-	sale_order,
-	stock_picking,
-)
+from odoo import models, api, fields
+from datetime import date, datetime
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+class AccountMoveLine(models.Model):
+	_inherit = "account.move.line"
+
+	statement_account_overdue = fields.Float(compute="_compute_statement_account_values")
+	statement_account_value = fields.Float(compute="_compute_statement_account_values")
+
+	@api.multi
+	@api.depends('date_maturity', 'debit', 'credit')
+	def _compute_statement_account_values(self):
+		todays_date = date.today()
+		for record in self:
+			record.statement_account_value = (record.debit - record.credit)
+			date_maturity_obj = datetime.strptime(record.date_maturity, "%Y-%m-%d")
+			if todays_date > date_maturity_obj.date():
+				record.statement_account_overdue = record.statement_account_value
+			else:
+				record.statement_account_overdue = 0

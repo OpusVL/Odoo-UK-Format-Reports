@@ -42,8 +42,40 @@
 					<span t-raw="o.company_id.statement_of_accounts_tandc"/>
 				</div>
 			</div>
-			<!-- TODO: Lines on table -->
-			<!-- TODO: Totals for table -->
+			<table class="orderlines">
+				<thead id="orderline-header" class="orderline-header">
+					<tr>
+						<th>Our Ref</th>
+						<!-- This column is not being shown for the time being, as per NG -->
+						<!-- <th class="text-right">Your Ref</th> -->
+						<th>Transaction Date</th>
+						<th>Due Date</th>
+						<th>Narrative</th>
+						<th class="text-right">Value</th>
+						<th class="text-right">Overdue</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr t-foreach="o.statement_of_account_filtered_move_lines" t-as="line">
+						<td t-esc="line.move_id.name"/>
+						<!-- This column is not being shown for the time being, as per NG -->
+						<!-- <td t-esc="line.ref"/> -->
+						<td t-esc="line.date"/>
+						<td t-esc="line.date_maturity"/>
+						<td t-esc="line.name"/>
+						<td t-esc="'%.2f'% line.statement_account_value" class="text-right"/>
+						<td t-esc="'%.2f'% line.statement_account_overdue" class="text-right"/>
+					</tr>
+					<tr id="row-border-top-1" class="row-border-top">
+						<td/>
+						<td/>
+						<td/>
+						<td class="text-left bold">Totals</td>
+						<td class="text-right" t-esc="'%.2f'% o.total_statement_account_value"/>
+						<td class="text-right" t-esc="'%.2f'% o.total_statement_account_overdue"/>
+					</tr>
+				</tbody>
+			</table>
 		</template>
 
 

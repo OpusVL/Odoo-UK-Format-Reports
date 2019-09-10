@@ -8,8 +8,6 @@
 				<div class="col-xs-7">
 					<strong>Statement To:</strong>
 					<br/>
-                    <span t-field="o.name"/>
-                    <br/>
                     <span t-raw="o.contact_address.replace('\n\n', '\n').replace('\n', '&lt;br&gt;')"/>
 				</div>
 				<div class="col-xs-5">

@@ -10,6 +10,7 @@
 				<field name="ref" position="before">
 					<field name="company_partner_ref_required" invisible="1"/>
 					<field name="company_partner_ref_sequential_gen" invisible="1"/>
+					<field name="statement_of_account_filtered_move_lines" invisible="1"/>
 				</field>
 				<field name="ref" position="attributes">
 					<!-- Only make form mandatory if configured on company

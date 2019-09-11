@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_partner_form_uk_reports">
+			<field name="name">res.partner.form.uk_reports</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+				<field name="ref" position="before">
+					<field name="statement_of_account_filtered_move_lines" invisible="1"/>
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

@@ -58,6 +58,11 @@ class ResCompany(models.Model):
 	delivery_tandc = fields.Text("Delivery terms & Conditions")
 	purchase_tandc = fields.Text("Purchase Order terms & Conditions")
 	rfq_tandc = fields.Text("Request for Quotation terms & Conditions")
+	statement_of_accounts_tandc = fields.Text("Statement of Account Message")
+	statement_of_accounts_account_filter = fields.Many2many(
+		'account.account',
+		string="Statement of Account from",
+		help="The accounts which will be used on the Statement of Account report")
 	account_name = fields.Char()
 	sort_code = fields.Char()
 	account_number = fields.Char()

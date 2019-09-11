@@ -22,13 +22,15 @@
 
 from . import (
 	account_invoice,
+	account_move_line,
 	account_payment,
 	ir_actions_report_xml,
 	mail_template,
-	product_product,
+	product,
 	purchase_order,
 	report,
 	res_company,
+	res_partner,
 	sale_order,
 	stock_picking,
 )

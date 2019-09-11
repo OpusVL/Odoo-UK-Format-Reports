@@ -48,8 +48,10 @@
 		'reports/sale_order_report.xml',
 		'reports/stock_picking_report.xml',
 		'reports/remittance_advice_report.xml',
+		'reports/statement_of_account_report.xml',
 
 		'views/res_company_view.xml',
+		'views/res_partner_view.xml',
 		'views/stock_picking_view.xml',
 
 		'data/report_paperformat.xml',

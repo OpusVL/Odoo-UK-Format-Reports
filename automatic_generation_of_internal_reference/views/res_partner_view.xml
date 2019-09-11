@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_partner_form_mandatory_ref">
+			<field name="name">res.partner.form.mandatory_ref</field>
+			<field name="model">res.partner</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+				<field name="ref" position="before">
+					<field name="company_partner_ref_required" invisible="1"/>
+					<field name="company_partner_ref_sequential_gen" invisible="1"/>
+				</field>
+				<field name="ref" position="attributes">
+					<!-- Only make form mandatory if configured on company
+					AND not configured to sequentially generate a code, else odoo
+					prevents user from saving form and having one generated.
+					If both are set, don't let the user edit the autopopulated
+					ref -->
+					<attribute name="attrs">{
+						'required': [
+							('company_partner_ref_required', '=', True),
+							('company_partner_ref_sequential_gen', '=', False)],
+						'readonly': [
+							('company_partner_ref_required', '=', True),
+							('company_partner_ref_sequential_gen', '=', True)],
+					}</attribute>
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

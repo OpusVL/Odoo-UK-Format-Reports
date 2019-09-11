@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_company_form_sequencing_form">
+			<field name="name">res.company.form.sequencing_form</field>
+			<field name="model">res.company</field>
+			<field name="type">form</field>
+			<field name="inherit_id" ref="base.view_company_form"/>
+			<field name="arch" type="xml">
+				<field name="website" position="after">
+					<field name="partner_ref_required"/>
+					<field name="partner_ref_sequential_gen"/>
+					<field name="product_code_required"/>
+					<field name="product_code_sequential_gen"/>
+				</field>
+			</field>
+		</record>    
+
+	</data>
+</openerp>

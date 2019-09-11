@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="product_normal_form_view_mandatory_code">
+			<field name="name">product.product.normal.form.mandatory_code</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="product.product_normal_form_view"/>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<field name="default_code" position="before">
+					<field name="company_product_code_required" invisible="1"/>
+					<field name="company_product_code_sequential_gen" invisible="1"/>
+					<field name="company_id" invisible="0"/>
+				</field>
+
+				<field name="default_code" position="attributes">
+					<!-- Only make form mandatory if configured on company
+					AND not configured to sequentially generate a code, else odoo
+					prevents user from saving form and having one generated.
+					If both are set, don't let the user edit the autopopulated
+					ref -->
+					<attribute name="attrs">{
+						'required': [
+							('company_product_code_required', '=', True),
+							('company_product_code_sequential_gen', '=', False)],
+						'readonly': [
+							('company_product_code_required', '=', True),
+							('company_product_code_sequential_gen', '=', True)],
+					}</attribute>
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="product_variant_easy_edit_view_mandatory_code">
+			<field name="name">product.product.easy_edit.form.mandatory_code</field>
+			<field name="model">product.product</field>
+			<field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<field name="default_code" position="before">
+					<field name="company_product_code_required" invisible="1"/>
+					<field name="company_product_code_sequential_gen" invisible="1"/>
+				</field>
+
+				<field name="default_code" position="attributes">
+					<!-- Only make form mandatory if configured on company
+					AND not configured to sequentially generate a code, else odoo
+					prevents user from saving form and having one generated.
+					If both are set, don't let the user edit the autopopulated
+					ref -->
+					<attribute name="attrs">{
+						'required': [
+							('company_product_code_required', '=', True),
+							('company_product_code_sequential_gen', '=', False)],
+						'readonly': [
+							('company_product_code_required', '=', True),
+							('company_product_code_sequential_gen', '=', True)],
+					}</attribute>
+				</field>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="product_template_only_form_view_mandatory_code">
+			<field name="name">product.template.only.form.mandatory_code</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_only_form_view"/>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<field name="default_code" position="before">
+					<field name="company_product_code_required" invisible="1"/>
+					<field name="company_product_code_sequential_gen" invisible="1"/>
+				</field>
+
+				<field name="default_code" position="attributes">
+					<!-- Only make form mandatory if configured on company
+					AND not configured to sequentially generate a code, else odoo
+					prevents user from saving form and having one generated.
+					If both are set, don't let the user edit the autopopulated
+					ref -->
+					<attribute name="attrs">{
+						'required': [
+							('company_product_code_required', '=', True),
+							('company_product_code_sequential_gen', '=', False)],
+						'readonly': [
+							('company_product_code_required', '=', True),
+							('company_product_code_sequential_gen', '=', True)],
+					}</attribute>
+				</field>
+			</field>
+		</record>
+	</data>
+</openerp>

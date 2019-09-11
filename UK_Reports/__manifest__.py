@@ -53,11 +53,9 @@
 		'views/res_company_view.xml',
 		'views/res_partner_view.xml',
 		'views/stock_picking_view.xml',
-		'views/product_views.xml',
 
 		'data/report_paperformat.xml',
 		'data/ir_actions_report_xml.xml',
-		'data/ir_sequence.xml',
 		'data/mail_template.xml',
 
 		'email/remittance_advice_send_by_email.xml',

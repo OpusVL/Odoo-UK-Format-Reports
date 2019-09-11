@@ -70,10 +70,6 @@ class ResCompany(models.Model):
 	swift = fields.Char(string="SWIFT")
 	legal_information_footer = fields.Char(limit=100)  # TODO: May need changing
 	remittance_advice_tandc = fields.Text(string="Remittance terms & Conditions")
-	partner_ref_required = fields.Boolean("Customer Internal Ref Mandatory")
-	partner_ref_sequential_gen = fields.Boolean("Sequentially Create Customer Internal Ref")
-	product_code_required = fields.Boolean("Product Internal Ref Mandatory")
-	product_code_sequential_gen = fields.Boolean("Sequentially Create Product Internal Ref")
 
 	@api.multi
 	def _compute_report_head_addrline1(self):

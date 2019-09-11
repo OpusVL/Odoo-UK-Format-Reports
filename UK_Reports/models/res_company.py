@@ -62,7 +62,7 @@ class ResCompany(models.Model):
 	statement_of_accounts_account_filter = fields.Many2many(
 		'account.account',
 		string="Statement of Account from",
-		help="The account which will be used on the Statement of Account report")
+		help="The accounts which will be used on the Statement of Account report")
 	account_name = fields.Char()
 	sort_code = fields.Char()
 	account_number = fields.Char()

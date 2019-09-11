@@ -25,7 +25,7 @@
 	'version': '10.0.1.0.1',
 	'category': '',
 	'description': """
-		* Adds 4 new boolean fields to a company. 2 for partner, and 2 for product.
+		* Adds 4 new boolean fields to a company. 2 for company/individual, and 2 for product.
 			- `X Mandatory`
 			- `Sequentially create X`
 		* Where X is, on res.partner - the `Internal Reference` field,
@@ -37,7 +37,7 @@
 			- When `Sequentially create X` is ticked alone - it will make the field
 		sequentially generate on create (if no user specified code is provided)
 		* The sequence records can be configured in Odoo to add padding, prefixes, and suffixes
-		* For res.partner, the logic is simply generate a sequence number.
+		* For res.partner, the logic is simply generate a sequence number. No number will be generated for contacts
 		* For product.template, the logic is simply generate a sequence number.
 		* For product.product, the logic is to take the `product_tmpl_id` code,
 		and append each attribute of the variant - separated by a `/` for each

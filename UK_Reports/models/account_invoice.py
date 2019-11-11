@@ -23,6 +23,7 @@
 from odoo import models, api
 from ..helpers import integer_or_float
 
+
 class AccountInvoice(models.Model):
 	_inherit = "account.invoice"
 
@@ -42,7 +43,7 @@ class AccountInvoice(models.Model):
 		return self.get_sale_order().payment_term_id.name or '(Not provided)'
 
 	def sale_number(self):
-		return self.get_sale_order().name or '(Not provided)'
+		return ", ".join(so.name for so in self.get_sale_order()) or '(Not provided)'
 
 	def get_sale_order(self):
 		return self.env['sale.order'].search([]).filtered(

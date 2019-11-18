@@ -48,9 +48,9 @@ class StockPackOperation(models.Model):
 		)
 
 	def qty_ordered_format(self):
-		sale_line = self.picking_id.sale_id.order_line.filtered(
+		sale_lines = self.picking_id.sale_id.order_line.filtered(
 			lambda line: line.product_id == self.product_id)
-		return integer_or_float(sale_line.product_uom_qty)
+		return integer_or_float(sum([x.product_uom_qty for x in sale_lines]))
 
 	def qty_sent_format(self):
 		return integer_or_float(self.qty_done)

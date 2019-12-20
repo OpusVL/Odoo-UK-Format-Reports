@@ -30,7 +30,6 @@ class ResPartner(models.Model):
 	total_statement_account_value = fields.Float(compute="_compute_total_statement_values")
 	total_statement_account_overdue = fields.Float(compute="_compute_total_statement_values")
 
-	@api.multi
 	@api.depends(
 		'statement_of_account_filtered_move_lines.statement_account_overdue',
 		'statement_of_account_filtered_move_lines.statement_account_value')
@@ -44,7 +43,6 @@ class ResPartner(models.Model):
 			record.total_statement_account_value = value_sum
 			record.total_statement_account_overdue = overdue_sum
 
-	@api.multi
 	def _compute_statement_of_account_filtered_move_lines(self):
 		for record in self:
 			account_ids = record.company_id.statement_of_accounts_account_filter.ids

@@ -35,7 +35,6 @@ class AccountPayment(models.Model):
 	partner_invoice_address = fields.Many2one(
 		'res.partner', compute="_compute_partner_invoice_address")
 
-	@api.multi
 	@api.depends('partner_id.child_ids.type')
 	def _compute_partner_invoice_address(self):
 		for record in self:

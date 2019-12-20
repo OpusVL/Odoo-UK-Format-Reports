@@ -71,13 +71,11 @@ class ResCompany(models.Model):
 	legal_information_footer = fields.Char(limit=100)  # TODO: May need changing
 	remittance_advice_tandc = fields.Text(string="Remittance terms & Conditions")
 
-	@api.multi
 	def _compute_report_head_addrline1(self):
 		for company in self:
 			values = [company.street, company.street2]
 			company.report_head_addrline1 = ", ".join(self.non_false_values(values))
 
-	@api.multi
 	def _compute_report_head_addrline2(self):
 		for company in self:
 			values = [company.city, company.state_id.name, company.zip]

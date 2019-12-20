@@ -38,29 +38,29 @@ class StockPicking(models.Model):
 		return integer_or_float(total_qty_to_follow)
 
 
-class StockPackOperation(models.Model):
-	_inherit = "stock.pack.operation"
-
-	def uk_report_description_format(self):
-		return "[{}] {}".format(
-			self.product_id.default_code,
-			self.product_id.name
-		)
-
-	def qty_ordered_format(self):
-		sale_lines = self.picking_id.sale_id.order_line.filtered(
-			lambda line: line.product_id == self.product_id)
-		return integer_or_float(sum([x.product_uom_qty for x in sale_lines]))
-
-	def qty_sent_format(self):
-		return integer_or_float(self.qty_done)
-
-	def qty_to_follow_format(self):
-		return integer_or_float(
-			self.qty_ordered_format() - sum(
-				self.picking_id.sale_id.picking_ids
-				.mapped('move_lines')
-				.filtered(lambda line: line.product_id == self.product_id and line.state == 'done')
-				.mapped('product_uom_qty')))
+# class StockPackOperation(models.Model):
+# 	_inherit = "stock.pack.operation"
+#
+# 	def uk_report_description_format(self):
+# 		return "[{}] {}".format(
+# 			self.product_id.default_code,
+# 			self.product_id.name
+# 		)
+#
+# 	def qty_ordered_format(self):
+# 		sale_lines = self.picking_id.sale_id.order_line.filtered(
+# 			lambda line: line.product_id == self.product_id)
+# 		return integer_or_float(sum([x.product_uom_qty for x in sale_lines]))
+#
+# 	def qty_sent_format(self):
+# 		return integer_or_float(self.qty_done)
+#
+# 	def qty_to_follow_format(self):
+# 		return integer_or_float(
+# 			self.qty_ordered_format() - sum(
+# 				self.picking_id.sale_id.picking_ids
+# 				.mapped('move_lines')
+# 				.filtered(lambda line: line.product_id == self.product_id and line.state == 'done')
+# 				.mapped('product_uom_qty')))
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

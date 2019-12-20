@@ -26,7 +26,6 @@ from odoo import models, api
 class IrActionsReportXml(models.Model):
 	_inherit = "ir.actions.report.xml"
 
-	@api.model
 	def unlink_report_actions(self):
 		report_ext_ids = [
 			'purchase.action_report_purchase_order',

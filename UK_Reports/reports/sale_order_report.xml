@@ -138,15 +138,16 @@
 			report_type="qweb-pdf"
 			name="UK_Reports.uk_salesorder"
 			file="UK_Reports.uk_salesorder"
-			attachment="((object.name or '')+'.pdf')"
+			print_report_name="'%s' % (object.name)"
 		/>
 
 		<template id="uk_salesorder">
-			<t t-call="report.html_container">
+			<t t-call="web.html_container">
 				<t t-foreach="docs" t-as="o">
-					<t t-call="UK_Reports.uk_salesorder_document" t-lang="user.partner_id.lang"/>
+					<t t-call="UK_Reports.uk_salesorder_document" t-lang="o.partner_id.lang"/>
 				</t>
 			</t>
 		</template>
 	</data>
 </odoo>
+

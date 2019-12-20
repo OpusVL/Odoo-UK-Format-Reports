@@ -27,7 +27,6 @@ from ..helpers import integer_or_float
 class AccountInvoice(models.Model):
 	_inherit = "account.invoice"
 
-	@api.multi
 	def invoice_print(self):
 		"""
 		Print the invoice and mark it as sent, so that we can see more

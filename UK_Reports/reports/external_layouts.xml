@@ -2,7 +2,7 @@
 <odoo>
 
 <!-- Load some css file to help with styling / neatness of templates -->
-<template id="assets_common" name="UK_Reports assets" inherit_id="report.assets_common">
+<template id="my_assets_common" name="UK_Reports assets" inherit_id="web.report_assets_common">
  <xpath expr="." position="inside">
 	 <link href="/UK_Reports/static/src/css/UK_Reports-footers.css" rel="stylesheet"/>
 	 <link href="/UK_Reports/static/src/css/UK_Reports-headers.css" rel="stylesheet"/>
@@ -44,11 +44,7 @@
 <template id="external_layout_header_uk">
 	<div class="header">
 		<!-- Values which can change depending on model -->
-		<t t-if="doc_model == 'account.invoice'">
-			<t t-set="phone" t-value="company.accounts_dept_phone"/>
-			<t t-set="email" t-value="company.accounts_dept_email"/>
-		</t>
-		<t t-elif="doc_model == 'purchase.order'">
+		<t t-if="doc_model == 'purchase.order'">
 			<t t-set="phone" t-value="company.purchase_dept_phone"/>
 			<t t-set="email" t-value="company.purchase_dept_email"/>
 		</t>
@@ -70,10 +66,9 @@
 				<t t-set="email" t-value="company.sales_dept_email"/>
 			</t>
 		</t>
-
 		<div class="row">
 			<div class="col-xs-3 source-logo-column">
-				<img id="extlayout-source-logo" class="source-logo" t-att-src="'data:image/png;base64,%s' % company.logo"/>
+				<img id="extlayout-source-logo" class="source-logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)"/>
 			</div>
 			<div class="col-xs-4 source-details-column">
 				<br/>
@@ -111,8 +106,11 @@
 	<t t-if="not o or not 'company_id' in o">
 		<t t-set="company" t-value="res_company"></t>
 	</t>
+
 	<t t-call="UK_Reports.external_layout_header_uk"/>
-	<t t-raw="0" />
+	<div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+		<t t-raw="0"/>
+	</div>
 	<t t-call="UK_Reports.external_layout_footer_uk"/>
 </template>
 

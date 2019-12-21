@@ -27,14 +27,6 @@ from ..helpers import integer_or_float
 class AccountMove(models.Model):
 	_inherit = "account.move"
 
-	# def invoice_print(self):
-	# 	"""
-	# 	Print the invoice and mark it as sent, so that we can see more
-	# 	easily the next step of the workflow
-	# 	"""
-	# 	super(AccountMove, self).invoice_print()
-	# 	return self.env['report'].get_action(self, 'UK_Reports.uk_invoice')
-
 	def your_reference_format(self):
 		return self.name or '(Not provided)'
 

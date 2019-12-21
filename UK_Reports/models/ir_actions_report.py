@@ -23,19 +23,9 @@
 from odoo import models, api
 
 
-class IrActionsReportXml(models.Model):
-	_inherit = "ir.actions.report.xml"
+class IrActionsReport(models.Model):
+	_inherit = "ir.actions.report"
 
 	def unlink_report_actions(self):
-		report_ext_ids = [
-			'purchase.action_report_purchase_order',
-			'purchase.report_purchase_quotation',
-			'sale.report_sale_order',
-			'account.account_invoice_action_report_duplicate',
-			'account.account_invoices',
-			'stock.action_report_delivery',
-			'stock.action_report_picking',
-			'account.action_report_print_overdue',
-		]
-		for report_ext_id in report_ext_ids:
-			self.env.ref(report_ext_id).unlink_action()
+		for report in self:
+			report.unlink_action()

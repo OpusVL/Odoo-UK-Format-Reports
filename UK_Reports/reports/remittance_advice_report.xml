@@ -8,12 +8,14 @@
 			<br/>
 			<br/>
 			<div class="row" id="quote-information-block">
-				<div class="col-xs-12">
+				<div class="col-12">
 					<strong>Payment To:</strong>
 					<span t-field="o.partner_id.name"/>
 					<br/>
 				</div>
-				<div class="col-xs-12">
+			</div>
+			<div class="row">
+				<div class="col-12">
 					<strong>Payment Date:</strong>
 					<span t-field="o.payment_date" t-options='{"format": "dd/MM/yy"}'/>
 					<br/>
@@ -21,7 +23,7 @@
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-6 col-xs-offset-1">
+				<div class="col-6 offset-1">
 					<table class="payment-invoice-lines">
 						<thead id="payment-invoice-header" class="payment-invoice-header">
 							<tr>
@@ -31,9 +33,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr t-foreach="o.invoice_ids" t-as="invoice">
-								<td class="text-left"><span t-field="invoice.date_invoice" t-options='{"format": "dd/MM/yy"}'/></td>
-								<td t-esc="invoice.reference" class="text-left"/>
+							<tr t-foreach="o.reconciled_invoice_ids" t-as="invoice">
+								<td class="text-left"><span t-field="invoice.invoice_date" t-options='{"format": "dd/MM/yy"}'/></td>
+								<td t-esc="invoice.name" class="text-left"/>
 								<td class="text-right"><span t-esc="'{0:,.2f}'.format(invoice.amount_total_signed)"/></td>
 							</tr>
 						</tbody>
@@ -42,39 +44,55 @@
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-4 col-xs-offset-3">
+				<div class="col-4 offset-3">
 					<t t-call="UK_Reports.payment_invoice_totals_table"/>
 				</div>
 			</div>
 			<br/>
 			<br/>
 			<div class="row" id="payment-information-block">
-				<div class="col-xs-12">
+				<div class="col-12">
 					<strong>Payment From:</strong>
 				</div>
-				<div class="col-xs-12">
+			</div>
+			<div class="row">
+				<div class="col-12">
 					<span t-field="o.company_id.name"/>
 				</div>
-				<div class="col-xs-12">
+			</div>
+			<div class="row">
+				<div class="col-12">
 					<span t-field="o.company_id.street"/>
 				</div>
-				<div class="col-xs-12">
+			</div>
+			<div class="row">
+				<div class="col-12">
 					<span t-field="o.company_id.street2"/>
 				</div>
-				<div class="col-xs-12">
+			</div>
+			<div class="row">
+				<div class="col-12">
 					<span t-field="o.company_id.city"/>
 				</div>
-				<div class="col-xs-12">
+			</div>
+			<div class="row">
+				<div class="col-12">
 					<span t-field="o.company_id.state_id.name"/>
 				</div>
-				<div class="col-xs-12">
+			</div>
+			<div class="row">
+				<div class="col-12">
 					<span t-field="o.company_id.zip"/>
 				</div>
-				<div class="col-xs-12">
+			</div>
+			<div class="row">
+				<div class="col-12">
 					<strong>Tel:</strong>
 					<span t-field="o.company_id.accounts_dept_phone"/>
 				</div>
-				<div class="col-xs-12">
+			</div>
+			<div class="row">
+				<div class="col-12">
 					<strong>Email:</strong>
 					<span t-field="o.company_id.accounts_dept_email"/>
 				</div>
@@ -83,7 +101,7 @@
 			<br/>
 			<br/>
 			<div class="row">
-				<div id="quote-tandc-block" class="col-xs-12 tandc-line-height">
+				<div id="quote-tandc-block" class="col-12 tandc-line-height">
 					<span t-raw="o.company_id.remittance_advice_tandc"/>
 				</div>
 			</div>

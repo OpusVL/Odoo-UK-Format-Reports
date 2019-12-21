@@ -24,16 +24,16 @@ from odoo import models, api
 from ..helpers import integer_or_float
 
 
-class AccountInvoice(models.Model):
-	_inherit = "account.invoice"
+class AccountMove(models.Model):
+	_inherit = "account.move"
 
-	def invoice_print(self):
-		"""
-		Print the invoice and mark it as sent, so that we can see more
-		easily the next step of the workflow
-		"""
-		super(AccountInvoice, self).invoice_print()
-		return self.env['report'].get_action(self, 'UK_Reports.uk_invoice')
+	# def invoice_print(self):
+	# 	"""
+	# 	Print the invoice and mark it as sent, so that we can see more
+	# 	easily the next step of the workflow
+	# 	"""
+	# 	super(AccountMove, self).invoice_print()
+	# 	return self.env['report'].get_action(self, 'UK_Reports.uk_invoice')
 
 	def your_reference_format(self):
 		return self.name or '(Not provided)'
@@ -49,8 +49,8 @@ class AccountInvoice(models.Model):
 			lambda x: self.id in x.invoice_ids.ids)
 
 
-class AccountInvoiceLine(models.Model):
-	_inherit = "account.invoice.line"
+class AccountMoveLine(models.Model):
+	_inherit = "account.Move.line"
 
 	def uk_report_description_format(self):
 		if self.product_id.default_code:

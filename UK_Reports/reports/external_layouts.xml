@@ -12,9 +12,7 @@
 
 <template id="external_layout_separator_horizontal">
 	<div class="footer-separator">
-		<div class="col-xs-12">
-			<div id="extlayout-separator-line" class="separator-line"/>
-		</div>
+		<div id="extlayout-separator-line" class="col-12 separator-line"/>
 	</div>
 </template>
 
@@ -31,7 +29,7 @@
 			<em t-esc="company.vat"/>
 		</div>
 		<div class="row">
-			<div class="col-xs-2 pull-right">
+			<div class="col-2 offset-10 pull-right">
 				<span class="source_page_number">Page</span>
 				<span class="page source_page_number"/>
 				of
@@ -67,10 +65,10 @@
 			</t>
 		</t>
 		<div class="row">
-			<div class="col-xs-3 source-logo-column">
+			<div class="col-3 source-logo-column">
 				<img id="extlayout-source-logo" class="source-logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)"/>
 			</div>
-			<div class="col-xs-4 source-details-column">
+			<div class="col-4 source-details-column">
 				<br/>
 				<img id="extlayout-web-icon" class="source-mini-icon web" src='/UK_Reports/static/img/web.png'/>
 				<span id="extlayout-web-text" class="source-mini-icon-text web" t-esc="company.website"/>
@@ -84,7 +82,7 @@
 				<span id="extlayout-mail-text" class="source-mini-icon-text mail" t-esc="email"/>
 				<br/>
 			</div>
-			<div class="col-xs-5 source-address-column">
+			<div class="col-5 source-address-column">
 				<p class="source-addressline addrline1" t-esc="company.report_head_addrline1"/>
 				<p class="source-addressline addrline2" t-esc="company.report_head_addrline2"/>
 			</div>

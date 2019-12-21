@@ -136,11 +136,11 @@
 			</table>
 		</template>
 		<template id="payment_to_information">
-			<div class="col-xs-12">
+			<div class="col-12">
 				<strong>Payment To:</strong>
 				<br/>
 			</div>
-			<div class="col-xs-5">
+			<div class="col-5">
 				<strong>Account Name</strong>
 				<span t-field="o.company_id.account_name"/>
 				<br/>
@@ -150,7 +150,7 @@
 				<strong>Account Number</strong>
 				<span t-field="o.company_id.account_number"/>
 			</div>
-			<div class="col-xs-5 col-xs-offset-2">
+			<div class="col-5 offset-2">
 				<strong>IBAN</strong>
 				<span t-field="o.company_id.iban"/>
 				<br/>

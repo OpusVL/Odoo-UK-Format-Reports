@@ -5,21 +5,22 @@
 			<t t-set="doc_header_string" t-value="'Sales Order'"/>
 			<t t-call="UK_Reports.template_document_title"/>
 			<div class="row">
-				<div class="col-xs-5">
+				<div class="col-5">
 					<t t-call="UK_Reports.template_invoice_address"/>
 				</div>
-				<div class="col-xs-5 col-xs-offset-2">
+				<div class="col-5 offset-2">
 					<t t-call="UK_Reports.template_delivery_address"/>
 				</div>
 			</div>
 			<br/>
 			<br/>
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-12">
 					<strong>Order Info:</strong>
-					<br/>
 				</div>
-				<div class="col-xs-5">
+			</div>
+			<div class="row">
+				<div class="col-5">
 					<strong>Order No</strong>
 					<span t-field="o.name"/>
 					<br/>
@@ -29,7 +30,7 @@
 					<strong>Order Date</strong>
 					<span t-field="o.create_date" t-options='{"format": "dd/MM/yyyy"}'/>
 				</div>
-				<div class="col-xs-5 col-xs-offset-2">
+				<div class="col-5 offset-2">
 					<strong>Payment terms</strong>
 					<span t-field="o.payment_term_id.name"/>
 					<br/>
@@ -39,20 +40,20 @@
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-12">
 					<t t-call="UK_Reports.sale_orderlines_table"/>
 				</div>
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-5 col-xs-offset-7">
+				<div class="col-5 offset-7">
 					<t t-call="UK_Reports.orderline_totals_table"/>
 				</div>
 			</div>
 			<br/>
 			<div class="row">
 				<!--Added one div with id,text to be on line and id cause its needed to inherit in another module-->
-				<div class="col-xs-12" id="quote-tandc-block">
+				<div class="col-12" id="quote-tandc-block">
 					<t t-if="o.note" id="quote-note-block">
 						<span t-esc="o.note"/>
 						<br/>
@@ -66,10 +67,10 @@
 			<t t-set="doc_header_string" t-value="'Sales Quotation'"/>
 			<t t-call="UK_Reports.template_document_title"/>
 			<div class="row">
-				<div class="col-xs-5">
+				<div class="col-5">
 					<t t-call="UK_Reports.template_invoice_address"/>
 				</div>
-				<div class="col-xs-5 col-xs-offset-2" id="quote-delivery-address">
+				<div class="col-5 offset-2" id="quote-delivery-address">
 					<t t-call="UK_Reports.template_delivery_address"/>
 				</div>
 
@@ -77,18 +78,20 @@
 			<br/>
 			<br/>
 			<div class="row" id="quote-information-block">
-				<div class="col-xs-12">
+				<div class="col-12">
 					<strong>Quotation Info:</strong>
 					<br/>
 				</div>
-				<div class="col-xs-5">
+			</div>
+			<div class="row">
+				<div class="col-5">
 					<strong>Quotation No</strong>
 					<span t-field="o.name"/>
 					<br/>
 					<strong>Salesperson</strong>
 					<span t-field="o.user_id.name"/>
 				</div>
-				<div class="col-xs-5 col-xs-offset-2">
+				<div class="col-5 offset-2">
 					<strong>Quotation Date</strong>
 					<span t-field="o.create_date" t-options='{"format": "dd/MM/yyyy"}'/>
 					<br/>
@@ -98,19 +101,19 @@
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-12">
 					<t t-call="UK_Reports.sale_orderlines_table"/>
 				</div>
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-5 col-xs-offset-7">
+				<div class="col-5 offset-7">
 					<t t-call="UK_Reports.orderline_totals_table"/>
 				</div>
 			</div>
 			<br/>
 			<div class="row">
-				<div id="quote-tandc-block" class="col-xs-12">
+				<div id="quote-tandc-block" class="col-12">
 					<strong id="quote-progress-block">To progress this quotation to an order, sign, date and return this document.</strong>
 					<span t-raw="o.company_id.quotation_tandc"/>
 				</div>
@@ -121,6 +124,7 @@
 		<template id="uk_salesorder_document">
 			<t t-call="UK_Reports.external_layout_uk">
 				<div class="page">
+					<br/>
 					<t t-if="o.state in ['sale', 'done']">
 						<t t-call="UK_Reports.sales_order_body"/>
 					</t>

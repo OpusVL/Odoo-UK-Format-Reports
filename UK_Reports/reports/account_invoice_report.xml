@@ -1,91 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 	<data>
-		<template id="proforma_invoice_body">
-			<t t-set="doc_header_string" t-value="'Sales PRO-FORMA'"/>
-			<t t-call="UK_Reports.template_document_title"/>
-			<!--Formatting all the reports with col-xs and offset-->
-			<div class="row">
-				<div class="col-xs-5">
-					<t t-call="UK_Reports.template_partner_address_invoice_to_to_header"/>
-				</div>
-				<div class="col-xs-5 col-xs-offset-2">
-					<div class="proforma-information">
-						<strong>Proforma Info:</strong>
-						<br/>
-						<strong>Proforma Date</strong>
-					</div>
-					<div class="date-invoice-information">
-						<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
-						<br/>
-					</div>
-					<div class="payment-term-information">
-						<strong>Payment terms</strong>
-						<span t-esc="o.sale_payment_term()"/>
-						<br/>
-					</div>
-					<div class="your-ref-information">
-						<strong>Your Reference</strong>
-						<span t-esc="o.your_reference_format()"/>
-						<br/>
-					</div>
-					<div class="order-no-information">
-						<strong>Sales Order No</strong>
-						<span t-esc="o.sale_number()"/>
-						<br/>
-					</div>
-					<div class="currency-information">
-						<strong>Currency</strong>
-						<span t-field="o.currency_id.name"/>
-					</div>
-				</div>
-			</div>
-			<br/>
-			<br/>
-			<div class="row">
-				<t t-call="UK_Reports.payment_to_information"/>
-			</div>
-			<br/>
-			<div class="row">
-				<div class="col-xs-12">
-					<t t-call="UK_Reports.invoice_orderlines_table"/>
-				</div>
-			</div>
-			<br/>
-			<div class="row">
-				<div class="col-xs-5 col-xs-offset-7">
-					<t t-call="UK_Reports.orderline_totals_table"/>
-				</div>
-			</div>
-			<br/>
-			<div class="row">
-				<!--Added one div with id,text to be on line and id cause its needed to inherit in another module-->
-				<div id="quote-tandc-block" class="col-xs-12">
-					<span t-raw="o.company_id.proforma_tandc"/>
-				</div>
-			</div>
-		</template>
 
 		<template id="invoice_body">
 			<t t-set="doc_header_string" t-value="'Sales Invoice'"/>
 			<t t-call="UK_Reports.template_document_title"/>
 			<div class="row">
-				<div class="col-xs-5">
+				<div class="col-5">
 					<t t-call="UK_Reports.template_partner_address_invoice_to_to_header"/>
 				</div>
-				<div class="col-xs-5 col-xs-offset-2">
+				<div class="col-5 offset-2">
 					<div class="order-info-information">
 						<strong>Order Info:</strong>
 						<br/>
 					</div>
 					<div class="invoice-no-information">
 						<strong>Invoice No</strong>
-						<span t-field="o.number"/>
+						<span t-field="o.name"/>
 						<br/>
 					</div>
 					<div class="invoice-date-information">
 						<strong>Invoice Date</strong>
-						<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
+						<span t-field="o.invoice_date" t-options='{"format": "dd/MM/yyyy"}'/>
 						<br/>
 					</div>
 					<div class="your-ref-information">
@@ -111,25 +47,23 @@
 					</div>
 					<div class="payment-term-information">
 						<strong>Payment terms</strong>
-						<span t-field="o.payment_term_id.name"/>
+						<span t-field="o.invoice_payment_term_id.name"/>
 						<br/>
 					</div>
 				</div>
 			</div>
 			<br/>
 			<br/>
-			<div class="row">
-				<t t-call="UK_Reports.payment_to_information"/>
-			</div>
+			<t t-call="UK_Reports.payment_to_information"/>
 			<br/>
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-12">
 					<t t-call="UK_Reports.invoice_orderlines_table"/>
 				</div>
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-5 col-xs-offset-7">
+				<div class="col-5 offset-7">
 					<t t-call="UK_Reports.orderline_totals_table"/>
 				</div>
 			</div>
@@ -146,10 +80,10 @@
 			<t t-set="doc_header_string" t-value="'Credit Note'"/>
 			<t t-call="UK_Reports.template_document_title"/>
 			<div class="row">
-				<div class="col-xs-5">
+				<div class="col-5">
 					<t t-call="UK_Reports.template_partner_address_credit_to_header"/>
 				</div>
-				<div class="col-xs-5 col-xs-offset-2">
+				<div class="col-5 offset-2">
 					<div class="credit-note-information">
 						<strong>Credit Note Info:</strong>
 						<br/>
@@ -161,12 +95,12 @@
 					</div>
 					<div class="credit-date-information">
 						<strong>Credit Date</strong>
-						<span t-field="o.date_invoice" t-options='{"format": "dd/MM/yyyy"}'/>
+						<span t-field="o.invoice_date" t-options='{"format": "dd/MM/yyyy"}'/>
 						<br/>
 					</div>
 					<div class="payment-term-information">
 						<strong>Payment terms</strong>
-						<span t-esc="o.payment_term_id.name"/>
+						<span t-esc="o.invoice_payment_term_id.name"/>
 						<br/>
 					</div>
 					<div class="your-ref-information">
@@ -188,20 +122,20 @@
 			<br/>
 			<br/>
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-12">
 					<t t-call="UK_Reports.invoice_orderlines_table"/>
 				</div>
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-5 col-xs-offset-7">
+				<div class="col-5 offset-7">
 					<t t-call="UK_Reports.orderline_totals_table"/>
 				</div>
 			</div>
 			<br/>
 			<div class="row">
 				<!--Added one div with id,text to be on line and id cause its needed to inherit in another module-->
-				<div id="quote-tandc-block" class="col-xs-12">
+				<div id="quote-tandc-block" class="col-12">
 					<span t-raw="o.company_id.credit_note_tandc"/>
 				</div>
 			</div>
@@ -211,12 +145,7 @@
 			<t t-call="UK_Reports.external_layout_uk">
 				<div class="page">
 					<t t-if="o.type == 'out_invoice'">
-						<t t-if="o.state in ['proforma', 'proforma2']">
-							<t t-call="UK_Reports.proforma_invoice_body"/>
-						</t>
-						<t t-else="">
-							<t t-call="UK_Reports.invoice_body"/>
-						</t>
+						<t t-call="UK_Reports.invoice_body"/>
 					</t>
 					<t t-elif="o.type == 'out_refund'">
 						<t t-call="UK_Reports.credit_note_body"/>
@@ -227,7 +156,7 @@
 
 		<report
 			id="uk_invoice_print"
-			model="account.invoice"
+			model="account.move"
 			string="Invoice (UK format)"
 			report_type="qweb-pdf"
 			name="UK_Reports.uk_invoice"

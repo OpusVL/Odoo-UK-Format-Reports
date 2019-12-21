@@ -136,26 +136,30 @@
 			</table>
 		</template>
 		<template id="payment_to_information">
-			<div class="col-12">
-				<strong>Payment To:</strong>
-				<br/>
+			<div class="row">
+				<div class="col-12">
+					<strong>Payment To:</strong>
+					<br/>
+				</div>
 			</div>
-			<div class="col-5">
-				<strong>Account Name</strong>
-				<span t-field="o.company_id.account_name"/>
-				<br/>
-				<strong>Sort Code</strong>
-				<span t-field="o.company_id.sort_code"/>
-				<br/>
-				<strong>Account Number</strong>
-				<span t-field="o.company_id.account_number"/>
-			</div>
-			<div class="col-5 offset-2">
-				<strong>IBAN</strong>
-				<span t-field="o.company_id.iban"/>
-				<br/>
-				<strong>SWIFT</strong>
-				<span t-field="o.company_id.swift"/>
+			<div class="row">
+				<div class="col-5">
+					<strong>Account Name</strong>
+					<span t-field="o.company_id.account_name"/>
+					<br/>
+					<strong>Sort Code</strong>
+					<span t-field="o.company_id.sort_code"/>
+					<br/>
+					<strong>Account Number</strong>
+					<span t-field="o.company_id.account_number"/>
+				</div>
+				<div class="col-5 offset-2">
+					<strong>IBAN</strong>
+					<span t-field="o.company_id.iban"/>
+					<br/>
+					<strong>SWIFT</strong>
+					<span t-field="o.company_id.swift"/>
+				</div>
 			</div>
 		</template>
 	</data>

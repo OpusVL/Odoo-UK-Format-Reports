@@ -42,7 +42,11 @@
 <template id="external_layout_header_uk">
 	<div class="header">
 		<!-- Values which can change depending on model -->
-		<t t-if="doc_model == 'purchase.order'">
+		<t t-if="doc_model == 'account.move'">
+			<t t-set="phone" t-value="company.accounts_dept_phone"/>
+			<t t-set="email" t-value="company.accounts_dept_email"/>
+		</t>
+		<t t-elif="doc_model == 'purchase.order'">
 			<t t-set="phone" t-value="company.purchase_dept_phone"/>
 			<t t-set="email" t-value="company.purchase_dept_email"/>
 		</t>

@@ -21,7 +21,7 @@
 ##############################################################################
 
 from . import (
-	# account_invoice,
+	account_move,
 	account_move_line,
 	account_payment,
 	ir_actions_report,

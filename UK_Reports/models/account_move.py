@@ -50,7 +50,7 @@ class AccountMove(models.Model):
 
 
 class AccountMoveLine(models.Model):
-	_inherit = "account.Move.line"
+	_inherit = "account.move.line"
 
 	def uk_report_description_format(self):
 		if self.product_id.default_code:
@@ -69,12 +69,12 @@ class AccountMoveLine(models.Model):
 
 	# Used a function to in odoo12 to calculate price total of an invoice line
 	def get_price_total(self):
-		currency = self.invoice_id and self.invoice_id.currency_id or None
+		currency = self.move_id and self.move_id.currency_id or None
 		price = self.price_unit * (1 - (self.discount or 0.0) / 100.0)
 		taxes = False
-		if self.invoice_line_tax_ids:
-			taxes = self.invoice_line_tax_ids.compute_all(price, currency, self.quantity, product=self.product_id,
-				partner=self.invoice_id.partner_id)
+		if self.tax_ids:
+			taxes = self.tax_ids.compute_all(price, currency, self.quantity, product=self.product_id,
+				partner=self.move_id.partner_id)
 		price_subtotal = taxes['total_excluded'] if taxes else self.quantity * price
 		price_total = taxes['total_included'] if taxes else price_subtotal
 		return price_total

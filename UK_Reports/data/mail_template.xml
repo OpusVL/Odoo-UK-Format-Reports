@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <odoo>
-<!--    <function-->
-<!--        model="mail.template"-->
-<!--        name="update_mail_templates"/>-->
+    <function
+        model="mail.template"
+        name="update_mail_templates"/>
 </odoo>

@@ -12,12 +12,12 @@
 			<field name="header_line">False</field>
 			<field name="header_spacing">25</field>
 			<field name="dpi">90</field>
-<!--			ref('UK_Reports.uk_invoice_print'),-->
 			<field name="report_ids" eval="[(6,0,[
 				ref('UK_Reports.uk_purchaseorder_print'),
 				ref('UK_Reports.uk_salesorder_print'),
 				ref('UK_Reports.uk_delivery_note_print'),
 				ref('UK_Reports.uk_statement_of_account_print'),
+				ref('UK_Reports.uk_invoice_print'),
 			])]"/>
 		</record>
 	</data>

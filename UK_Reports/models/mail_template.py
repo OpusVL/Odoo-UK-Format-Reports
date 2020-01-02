@@ -23,13 +23,14 @@
 
 from odoo import models, api
 
+
 class MailTemplate(models.Model):
 	_inherit = "mail.template"
 
-	# @api.model
-	# def update_mail_templates(self):
-	# 	self.env.ref('account.email_template_edi_invoice').write(dict(
-	# 		report_template=self.env.ref('UK_Reports.uk_invoice_print').id))
+	@api.model
+	def update_mail_templates(self):
+		self.env.ref('account.email_template_edi_invoice').write(dict(
+			report_template=self.env.ref('UK_Reports.uk_invoice_print').id))
 
 	#Adding Remittance advice mail template in the action
 	@api.model

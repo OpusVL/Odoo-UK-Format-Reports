@@ -99,20 +99,18 @@
 <!-- New external layout for UK headers/footers which is callable per report -->
 <template id="external_layout_uk">
 	<!-- Multicompany -->
-	<t t-set="company" t-value="False"/>
 	<t t-if="not o and doc">
 		<t t-set="o" t-value="doc"/>
 	</t>
 	<t t-if="o and 'company_id' in o">
 		<t t-set="company" t-value="o.company_id"></t>
 	</t>
-	<t t-if="not company and o.env and o.env.user.company_id">
+	<t t-if="o and not 'company_id' in o">
 		<t t-set="company" t-value="o.env.user.company_id"></t>
 	</t>
-	<t t-if="not company">
+	<t t-if="not o">
 		<t t-set="company" t-value="res_company"></t>
 	</t>
-
 	<t t-call="UK_Reports.external_layout_header_uk"/>
 	<div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
 		<t t-raw="0"/>

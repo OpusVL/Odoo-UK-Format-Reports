@@ -37,12 +37,12 @@
 		'account',
 		'base',
 		'purchase',
-		'report',
+		'web',
 		'sale',
 	],
 	'data': [
-		'reports/account_invoice_report.xml',
 		'reports/external_layouts.xml',
+		'reports/account_invoice_report.xml',
 		'reports/generic_templates.xml',
 		'reports/purchase_order_report.xml',
 		'reports/sale_order_report.xml',
@@ -55,7 +55,7 @@
 		'views/stock_picking_view.xml',
 
 		'data/report_paperformat.xml',
-		'data/ir_actions_report_xml.xml',
+		'data/ir_actions_report.xml',
 		'data/mail_template.xml',
 
 		'email/remittance_advice_send_by_email.xml',

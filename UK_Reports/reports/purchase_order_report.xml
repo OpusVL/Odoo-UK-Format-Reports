@@ -5,35 +5,37 @@
 			<t t-set="doc_header_string" t-value="'Request for Quotation'"/>
 			<t t-call="UK_Reports.template_document_title"/>
 			<div class="row">
-				<div class="col-xs-5">
+				<div class="col-5">
 					<t t-call="UK_Reports.template_partner_address_supplier_header"/>
 				</div>
-				<div class="col-xs-5 col-xs-offset-2">
+				<div class="col-5 offset-2">
 					<t t-call="UK_Reports.template_deliver_to_address"/>
 				</div>
 			</div>
 			<br/>
 			<br/>
 			<div class="row" id="quote-information-block">
-				<div class="col-xs-12">
+				<div class="col-12">
 					<strong>Quotation Info:</strong>
 					<br/>
 				</div>
-				<div class="col-xs-5">
+			</div>
+			<div class="row">
+				<div class="col-5">
 					<strong>Quotation No</strong>
 					<span t-field="o.name"/>
 					<br/>
 					<strong>Ordered By</strong>
 					<span t-field="o.create_uid.name"/>
 				</div>
-				<div class="col-xs-5 col-xs-offset-2">
+				<div class="col-5 offset-2">
 					<strong>Expected Date</strong>
 					<span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy"}'/>
 				</div>
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-12">
 					<table class="orderlines">
 						<thead id="rfq-orderline-header" class="orderline-header">
 							<tr>
@@ -52,7 +54,7 @@
 			</div>
 			<br/>
 			<div class="row">
-				<div id="quote-tandc-block" class="col-xs-12">
+				<div id="quote-tandc-block" class="col-12">
 					<span t-raw="o.company_id.purchase_tandc"/>
 				</div>
 			</div>
@@ -62,28 +64,31 @@
 			<t t-set="doc_header_string" t-value="'Purchase Order'"/>
 			<t t-call="UK_Reports.template_document_title"/>
 			<div class="row">
-				<div class="col-xs-5">
+				<div class="col-5">
 					<t t-call="UK_Reports.template_partner_address_supplier_header"/>
 				</div>
-				<div class="col-xs-5 col-xs-offset-2">
+				<div class="col-5 offset-2">
 					<t t-call="UK_Reports.template_deliver_to_address"/>
 				</div>
 			</div>
 			<br/>
 			<br/>
 			<div class="row" id="quote-information-block">
-				<div class="col-xs-12">
+				<div class="col-12">
 					<strong>Order Info:</strong>
 					<br/>
 				</div>
-				<div class="col-xs-5">
+
+			</div>
+			<div class="row">
+				<div class="col-5">
 					<strong>Purchase Order No</strong>
 					<span t-field="o.name"/>
 					<br/>
 					<strong>Ordered By</strong>
 					<span t-field="o.create_uid.name"/>
 				</div>
-				<div class="col-xs-5 col-xs-offset-2">
+				<div class="col-5 offset-2">
 					<strong>Date</strong>
 					<span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy"}'/>
 					<br/>
@@ -93,7 +98,7 @@
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-12">
 					<table id="po-purchase_order_orderlines" class="orderlines">
 						<thead id="po-orderline-header" class="orderline-header">
 							<tr>
@@ -118,13 +123,13 @@
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-4 col-xs-offset-8">
+				<div class="col-4 offset-8">
 					<t t-call="UK_Reports.orderline_totals_table"/>
 				</div>
 			</div>
 			<br/>
 			<div class="row">
-				<div id="quote-tandc-block" class="col-xs-12">
+				<div id="quote-tandc-block" class="col-12">
 					<strong>Please quote our Purchase Order number with your delivery</strong>
 					<span t-raw="o.company_id.purchase_tandc"/>
 				</div>
@@ -155,7 +160,7 @@
 		/>
 
 		<template id="uk_purchaseorder">
-			<t t-call="report.html_container">
+			<t t-call="web.html_container">
 				<t t-foreach="docs" t-as="o">
 					<t t-call="UK_Reports.uk_purchaseorder_document" t-lang="user.partner_id.lang"/>
 				</t>

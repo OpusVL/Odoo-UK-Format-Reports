@@ -2,7 +2,7 @@
 <odoo>
 
 <!-- Load some css file to help with styling / neatness of templates -->
-<template id="assets_common" name="UK_Reports assets" inherit_id="report.assets_common">
+<template id="my_assets_common" name="UK_Reports assets" inherit_id="web.report_assets_common">
  <xpath expr="." position="inside">
 	 <link href="/UK_Reports/static/src/css/UK_Reports-footers.css" rel="stylesheet"/>
 	 <link href="/UK_Reports/static/src/css/UK_Reports-headers.css" rel="stylesheet"/>
@@ -12,9 +12,7 @@
 
 <template id="external_layout_separator_horizontal">
 	<div class="footer-separator">
-		<div class="col-xs-12">
-			<div id="extlayout-separator-line" class="separator-line"/>
-		</div>
+		<div id="extlayout-separator-line" class="col-12 separator-line"/>
 	</div>
 </template>
 
@@ -31,7 +29,7 @@
 			<em t-esc="company.vat"/>
 		</div>
 		<div class="row">
-			<div class="col-xs-2 pull-right">
+			<div class="col-2 offset-10 pull-right">
 				<span class="source_page_number">Page</span>
 				<span class="page source_page_number"/>
 				of
@@ -44,7 +42,7 @@
 <template id="external_layout_header_uk">
 	<div class="header">
 		<!-- Values which can change depending on model -->
-		<t t-if="doc_model == 'account.invoice'">
+		<t t-if="doc_model == 'account.move'">
 			<t t-set="phone" t-value="company.accounts_dept_phone"/>
 			<t t-set="email" t-value="company.accounts_dept_email"/>
 		</t>
@@ -70,12 +68,11 @@
 				<t t-set="email" t-value="company.sales_dept_email"/>
 			</t>
 		</t>
-
 		<div class="row">
-			<div class="col-xs-3 source-logo-column">
-				<img id="extlayout-source-logo" class="source-logo" t-att-src="'data:image/png;base64,%s' % company.logo"/>
+			<div class="col-3 source-logo-column">
+				<img id="extlayout-source-logo" class="source-logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)"/>
 			</div>
-			<div class="col-xs-4 source-details-column">
+			<div class="col-4 source-details-column">
 				<br/>
 				<img id="extlayout-web-icon" class="source-mini-icon web" src='/UK_Reports/static/img/web.png'/>
 				<span id="extlayout-web-text" class="source-mini-icon-text web" t-esc="company.website"/>
@@ -89,7 +86,7 @@
 				<span id="extlayout-mail-text" class="source-mini-icon-text mail" t-esc="email"/>
 				<br/>
 			</div>
-			<div class="col-xs-5 source-address-column">
+			<div class="col-5 source-address-column">
 				<p class="source-addressline addrline1" t-esc="company.report_head_addrline1"/>
 				<p class="source-addressline addrline2" t-esc="company.report_head_addrline2"/>
 			</div>
@@ -108,11 +105,16 @@
 	<t t-if="o and 'company_id' in o">
 		<t t-set="company" t-value="o.company_id"></t>
 	</t>
-	<t t-if="not o or not 'company_id' in o">
+	<t t-if="o and not 'company_id' in o">
+		<t t-set="company" t-value="o.env.user.company_id"></t>
+	</t>
+	<t t-if="not o">
 		<t t-set="company" t-value="res_company"></t>
 	</t>
 	<t t-call="UK_Reports.external_layout_header_uk"/>
-	<t t-raw="0" />
+	<div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+		<t t-raw="0"/>
+	</div>
 	<t t-call="UK_Reports.external_layout_footer_uk"/>
 </template>
 

@@ -1,25 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 	<data>
+
+		<template id="proforma_sale_body">
+			<t t-call="UK_Reports.external_layout_uk">
+				<div class="page">
+					<t t-set="doc_header_string" t-value="'Sales PRO-FORMA'"/>
+					<t t-call="UK_Reports.template_document_title"/>
+					<!--Formatting all the reports with col-xs and offset-->
+					<div class="row">
+						<div class="col-5">
+							<t t-call="UK_Reports.template_partner_address_invoice_to_to_header"/>
+						</div>
+						<div class="col-5 offset-2">
+							<div class="proforma-information">
+								<strong>Proforma Info:</strong>
+								<br/>
+							</div>
+							<div class="date-invoice-information">
+								<strong>Proforma Date</strong>
+								<span t-field="o.date_order" t-options='{"format": "dd/MM/yyyy"}'/>
+								<br/>
+							</div>
+							<div class="payment-term-information">
+								<strong>Payment terms</strong>
+								<span t-esc="o.payment_term_id.name"/>
+								<br/>
+							</div>
+							<div class="your-ref-information">
+								<strong>Origin</strong>
+								<span t-esc="o.origin"/>
+								<br/>
+							</div>
+							<div class="order-no-information">
+								<strong>Sales Order No</strong>
+								<span t-esc="o.name"/>
+								<br/>
+							</div>
+							<div class="currency-information">
+								<strong>Currency</strong>
+								<span t-field="o.currency_id.name"/>
+							</div>
+						</div>
+					</div>
+					<br/>
+					<br/>
+					<t t-call="UK_Reports.payment_to_information"/>
+					<br/>
+					<div class="row">
+						<div class="col-12">
+							<t t-call="UK_Reports.sale_orderlines_table"/>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<div class="col-5 offset-7">
+							<t t-call="UK_Reports.orderline_totals_table"/>
+						</div>
+					</div>
+					<br/>
+					<div class="row">
+						<!--Added one div with id,text to be on line and id cause its needed to inherit in another module-->
+						<div id="quote-tandc-block" class="col-12">
+							<span t-raw="o.company_id.proforma_tandc"/>
+						</div>
+					</div>
+				</div>
+			</t>
+		</template>
+
 		<template id="sales_order_body">
 			<t t-set="doc_header_string" t-value="'Sales Order'"/>
 			<t t-call="UK_Reports.template_document_title"/>
 			<div class="row">
-				<div class="col-xs-5">
+				<div class="col-5">
 					<t t-call="UK_Reports.template_invoice_address"/>
 				</div>
-				<div class="col-xs-5 col-xs-offset-2">
+				<div class="col-5 offset-2">
 					<t t-call="UK_Reports.template_delivery_address"/>
 				</div>
 			</div>
 			<br/>
 			<br/>
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-12">
 					<strong>Order Info:</strong>
-					<br/>
 				</div>
-				<div class="col-xs-5">
+			</div>
+			<div class="row">
+				<div class="col-5">
 					<strong>Order No</strong>
 					<span t-field="o.name"/>
 					<br/>
@@ -29,7 +98,7 @@
 					<strong>Order Date</strong>
 					<span t-field="o.create_date" t-options='{"format": "dd/MM/yyyy"}'/>
 				</div>
-				<div class="col-xs-5 col-xs-offset-2">
+				<div class="col-5 offset-2">
 					<strong>Payment terms</strong>
 					<span t-field="o.payment_term_id.name"/>
 					<br/>
@@ -39,20 +108,20 @@
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-12">
 					<t t-call="UK_Reports.sale_orderlines_table"/>
 				</div>
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-5 col-xs-offset-7">
+				<div class="col-5 offset-7">
 					<t t-call="UK_Reports.orderline_totals_table"/>
 				</div>
 			</div>
 			<br/>
 			<div class="row">
 				<!--Added one div with id,text to be on line and id cause its needed to inherit in another module-->
-				<div class="col-xs-12" id="quote-tandc-block">
+				<div class="col-12" id="quote-tandc-block">
 					<t t-if="o.note" id="quote-note-block">
 						<span t-esc="o.note"/>
 						<br/>
@@ -66,10 +135,10 @@
 			<t t-set="doc_header_string" t-value="'Sales Quotation'"/>
 			<t t-call="UK_Reports.template_document_title"/>
 			<div class="row">
-				<div class="col-xs-5">
+				<div class="col-5">
 					<t t-call="UK_Reports.template_invoice_address"/>
 				</div>
-				<div class="col-xs-5 col-xs-offset-2" id="quote-delivery-address">
+				<div class="col-5 offset-2" id="quote-delivery-address">
 					<t t-call="UK_Reports.template_delivery_address"/>
 				</div>
 
@@ -77,18 +146,20 @@
 			<br/>
 			<br/>
 			<div class="row" id="quote-information-block">
-				<div class="col-xs-12">
+				<div class="col-12">
 					<strong>Quotation Info:</strong>
 					<br/>
 				</div>
-				<div class="col-xs-5">
+			</div>
+			<div class="row">
+				<div class="col-5">
 					<strong>Quotation No</strong>
 					<span t-field="o.name"/>
 					<br/>
 					<strong>Salesperson</strong>
 					<span t-field="o.user_id.name"/>
 				</div>
-				<div class="col-xs-5 col-xs-offset-2">
+				<div class="col-5 offset-2">
 					<strong>Quotation Date</strong>
 					<span t-field="o.create_date" t-options='{"format": "dd/MM/yyyy"}'/>
 					<br/>
@@ -98,19 +169,19 @@
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-12">
 					<t t-call="UK_Reports.sale_orderlines_table"/>
 				</div>
 			</div>
 			<br/>
 			<div class="row">
-				<div class="col-xs-5 col-xs-offset-7">
+				<div class="col-5 offset-7">
 					<t t-call="UK_Reports.orderline_totals_table"/>
 				</div>
 			</div>
 			<br/>
 			<div class="row">
-				<div id="quote-tandc-block" class="col-xs-12">
+				<div id="quote-tandc-block" class="col-12">
 					<strong id="quote-progress-block">To progress this quotation to an order, sign, date and return this document.</strong>
 					<span t-raw="o.company_id.quotation_tandc"/>
 				</div>
@@ -121,6 +192,7 @@
 		<template id="uk_salesorder_document">
 			<t t-call="UK_Reports.external_layout_uk">
 				<div class="page">
+					<br/>
 					<t t-if="o.state in ['sale', 'done']">
 						<t t-call="UK_Reports.sales_order_body"/>
 					</t>
@@ -141,12 +213,35 @@
 			attachment="((object.name or '')+'.pdf')"
 		/>
 
+		<report
+			id="uk_report_proforma"
+			string="Sales PRO-FORMA"
+			model="sale.order"
+			report_type="qweb-pdf"
+			file="UK_Reports.uk_salesorder_proforma_template"
+			name="UK_Reports.uk_salesorder_proforma_template"
+			attachment="((object.name or '')+'.pdf')"
+		/>
+
 		<template id="uk_salesorder">
-			<t t-call="report.html_container">
+			<t t-call="web.html_container">
 				<t t-foreach="docs" t-as="o">
-					<t t-call="UK_Reports.uk_salesorder_document" t-lang="user.partner_id.lang"/>
+					<t t-call="UK_Reports.uk_salesorder_document" t-lang="o.partner_id.lang"/>
 				</t>
 			</t>
 		</template>
+
+		<template id="uk_salesorder_proforma_template">
+		    <t t-call="web.html_container">
+		        <t t-foreach="docs" t-as="o">
+		            <t
+		            	t-call="UK_Reports.proforma_sale_body"
+		            	t-lang="o.partner_id.lang"
+		            />
+		        </t>
+		    </t>
+		</template>
+
 	</data>
 </odoo>
+

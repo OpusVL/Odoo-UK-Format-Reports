@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <function model="ir.actions.report" name="unlink_report_actions" eval="[
+            [ref('purchase.action_report_purchase_order'),
+             ref('purchase.report_purchase_quotation'),
+             ref('sale.action_report_saleorder'),
+             ref('stock.action_report_delivery'),
+             ref('stock.action_report_picking'),
+             ref('account.account_invoices_without_payment'),
+             ref('account.account_invoices'),
+             ref('account.action_report_payment_receipt')]
+             ]">
+
+    </function>
+</odoo>

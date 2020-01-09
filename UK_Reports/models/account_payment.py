@@ -28,14 +28,13 @@ class AccountPayment(models.Model):
 
 	def get_amount_total(self):
 		total = 0
-		for invoice in self.invoice_ids:
+		for invoice in self.reconciled_invoice_ids:
 			total += invoice.amount_total_signed
 		return total
 
 	partner_invoice_address = fields.Many2one(
 		'res.partner', compute="_compute_partner_invoice_address")
 
-	@api.multi
 	@api.depends('partner_id.child_ids.type')
 	def _compute_partner_invoice_address(self):
 		for record in self:

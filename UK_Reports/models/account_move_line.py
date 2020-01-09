@@ -30,7 +30,6 @@ class AccountMoveLine(models.Model):
 	statement_account_overdue = fields.Float(compute="_compute_statement_account_values")
 	statement_account_value = fields.Float(compute="_compute_statement_account_values")
 
-	@api.multi
 	@api.depends('date_maturity', 'debit', 'credit')
 	def _compute_statement_account_values(self):
 		todays_date = date.today()

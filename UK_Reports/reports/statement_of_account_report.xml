@@ -5,12 +5,12 @@
 			<t t-set="doc_header_string" t-value="'Statement of Account'"/>
 			<t t-call="UK_Reports.template_document_title"/>
 			<div class="row">
-				<div class="col-xs-7">
+				<div class="col-7">
 					<strong>Statement To:</strong>
 					<br/>
                     <span t-raw="o.contact_address.replace('\n\n', '\n').replace('\n', '&lt;br&gt;')"/>
 				</div>
-				<div class="col-xs-5">
+				<div class="col-5">
 					<strong>Date</strong>
 					<span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%Y')"/>   
 					<br/>
@@ -36,7 +36,7 @@
 			<br/>
 
 			<div class="row">
-				<div class="col-xs-12" id="statement-of-account-tandc-block">
+				<div class="col-12" id="statement-of-account-tandc-block">
 					<span t-raw="o.company_id.statement_of_accounts_tandc"/>
 				</div>
 			</div>
@@ -96,7 +96,7 @@
 		/>
 
 		<template id="uk_statement_of_account">
-			<t t-call="report.html_container">
+			<t t-call="web.html_container">
 				<t t-foreach="docs" t-as="o">
 					<t t-call="UK_Reports.uk_statement_of_account_document" t-lang="user.partner_id.lang"/>
 				</t>

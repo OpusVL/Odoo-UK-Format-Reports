@@ -3,7 +3,5 @@
 <odoo>
     <function
         model="mail.template"
-        name="update_mail_templates"
-        id="update_mail_templates"
-    />
+        name="update_mail_templates"/>
 </odoo>

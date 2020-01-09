@@ -25,7 +25,6 @@ from ..helpers import integer_or_float
 class SaleOrder(models.Model):
 	_inherit = "sale.order"
 
-	@api.multi
 	def print_quotation(self):
 		"""
 		Redirect to use the UK report formatted sales order

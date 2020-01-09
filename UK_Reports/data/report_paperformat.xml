@@ -14,10 +14,10 @@
 			<field name="dpi">90</field>
 			<field name="report_ids" eval="[(6,0,[
 				ref('UK_Reports.uk_purchaseorder_print'),
-				ref('UK_Reports.uk_invoice_print'),
 				ref('UK_Reports.uk_salesorder_print'),
 				ref('UK_Reports.uk_delivery_note_print'),
 				ref('UK_Reports.uk_statement_of_account_print'),
+				ref('UK_Reports.uk_invoice_print'),
 			])]"/>
 		</record>
 	</data>

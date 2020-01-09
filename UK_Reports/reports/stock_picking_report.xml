@@ -5,10 +5,10 @@
 			<t t-set="doc_header_string" t-value="'Delivery Note'"/>
 			<t t-call="UK_Reports.template_document_title"/>
 			<div class="row">
-				<div class="col-xs-5">
+				<div class="col-5">
 					<t t-call="UK_Reports.template_partner_address_deliver_to_header"/>
 				</div>
-				<div class="col-xs-5 col-xs-offset-2">
+				<div class="col-5 offset-2">
 					<strong>Delivery Note Info:</strong>
 					<br/>
 					<strong>Delivery Note No</strong>
@@ -27,7 +27,7 @@
 			<br/>
 			<br/>
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-12">
 					<table class="orderlines">
 						<thead id="delnote-orderline-header" class="orderline-header">
 							<tr>
@@ -38,7 +38,7 @@
 							</tr>
 						</thead>
 						<tbody id="delnote-orderlines-rows-body">
-							<tr t-foreach="o.pack_operation_product_ids" t-as="line">
+							<tr t-foreach="o.move_line_ids" t-as="line">
 								<td t-esc="line.uk_report_description_format()"/>
 								<td t-esc="line.qty_ordered_format()" class="text-right"/>
 								<td t-esc="line.qty_sent_format()" class="text-right"/>
@@ -50,7 +50,7 @@
 			</div>
 			<br/>
 			<div id="delnote-orderline-totals-row" class="row">
-				<div class="col-xs-4 col-xs-offset-8">
+				<div class="col-4 offset-8">
 					<table class="orderlines-totals">
 						<tr id="delnote-row-border-top" class="row-border-top">
 							<td class="text-left bold">Total Qty Sent</td>
@@ -65,7 +65,7 @@
 			</div>
 			<br/>
 			<div class="row">
-				<div id="quote-tandc-block" class="col-xs-12">
+				<div id="quote-tandc-block" class="col-12">
 					<span t-raw="o.company_id.delivery_tandc"/>
 				</div>
 			</div>
@@ -90,10 +90,13 @@
 		/>
 
 		<template id="uk_delivery_note">
-			<t t-call="report.html_container">
+			<t t-call="web.html_container">
 				<t t-foreach="docs" t-as="o">
 					<t t-if="o.picking_type_id.code == 'outgoing'">
 						<t t-call="UK_Reports.uk_delivery_note_document" t-lang="user.partner_id.lang"/>
+					</t>
+					<t t-if="o.picking_type_id.code != 'outgoing'">
+						<t t-call="UK_Reports.external_layout_uk" t-lang="user.partner_id.lang"/>
 					</t>
 				</t>
 			</t>

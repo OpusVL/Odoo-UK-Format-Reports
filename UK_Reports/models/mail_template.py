@@ -23,6 +23,7 @@
 
 from odoo import models, api
 
+
 class MailTemplate(models.Model):
 	_inherit = "mail.template"
 

@@ -24,17 +24,8 @@ from odoo import models, api
 from ..helpers import integer_or_float
 
 
-class AccountInvoice(models.Model):
-	_inherit = "account.invoice"
-
-	@api.multi
-	def invoice_print(self):
-		"""
-		Print the invoice and mark it as sent, so that we can see more
-		easily the next step of the workflow
-		"""
-		super(AccountInvoice, self).invoice_print()
-		return self.env['report'].get_action(self, 'UK_Reports.uk_invoice')
+class AccountMove(models.Model):
+	_inherit = "account.move"
 
 	def your_reference_format(self):
 		return self.name or '(Not provided)'
@@ -50,8 +41,8 @@ class AccountInvoice(models.Model):
 			lambda x: self.id in x.invoice_ids.ids)
 
 
-class AccountInvoiceLine(models.Model):
-	_inherit = "account.invoice.line"
+class AccountMoveLine(models.Model):
+	_inherit = "account.move.line"
 
 	def uk_report_description_format(self):
 		if self.product_id.default_code:
@@ -70,12 +61,12 @@ class AccountInvoiceLine(models.Model):
 
 	# Used a function to in odoo12 to calculate price total of an invoice line
 	def get_price_total(self):
-		currency = self.invoice_id and self.invoice_id.currency_id or None
+		currency = self.move_id and self.move_id.currency_id or None
 		price = self.price_unit * (1 - (self.discount or 0.0) / 100.0)
 		taxes = False
-		if self.invoice_line_tax_ids:
-			taxes = self.invoice_line_tax_ids.compute_all(price, currency, self.quantity, product=self.product_id,
-				partner=self.invoice_id.partner_id)
+		if self.tax_ids:
+			taxes = self.tax_ids.compute_all(price, currency, self.quantity, product=self.product_id,
+				partner=self.move_id.partner_id)
 		price_subtotal = taxes['total_excluded'] if taxes else self.quantity * price
 		price_total = taxes['total_included'] if taxes else price_subtotal
 		return price_total

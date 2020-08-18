@@ -39,6 +39,7 @@
 		'purchase',
 		'web',
 		'sale',
+		'stock',
 	],
 	'data': [
 		'reports/external_layouts.xml',

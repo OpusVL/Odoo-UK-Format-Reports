@@ -26,24 +26,13 @@ class ResPartner(models.Model):
 
 	statement_of_account_filtered_move_lines = fields.One2many(
 		'account.move.line',
-		compute="_compute_statement_of_account_filtered_move_lines")
-	total_statement_account_value = fields.Float(compute="_compute_total_statement_values")
-	total_statement_account_overdue = fields.Float(compute="_compute_total_statement_values")
+		compute="_compute_statement_values")
+	total_statement_account_value = fields.Float(
+		compute="_compute_statement_values")
+	total_statement_account_overdue = fields.Float(
+		compute="_compute_statement_values")
 
-	@api.depends(
-		'statement_of_account_filtered_move_lines.statement_account_overdue',
-		'statement_of_account_filtered_move_lines.statement_account_value')
-	def _compute_total_statement_values(self):
-		for record in self:
-			value_sum = 0
-			overdue_sum = 0
-			for line in record.statement_of_account_filtered_move_lines:
-				value_sum += line.statement_account_value
-				overdue_sum += line.statement_account_overdue
-			record.total_statement_account_value = value_sum
-			record.total_statement_account_overdue = overdue_sum
-
-	def _compute_statement_of_account_filtered_move_lines(self):
+	def _compute_statement_values(self):
 		for record in self:
 			account_ids = record.company_id.statement_of_accounts_account_filter.ids
 			domain = [
@@ -51,3 +40,10 @@ class ResPartner(models.Model):
 				('account_id', 'in', account_ids)]
 			moves = self.env['account.move.line'].search(domain)
 			record.statement_of_account_filtered_move_lines = [[6, 0, moves.ids]]
+			value_sum = 0
+			overdue_sum = 0
+			for line in record.statement_of_account_filtered_move_lines:
+				value_sum += line.statement_account_value
+				overdue_sum += line.statement_account_overdue
+			record.total_statement_account_value = value_sum
+			record.total_statement_account_overdue = overdue_sum

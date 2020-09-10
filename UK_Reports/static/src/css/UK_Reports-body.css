@@ -25,3 +25,14 @@ table.payment-invoice-totals, table.payment-invoice-lines {
 .tandc-line-height {
 	line-height: 100%;
 }
+table.job_card { 
+	border: none; 
+	border-collapse: collapse; 
+}
+table.job_card td.job_line_item { 
+	border-left: 1px solid #000;
+	text-align:right; 
+}
+table.job_card td.job_line_item:first-child { 
+	border-left: none;
+}

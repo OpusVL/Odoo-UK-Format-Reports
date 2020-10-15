@@ -28,7 +28,7 @@ class PurchaseOrderLine(models.Model):
 	_inherit = "purchase.order.line"
 
 	def uk_report_description_format(self):
-		return "[{}] {}".format(
+		return self.name or "[{}] {}".format(
 			self.product_id._vendor_specific_code(self.order_id.partner_id)
 			or self.product_id.default_code,
 			self.product_id.name

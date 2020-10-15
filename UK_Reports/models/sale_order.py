@@ -37,13 +37,9 @@ class SaleOrderLine(models.Model):
 	_inherit = "sale.order.line"
 
 	def uk_report_description_format(self):
-		if self.product_id.default_code:
-			return "[{}] {}".format(
-				self.product_id.default_code,
-				self.product_id.name
-			)
-		else:
-			return self.product_id.name
+		return self.name or "[{}] {}".format(
+			self.product_id.default_code, self.product_id.name
+		) if self.product_id.default_code else self.product_id.name
 
 	def qty_format(self):
 		return integer_or_float(self.product_uom_qty)

@@ -45,8 +45,16 @@ class AccountMoveLine(models.Model):
 	_inherit = "account.move.line"
 
 	def uk_report_description_format(self):
-		return self.name or "[{}] {}".format(
-			self.product_id.default_code, self.product_id.name
+		"""
+		Priority:
+		1. line name
+		2. product name with code
+		3. product name
+		:return: <str>
+		"""
+		return self.name if self.name else "[{}] {}".format(
+			self.product_id.default_code,
+			self.product_id.name
 		) if self.product_id.default_code else self.product_id.name
 
 	def qty_format(self):

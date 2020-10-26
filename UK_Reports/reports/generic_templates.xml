@@ -67,15 +67,15 @@
 			<table class="orderlines-totals">
 				<tr id="row-border-top-1" class="row-border-top">
 					<td class="text-left bold">Net Total</td>
-					<td class="text-right" t-esc="'%.2f'% o.amount_untaxed"/>
+					<td class="text-right" t-esc="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
 				</tr>
 				<tr>
 					<td class="text-left bold">VAT</td>
-					<td class="text-right" t-esc="'%.2f'% o.amount_tax"/>
+					<td class="text-right" t-esc="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
 				</tr>
 				<tr id="row-border-top-2" class="row-border-top">
 					<td class="text-left bold">Total</td>
-					<td class="text-right" t-esc="'%.2f'% o.amount_total"/>
+					<td class="text-right" t-esc="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
 				</tr>
 			</table>
 		</template>
@@ -103,10 +103,10 @@
 					<tr t-foreach="o.order_line" t-as="line">
 						<td t-esc="line.uk_report_description_format() or ' '"/>
 						<td t-esc="line.qty_format()" class="text-right"/>
-						<td t-esc="'%.2f'% line.price_unit" class="text-right"/>
-						<td t-esc="'%.2f'% line.price_subtotal" class="text-right"/>
-						<td t-esc="'%.2f'% line.price_tax" class="text-right"/>
-						<td t-esc="'%.2f'% line.price_total" class="text-right"/>
+						<td t-esc="line.price_unit" class="text-right" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+						<td t-esc="line.price_subtotal" class="text-right" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+						<td t-esc="line.price_tax" class="text-right" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+						<td t-esc="line.price_total" class="text-right" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
 					</tr>
 				</tbody>
 			</table>
@@ -127,10 +127,10 @@
 					<tr t-foreach="o.invoice_line_ids" t-as="line">
 						<td t-esc="line.uk_report_description_format() or ' '"/>
 						<td t-esc="line.qty_format()" class="text-right"/>
-						<td t-esc="'%.2f'% line.price_unit" class="text-right"/>
-						<td t-esc="'%.2f'% line.price_subtotal" class="text-right"/>
-						<td t-esc="'%.2f'% line.total_tax_format()" class="text-right"/>
-						<td t-esc="'%.2f'% line.total_gross_format()" class="text-right"/>
+						<td t-esc="line.price_unit" class="text-right" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+						<td t-esc="line.price_subtotal" class="text-right" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+						<td t-esc="line.total_tax_format()" class="text-right"  t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+						<td t-esc="line.total_gross_format()" class="text-right" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
 					</tr>
 				</tbody>
 			</table>

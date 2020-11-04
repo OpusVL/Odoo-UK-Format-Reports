@@ -127,10 +127,10 @@
 					<tr t-foreach="o.invoice_line_ids" t-as="line">
 						<td t-esc="line.uk_report_description_format() or ' '"/>
 						<td t-esc="line.qty_format()" class="text-right"/>
-						<td t-esc="line.price_unit" class="text-right" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-						<td t-esc="line.price_subtotal" class="text-right" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-						<td t-esc="line.total_tax_format()" class="text-right"  t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-						<td t-esc="line.total_gross_format()" class="text-right" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+						<td t-esc="'{0:,.2f}'.format(line.price_unit)" class="text-right"/>
+						<td t-esc="'{0:,.2f}'.format(line.price_subtotal)" class="text-right"/>
+						<td t-esc="'{0:,.2f}'.format(line.total_tax_format())" class="text-right"/>
+						<td t-esc="'{0:,.2f}'.format(line.total_gross_format())" class="text-right"/>
 					</tr>
 				</tbody>
 			</table>

@@ -35,7 +35,7 @@
 						<tbody>
 							<tr t-foreach="o.reconciled_invoice_ids" t-as="invoice">
 								<td class="text-left"><span t-field="invoice.invoice_date" t-options='{"format": "dd/MM/yy"}'/></td>
-								<td t-esc="invoice.name" class="text-left"/>
+								<td t-esc="invoice.ref or invoice.name" class="text-left"/>
 								<td class="text-right"><span t-esc="'{0:,.2f}'.format(invoice.amount_total_signed)"/></td>
 							</tr>
 						</tbody>

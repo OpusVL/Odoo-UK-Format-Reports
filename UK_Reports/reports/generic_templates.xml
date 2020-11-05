@@ -83,7 +83,7 @@
 			<table class="payment-invoice-lines">
 				<tr id="row-border-top-1" class="row-border-top row-border-bottom">
 					<td class="text-left bold">Total Paid</td>
-					<td class="text-right"><span t-esc="o.get_amount_total()" t-esc-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td>
+					<td class="text-right"><span t-esc="o.get_amount_total()" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td>
 				</tr>
 			</table>
 		</template>
@@ -127,10 +127,10 @@
 					<tr t-foreach="o.invoice_line_ids" t-as="line">
 						<td t-esc="line.uk_report_description_format() or ' '"/>
 						<td t-esc="line.qty_format()" class="text-right"/>
-						<td t-esc="line.price_unit" class="text-right" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-						<td t-esc="line.price_subtotal" class="text-right" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-						<td t-esc="line.total_tax_format()" class="text-right"  t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-						<td t-esc="line.total_gross_format()" class="text-right" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+						<td t-esc="'{0:,.2f}'.format(line.price_unit)" class="text-right"/>
+						<td t-esc="'{0:,.2f}'.format(line.price_subtotal)" class="text-right"/>
+						<td t-esc="'{0:,.2f}'.format(line.total_tax_format())" class="text-right"/>
+						<td t-esc="'{0:,.2f}'.format(line.total_gross_format())" class="text-right"/>
 					</tr>
 				</tbody>
 			</table>

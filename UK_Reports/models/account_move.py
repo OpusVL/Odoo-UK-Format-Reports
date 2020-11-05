@@ -28,7 +28,7 @@ class AccountMove(models.Model):
 	_inherit = "account.move"
 
 	def your_reference_format(self):
-		return self.name or '(Not provided)'
+		return self.ref or '(Not provided)'
 
 	def sale_payment_term(self):
 		return self.get_sale_order().payment_term_id.name or '(Not provided)'

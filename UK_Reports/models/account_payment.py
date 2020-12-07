@@ -26,14 +26,19 @@ from odoo import models, fields, api
 class AccountPayment(models.Model):
 	_inherit = "account.payment"
 
-	def get_amount_total(self):
-		total = 0
-		for invoice in self.reconciled_invoice_ids:
-			total += invoice.amount_total_signed
-		return total
-
 	partner_invoice_address = fields.Many2one(
 		'res.partner', compute="_compute_partner_invoice_address")
+
+	remittance_amount_total = fields.Monetary(
+		'Amount Total',
+		compute="get_amount_total")
+
+	def get_amount_total(self):
+		for payment in self:
+			total = 0
+			for invoice in payment.reconciled_invoice_ids:
+				total += invoice.amount_total_signed
+			payment.remittance_amount_total = total
 
 	@api.depends('partner_id.child_ids.type')
 	def _compute_partner_invoice_address(self):

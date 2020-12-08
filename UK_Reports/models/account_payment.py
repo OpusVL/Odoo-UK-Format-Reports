@@ -31,9 +31,9 @@ class AccountPayment(models.Model):
 
 	remittance_amount_total = fields.Monetary(
 		'Amount Total',
-		compute="get_remittance_amount_total")
+		compute="_compute_remittance_amount_total")
 
-	def get_remittance_amount_total(self):
+	def _compute_remittance_amount_total(self):
 		for payment in self:
 			payment.remittance_amount_total = sum(
                 inv.amount_total_signed for inv in payment.reconciled_invoice_ids)

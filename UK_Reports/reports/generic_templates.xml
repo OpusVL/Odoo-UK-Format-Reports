@@ -83,7 +83,7 @@
 			<table class="payment-invoice-lines">
 				<tr id="row-border-top-1" class="row-border-top row-border-bottom">
 					<td class="text-left bold">Total Paid</td>
-					<td class="text-right"><span t-esc="o.get_amount_total()" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></td>
+					<td class="text-right"><span t-esc="o.remittance_amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
 				</tr>
 			</table>
 		</template>

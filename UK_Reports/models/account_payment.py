@@ -35,10 +35,8 @@ class AccountPayment(models.Model):
 
 	def get_remittance_amount_total(self):
 		for payment in self:
-			total = 0
-			for invoice in payment.reconciled_invoice_ids:
-				total += invoice.amount_total_signed
-			payment.remittance_amount_total = total
+			payment.remittance_amount_total = sum(
+                inv.amount_total_signed for inv in payment.reconciled_invoice_ids)
 
 	@api.depends('partner_id.child_ids.type')
 	def _compute_partner_invoice_address(self):

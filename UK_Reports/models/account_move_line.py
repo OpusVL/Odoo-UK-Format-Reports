@@ -33,8 +33,12 @@ class AccountMoveLine(models.Model):
     @api.depends('date_maturity', 'debit', 'credit')
     def _compute_statement_account_values(self):
         def is_overdue(moveline, on_this_date):
-            date_maturity_obj = datetime.strptime(moveline.date_maturity, "%Y-%m-%d")
-            return on_this_date > date_maturity_obj.date()
+            if moveline.date_maturity:
+                date_maturity_obj = datetime.strptime(moveline.date_maturity, "%Y-%m-%d")
+                return on_this_date > date_maturity_obj.date()
+            else:
+                # No commercial agreement was in place
+                return False
         todays_date = date.today()
         for record in self:
             record.statement_account_value = (record.debit - record.credit)

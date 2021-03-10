@@ -21,7 +21,7 @@
 ##############################################################################
 
 from odoo import models, api, fields
-from datetime import date, datetime
+from datetime import date
 
 
 class AccountMoveLine(models.Model):
@@ -34,8 +34,7 @@ class AccountMoveLine(models.Model):
     def _compute_statement_account_values(self):
         def is_overdue(moveline, on_this_date):
             if moveline.date_maturity:
-                date_maturity_obj = datetime.strptime(moveline.date_maturity, "%Y-%m-%d")
-                return on_this_date > date_maturity_obj.date()
+                return on_this_date > moveline.date_maturity
             else:
                 # No commercial agreement was in place
                 return False

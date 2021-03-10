@@ -36,7 +36,7 @@ class AccountMoveLine(models.Model):
             if moveline.date_maturity:
                 return on_this_date > moveline.date_maturity
             else:
-                # No commercial agreement was in place
+                # No commercial agreement is in place
                 return False
         todays_date = date.today()
         for record in self:
